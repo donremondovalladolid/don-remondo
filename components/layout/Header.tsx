@@ -139,23 +139,8 @@ export default function Header() {
             })}
           </nav>
 
-          {/* CTA + hamburguesa */}
-          <div className="flex items-center gap-2">
-            <a
-              href={`tel:${SITE_CONFIG.phoneRaw}`}
-              className="hidden lg:flex items-center gap-1.5 text-[0.8rem] font-semibold text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors px-2 py-1.5"
-            >
-              <Phone size={13} className="text-[var(--color-verde-600)]" />
-              {SITE_CONFIG.phone}
-            </a>
-
-            <Link
-              href="/contacto"
-              className="hidden sm:flex btn btn-verde text-[0.8rem] py-2 px-3.5"
-            >
-              Contacto
-            </Link>
-
+          {/* Hamburguesa (móvil) */}
+          <div className="flex items-center">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="md:hidden flex items-center justify-center w-9 h-9 rounded-[var(--radius-md)] border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-stone-100)] transition-colors"

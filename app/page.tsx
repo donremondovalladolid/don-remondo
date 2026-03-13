@@ -60,14 +60,7 @@ export default function HomePage() {
       {/* ── HERO ─────────────────────────────────── */}
       <section className="relative overflow-hidden bg-[var(--color-stone-800)]">
         {/* Fondo decorativo */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
-            backgroundSize: "24px 24px",
-          }}
-        />
+        <div className="absolute inset-0 opacity-[0.04] pattern-diagonal-light" />
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-stone-900)]/30 to-transparent pointer-events-none" />
 
         <div className="container relative py-20 sm:py-28 lg:py-32">
@@ -111,9 +104,7 @@ export default function HomePage() {
         </div>
 
         {/* Ola inferior */}
-        <div className="absolute bottom-0 left-0 right-0 h-8 bg-[var(--color-bg)]"
-          style={{ clipPath: "ellipse(55% 100% at 50% 100%)" }}
-        />
+        <div className="absolute bottom-0 left-0 right-0 h-8 bg-[var(--color-bg)] wave-bottom" />
       </section>
 
       {/* ── DOS ACTIVIDADES ──────────────────────── */}
@@ -133,20 +124,12 @@ export default function HomePage() {
             {/* ── Card Espárragos ── */}
             <Link
               href="/esparragos-valladolid"
-              className="group relative card overflow-hidden block"
-              style={{ minHeight: "420px" }}
+              className="group relative card overflow-hidden block min-h-[420px]"
             >
               {/* Header visual */}
               <div className="relative bg-gradient-to-br from-[var(--color-verde-800)] via-[var(--color-verde-700)] to-[var(--color-verde-500)] px-8 pt-10 pb-14">
                 {/* Patrón decorativo */}
-                <div
-                  className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(circle, #fff 1px, transparent 1px)",
-                    backgroundSize: "20px 20px",
-                  }}
-                />
+                <div className="absolute inset-0 opacity-10 pattern-dots-light" />
                 <div className="relative">
                   <div className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center mb-5">
                     <Leaf size={28} className="text-white" />
@@ -203,19 +186,11 @@ export default function HomePage() {
             {/* ── Card Taller ── */}
             <Link
               href="/taller-coches-valladolid"
-              className="group relative card overflow-hidden block"
-              style={{ minHeight: "420px" }}
+              className="group relative card overflow-hidden block min-h-[420px]"
             >
               {/* Header visual */}
               <div className="relative bg-gradient-to-br from-[var(--color-azul-900)] via-[var(--color-azul-700)] to-[var(--color-azul-500)] px-8 pt-10 pb-14">
-                <div
-                  className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(circle, #fff 1px, transparent 1px)",
-                    backgroundSize: "20px 20px",
-                  }}
-                />
+                <div className="absolute inset-0 opacity-10 pattern-dots-light" />
                 <div className="relative">
                   <div className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center mb-5">
                     <Wrench size={28} className="text-white" />
@@ -450,7 +425,7 @@ export default function HomePage() {
       </section>
 
       {/* ── CTA FINAL ────────────────────────────── */}
-      <section className="section-padding-sm bg-[var(--color-stone-800)] on-dark">
+      <section className="section-padding-sm bg-[var(--color-stone-800)]">
         <div className="container">
           <div className="max-w-2xl mx-auto text-center">
             <h2

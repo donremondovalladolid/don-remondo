@@ -127,20 +127,13 @@ export default function EsparragosPage() {
       {/* ── HERO ─────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-verde-900)] via-[var(--color-verde-800)] to-[var(--color-verde-600)]">
         {/* Patrón fondo */}
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
-            backgroundSize: "24px 24px",
-          }}
-        />
+        <div className="absolute inset-0 opacity-[0.06] pattern-diagonal-light" />
 
         <div className="container relative py-20 sm:py-28">
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 mb-5 animate-fade-up">
               <Leaf size={16} className="text-[var(--color-verde-300)]" />
-              <span className="text-[var(--color-verde-300)] text-xs font-semibold uppercase tracking-[0.1em]">
+              <span className="text-[var(--color-verde-200)] text-xs font-semibold uppercase tracking-[0.1em]">
                 Tudela de Duero · Ribera del Duero
               </span>
             </div>
@@ -151,7 +144,7 @@ export default function EsparragosPage() {
               <br />
               <span className="text-[var(--color-verde-200)] italic">de temporada</span>
             </h1>
-            <p className="text-[var(--color-verde-100)] text-lg leading-relaxed mb-8 max-w-xl animate-fade-up animate-delay-200">
+            <p className="font-display text-[var(--color-verde-200)] text-lg leading-relaxed mb-8 max-w-xl animate-fade-up animate-delay-200">
               Espárragos blancos y verdes directamente del campo. Solo vendemos
               producto de temporada, de marzo a junio, con el sabor auténtico
               de la Ribera del Duero.
@@ -174,8 +167,7 @@ export default function EsparragosPage() {
 
         {/* Ola inferior */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-10 bg-[var(--color-bg)]"
-          style={{ clipPath: "ellipse(55% 100% at 50% 100%)" }}
+          className="absolute bottom-0 left-0 right-0 h-10 bg-[var(--color-bg)] wave-bottom"
         />
       </section>
 
@@ -276,7 +268,7 @@ export default function EsparragosPage() {
 
             {/* Temporada */}
             <div className="space-y-5">
-              <div className="bg-[var(--color-verde-800)] rounded-[var(--radius-xl)] p-7 text-white">
+              <div className="bg-[var(--color-verde-800)] rounded-[var(--radius-xl)] p-7">
                 <div className="flex items-center gap-2.5 mb-5">
                   <CalendarDays size={20} className="text-[var(--color-verde-300)]" />
                   <h3
@@ -292,7 +284,7 @@ export default function EsparragosPage() {
                       className={`text-center py-2 rounded-[var(--radius-sm)] text-xs font-semibold transition-colors ${
                         activo
                           ? "bg-white text-[var(--color-verde-800)] shadow-sm"
-                          : "bg-[var(--color-verde-700)] text-[var(--color-verde-400)]"
+                          : "bg-[var(--color-verde-700)] text-[var(--color-verde-200)]"
                       }`}
                     >
                       {mes}

@@ -40,19 +40,19 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
   if (state === "success") {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-up">
-        <div className="w-16 h-16 rounded-full bg-verde-100 flex items-center justify-center mb-5">
-          <CheckCircle2 size={32} className="text-verde-700" />
+        <div className="w-16 h-16 rounded-full bg-[var(--color-verde-100)] flex items-center justify-center mb-5">
+          <CheckCircle2 size={32} className="text-[var(--color-verde-700)]" />
         </div>
-        <h3 className="font-display text-2xl text-stone-900 mb-2">
+        <h3 className="font-display text-2xl text-[var(--color-text)] mb-2">
           Mensaje enviado
         </h3>
-        <p className="text-stone-500 max-w-sm leading-relaxed">
+        <p className="text-[var(--color-text-secondary)] max-w-sm leading-relaxed">
           Nos pondremos en contacto contigo en la mayor brevedad posible.
           Gracias por escribirnos.
         </p>
         <button
           onClick={() => setState("idle")}
-          className="mt-6 text-sm text-azul-700 font-medium hover:text-azul-800 underline underline-offset-2 transition-colors"
+          className="mt-6 text-sm text-[var(--color-azul-700)] font-medium hover:text-[var(--color-azul-800)] underline underline-offset-2 transition-colors"
         >
           Enviar otro mensaje
         </button>
@@ -66,10 +66,10 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label
-            className="block text-sm font-medium text-stone-700 mb-1.5"
+            className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5"
             htmlFor="nombre"
           >
-            Nombre <span className="text-azul-600">*</span>
+            Nombre <span className="text-[var(--color-azul-600)]">*</span>
           </label>
           <input
             id="nombre"
@@ -82,7 +82,7 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
         </div>
         <div>
           <label
-            className="block text-sm font-medium text-stone-700 mb-1.5"
+            className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5"
             htmlFor="telefono"
           >
             Teléfono
@@ -100,10 +100,10 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
       {/* Email */}
       <div>
         <label
-          className="block text-sm font-medium text-stone-700 mb-1.5"
+          className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5"
           htmlFor="email"
         >
-          Email <span className="text-azul-600">*</span>
+          Email <span className="text-[var(--color-azul-600)]">*</span>
         </label>
         <input
           id="email"
@@ -118,10 +118,10 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
       {/* Asunto */}
       <div>
         <label
-          className="block text-sm font-medium text-stone-700 mb-1.5"
+          className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5"
           htmlFor="asunto"
         >
-          Asunto <span className="text-azul-600">*</span>
+          Asunto <span className="text-[var(--color-azul-600)]">*</span>
         </label>
         <select
           id="asunto"
@@ -143,10 +143,10 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
       {/* Mensaje */}
       <div>
         <label
-          className="block text-sm font-medium text-stone-700 mb-1.5"
+          className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5"
           htmlFor="mensaje"
         >
-          Mensaje <span className="text-azul-600">*</span>
+          Mensaje <span className="text-[var(--color-azul-600)]">*</span>
         </label>
         <textarea
           id="mensaje"
@@ -187,9 +187,9 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
         )}
       </button>
 
-      <p className="text-center text-xs text-stone-400">
+      <p className="text-center text-xs text-[var(--color-text-muted)]">
         Campos marcados con{" "}
-        <span className="text-azul-600 font-medium">*</span> son obligatorios
+        <span className="text-[var(--color-azul-600)] font-medium">*</span> son obligatorios
       </p>
     </form>
   );

@@ -154,12 +154,7 @@ export default async function CocheDetallePage({ params }: Props) {
                 <p className="text-xs text-[var(--color-azul-600)] font-semibold uppercase tracking-[0.08em] mb-1">
                   Precio
                 </p>
-                <p
-                  className="text-[var(--color-azul-800)] leading-none font-display"
-                  style={{
-                    fontSize: "clamp(2rem, 5vw, 2.75rem)",
-                  }}
-                >
+                <p className="text-[var(--color-azul-800)] display-price">
                   {coche.precio.toLocaleString("es-ES")} €
                 </p>
               </div>

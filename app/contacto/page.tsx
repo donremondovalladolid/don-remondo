@@ -31,10 +31,10 @@ export default function ContactoPage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="bg-stone-900 text-white section-padding">
+      <section className="bg-[var(--color-stone-900)] text-white section-padding">
         <div className="container">
           <div className="max-w-2xl animate-fade-up">
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium text-stone-200 mb-6">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-stone-200)] mb-6">
               <MessageSquare size={14} />
               Estamos aquí para ayudarte
             </div>
@@ -43,7 +43,7 @@ export default function ContactoPage() {
               <br />
               Don Remondo
             </h1>
-            <p className="text-stone-400 text-lg leading-relaxed">
+            <p className="text-[var(--color-stone-300)] text-lg leading-relaxed">
               Llámanos, escríbenos o pásate por donde prefieras.
               Atendemos espárragos, taller y compra-venta de coches.
             </p>
@@ -52,7 +52,7 @@ export default function ContactoPage() {
       </section>
 
       {/* ── CANALES DE CONTACTO RÁPIDO ── */}
-      <section className="section-padding-sm bg-stone-50 border-b border-stone-100">
+      <section className="section-padding-sm bg-[var(--color-stone-50)] border-b border-[var(--color-border-light)]">
         <div className="container">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {/* Teléfono */}
@@ -60,17 +60,17 @@ export default function ContactoPage() {
               href={`tel:${SITE_CONFIG.phoneRaw}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
-              <div className="w-11 h-11 rounded-xl bg-azul-100 flex items-center justify-center shrink-0 group-hover:bg-azul-200 transition-colors">
-                <Phone size={20} className="text-azul-700" />
+              <div className="w-11 h-11 rounded-xl bg-[var(--color-azul-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-azul-200)] transition-colors">
+                <Phone size={20} className="text-[var(--color-azul-700)]" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide mb-0.5">
+                <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
                   Teléfono
                 </p>
-                <p className="font-display text-lg text-stone-900 group-hover:text-azul-700 transition-colors">
+                <p className="font-display text-lg text-[var(--color-text)] group-hover:text-[var(--color-azul-700)] transition-colors">
                   {SITE_CONFIG.phone}
                 </p>
-                <p className="text-xs text-stone-400 mt-0.5">Llamar ahora</p>
+                <p className="text-xs text-[var(--color-text-muted)] mt-0.5">Llamar ahora</p>
               </div>
             </a>
 
@@ -79,14 +79,14 @@ export default function ContactoPage() {
               href={`mailto:${ESPARRAGOS_CONFIG.email}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
-              <div className="w-11 h-11 rounded-xl bg-verde-100 flex items-center justify-center shrink-0 group-hover:bg-verde-200 transition-colors">
-                <Mail size={20} className="text-verde-700" />
+              <div className="w-11 h-11 rounded-xl bg-[var(--color-verde-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-verde-200)] transition-colors">
+                <Mail size={20} className="text-[var(--color-verde-700)]" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide mb-0.5">
+                <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
                   Email espárragos
                 </p>
-                <p className="text-sm font-medium text-stone-900 group-hover:text-verde-700 transition-colors break-all">
+                <p className="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-verde-700)] transition-colors break-all">
                   {ESPARRAGOS_CONFIG.email}
                 </p>
               </div>
@@ -97,14 +97,14 @@ export default function ContactoPage() {
               href={`mailto:${TALLER_CONFIG.email}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
-              <div className="w-11 h-11 rounded-xl bg-azul-100 flex items-center justify-center shrink-0 group-hover:bg-azul-200 transition-colors">
-                <Mail size={20} className="text-azul-700" />
+              <div className="w-11 h-11 rounded-xl bg-[var(--color-azul-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-azul-200)] transition-colors">
+                <Mail size={20} className="text-[var(--color-azul-700)]" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-stone-400 uppercase tracking-wide mb-0.5">
+                <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
                   Email taller
                 </p>
-                <p className="text-sm font-medium text-stone-900 group-hover:text-azul-700 transition-colors break-all">
+                <p className="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-azul-700)] transition-colors break-all">
                   {TALLER_CONFIG.email}
                 </p>
               </div>
@@ -120,10 +120,10 @@ export default function ContactoPage() {
 
             {/* Formulario — columna ancha */}
             <div className="lg:col-span-3 animate-fade-up">
-              <h2 className="font-display text-3xl text-stone-900 mb-2">
+              <h2 className="font-display text-3xl text-[var(--color-text)] mb-2">
                 Escríbenos
               </h2>
-              <p className="text-stone-500 mb-8 leading-relaxed">
+              <p className="text-[var(--color-text-secondary)] mb-8 leading-relaxed">
                 Rellena el formulario y te responderemos lo antes posible.
               </p>
               <div className="card p-7 sm:p-8">
@@ -133,38 +133,37 @@ export default function ContactoPage() {
 
             {/* Ubicaciones — columna lateral */}
             <div className="lg:col-span-2 space-y-6 animate-fade-up animate-delay-100">
-              <h2 className="font-display text-3xl text-stone-900">
+              <h2 className="font-display text-3xl text-[var(--color-text)]">
                 Dónde estamos
               </h2>
 
               {/* Espárragos Valladolid */}
               <div className="card overflow-hidden">
-                <div className="p-5 border-b border-stone-100">
+                <div className="p-5 border-b border-[var(--color-border-light)]">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-7 h-7 rounded-lg bg-verde-100 flex items-center justify-center">
-                      <Leaf size={14} className="text-verde-700" />
+                    <div className="w-7 h-7 rounded-lg bg-[var(--color-verde-100)] flex items-center justify-center">
+                      <Leaf size={14} className="text-[var(--color-verde-700)]" />
                     </div>
-                    <span className="text-xs font-semibold text-verde-700 uppercase tracking-wide">
+                    <span className="text-xs font-semibold text-[var(--color-verde-700)] uppercase tracking-wide">
                       Espárragos · Valladolid
                     </span>
                   </div>
-                  <div className="space-y-2.5 text-sm text-stone-600">
+                  <div className="space-y-2.5 text-sm text-[var(--color-text-secondary)]">
                     <div className="flex items-start gap-2">
-                      <MapPin size={14} className="text-stone-400 shrink-0 mt-0.5" />
+                      <MapPin size={14} className="text-[var(--color-text-muted)] shrink-0 mt-0.5" />
                       <span>{ESPARRAGOS_CONFIG.address}</span>
                     </div>
                     <div className="flex items-start gap-2">
-                      <Clock size={14} className="text-stone-400 shrink-0 mt-0.5" />
+                      <Clock size={14} className="text-[var(--color-text-muted)] shrink-0 mt-0.5" />
                       <span>{ESPARRAGOS_CONFIG.horario}</span>
                     </div>
                   </div>
                 </div>
-                <div className="map-container" style={{ height: "180px" }}>
+                <div className="map-container h-[180px]">
                   <iframe
                     src={ESPARRAGOS_CONFIG.mapsEmbed}
                     width="100%"
                     height="100%"
-                    style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
@@ -186,32 +185,31 @@ export default function ContactoPage() {
 
               {/* Espárragos Remondo */}
               <div className="card overflow-hidden">
-                <div className="p-5 border-b border-stone-100">
+                <div className="p-5 border-b border-[var(--color-border-light)]">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-7 h-7 rounded-lg bg-verde-100 flex items-center justify-center">
-                      <Leaf size={14} className="text-verde-700" />
+                    <div className="w-7 h-7 rounded-lg bg-[var(--color-verde-100)] flex items-center justify-center">
+                      <Leaf size={14} className="text-[var(--color-verde-700)]" />
                     </div>
-                    <span className="text-xs font-semibold text-verde-700 uppercase tracking-wide">
+                    <span className="text-xs font-semibold text-[var(--color-verde-700)] uppercase tracking-wide">
                       Espárragos · Remondo
                     </span>
                   </div>
-                  <div className="space-y-2.5 text-sm text-stone-600">
+                  <div className="space-y-2.5 text-sm text-[var(--color-text-secondary)]">
                     <div className="flex items-start gap-2">
-                      <MapPin size={14} className="text-stone-400 shrink-0 mt-0.5" />
+                      <MapPin size={14} className="text-[var(--color-text-muted)] shrink-0 mt-0.5" />
                       <span>{ESPARRAGOS_REMONDO_CONFIG.address}</span>
                     </div>
                     <div className="flex items-start gap-2">
-                      <Clock size={14} className="text-stone-400 shrink-0 mt-0.5" />
+                      <Clock size={14} className="text-[var(--color-text-muted)] shrink-0 mt-0.5" />
                       <span>{ESPARRAGOS_REMONDO_CONFIG.horario}</span>
                     </div>
                   </div>
                 </div>
-                <div className="map-container" style={{ height: "180px" }}>
+                <div className="map-container h-[180px]">
                   <iframe
                     src={ESPARRAGOS_REMONDO_CONFIG.mapsEmbed}
                     width="100%"
                     height="100%"
-                    style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
@@ -233,34 +231,33 @@ export default function ContactoPage() {
 
               {/* Taller */}
               <div className="card overflow-hidden">
-                <div className="p-5 border-b border-stone-100">
+                <div className="p-5 border-b border-[var(--color-border-light)]">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-7 h-7 rounded-lg bg-azul-100 flex items-center justify-center">
-                      <Wrench size={14} className="text-azul-700" />
+                    <div className="w-7 h-7 rounded-lg bg-[var(--color-azul-100)] flex items-center justify-center">
+                      <Wrench size={14} className="text-[var(--color-azul-700)]" />
                     </div>
-                    <span className="text-xs font-semibold text-azul-700 uppercase tracking-wide">
+                    <span className="text-xs font-semibold text-[var(--color-azul-700)] uppercase tracking-wide">
                       Taller y Coches · Valladolid
                     </span>
                   </div>
-                  <div className="space-y-2.5 text-sm text-stone-600">
+                  <div className="space-y-2.5 text-sm text-[var(--color-text-secondary)]">
                     <div className="flex items-start gap-2">
-                      <MapPin size={14} className="text-stone-400 shrink-0 mt-0.5" />
+                      <MapPin size={14} className="text-[var(--color-text-muted)] shrink-0 mt-0.5" />
                       <span>{TALLER_CONFIG.address}</span>
                     </div>
                     {TALLER_CONFIG.horarioLineas.map((linea) => (
                       <div key={linea} className="flex items-start gap-2">
-                        <Clock size={14} className="text-stone-400 shrink-0 mt-0.5" />
+                        <Clock size={14} className="text-[var(--color-text-muted)] shrink-0 mt-0.5" />
                         <span>{linea}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="map-container" style={{ height: "180px" }}>
+                <div className="map-container h-[180px]">
                   <iframe
                     src={TALLER_CONFIG.mapsEmbed}
                     width="100%"
                     height="100%"
-                    style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"

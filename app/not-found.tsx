@@ -7,10 +7,7 @@ export default function NotFound() {
       <div className="container py-16 text-center">
 
         {/* Número decorativo */}
-        <p
-          className="font-display leading-none text-[var(--color-stone-200)] select-none mb-6"
-          style={{ fontSize: "clamp(6rem, 20vw, 12rem)" }}
-        >
+        <p className="display-404 text-[var(--color-stone-200)] select-none mb-6">
           404
         </p>
 

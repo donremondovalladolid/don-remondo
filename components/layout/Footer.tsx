@@ -88,7 +88,7 @@ export default function Footer() {
             <div className="w-5 h-5 rounded-full bg-[var(--color-verde-800)] flex items-center justify-center">
               <Leaf size={11} className="text-[var(--color-verde-300)]" />
             </div>
-            <h3 className="text-white text-sm font-semibold tracking-wide uppercase" style={{ fontFamily: "var(--font-sans)" }}>
+            <h3 className="text-white text-sm font-semibold tracking-wide uppercase font-sans">
               Espárragos
             </h3>
           </div>
@@ -122,7 +122,7 @@ export default function Footer() {
             <div className="w-5 h-5 rounded-full bg-[var(--color-azul-900)] flex items-center justify-center">
               <Wrench size={11} className="text-[var(--color-azul-300)]" />
             </div>
-            <h3 className="text-white text-sm font-semibold tracking-wide uppercase" style={{ fontFamily: "var(--font-sans)" }}>
+            <h3 className="text-white text-sm font-semibold tracking-wide uppercase font-sans">
               Taller y Coches
             </h3>
           </div>
@@ -156,7 +156,7 @@ export default function Footer() {
             <div className="w-5 h-5 rounded-full bg-[var(--color-stone-700)] flex items-center justify-center">
               <Phone size={11} className="text-[var(--color-stone-300)]" />
             </div>
-            <h3 className="text-white text-sm font-semibold tracking-wide uppercase" style={{ fontFamily: "var(--font-sans)" }}>
+            <h3 className="text-white text-sm font-semibold tracking-wide uppercase font-sans">
               Contacto
             </h3>
           </div>
@@ -188,7 +188,7 @@ export default function Footer() {
           <p className="text-xs text-[var(--color-stone-500)]">
             © {new Date().getFullYear()} {SITE_CONFIG.name} · Todos los derechos reservados
           </p>
-          <p className="text-xs text-[var(--color-stone-600)]">
+          <p className="text-xs text-[var(--color-stone-400)]">
             Valladolid · Castilla y León · España
           </p>
         </div>

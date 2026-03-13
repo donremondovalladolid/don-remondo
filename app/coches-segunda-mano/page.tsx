@@ -73,18 +73,11 @@ export default async function CochesPage() {
 
       {/* ── HERO ─────────────────────────────────── */}
       <section className="relative overflow-hidden bg-[var(--color-azul-900)]">
-        <div
-          className="absolute inset-0 opacity-[0.05]"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
-            backgroundSize: "24px 24px",
-          }}
-        />
+        <div className="absolute inset-0 opacity-[0.05] pattern-diagonal-light" />
         <div className="container relative py-16 sm:py-20">
           <div className="flex items-center gap-2 mb-4 animate-fade-up">
             <Car size={16} className="text-[var(--color-azul-300)]" />
-            <span className="text-[var(--color-azul-300)] text-xs font-semibold uppercase tracking-[0.1em]">
+            <span className="text-[var(--color-azul-200)] text-xs font-semibold uppercase tracking-[0.1em]">
               Don Remondo · Valladolid
             </span>
           </div>
@@ -95,14 +88,13 @@ export default async function CochesPage() {
             <br />
             <span className="text-[var(--color-azul-200)] italic">en Valladolid</span>
           </h1>
-          <p className="text-[var(--color-azul-200)] text-lg max-w-xl leading-relaxed animate-fade-up animate-delay-200">
+          <p className="font-display text-[var(--color-azul-200)] text-lg max-w-xl leading-relaxed animate-fade-up animate-delay-200">
             Vehículos revisados por nuestro propio taller mecánico.
             Garantía, transparencia y buen precio.
           </p>
         </div>
         <div
-          className="absolute bottom-0 left-0 right-0 h-8 bg-[var(--color-bg)]"
-          style={{ clipPath: "ellipse(55% 100% at 50% 100%)" }}
+          className="absolute bottom-0 left-0 right-0 h-8 bg-[var(--color-bg)] wave-bottom"
         />
       </section>
 

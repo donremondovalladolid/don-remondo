@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
-import { DM_Serif_Display, Manrope } from "next/font/google";
+import { Playfair_Display, Lora } from "next/font/google";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/config";
 import ConditionalLayout from "@/components/layout/ConditionalLayout";
 
-const dmSerifDisplay = DM_Serif_Display({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   display: "swap",
   variable: "--font-display",
 });
 
-const manrope = Manrope({
+const lora = Lora({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
   variable: "--font-sans",
 });
@@ -55,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${dmSerifDisplay.variable} ${manrope.variable}`}>
+    <html lang="es" className={`${playfair.variable} ${lora.variable}`}>
       <body className="antialiased">
         <ConditionalLayout>{children}</ConditionalLayout>
       </body>

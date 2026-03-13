@@ -67,8 +67,8 @@
   --color-border-strong: #d1c4b8;
 
   /* Tipografías */
-  --font-display: "DM Serif Display", Georgia, serif;
-  --font-sans: "Manrope", system-ui, -apple-system, sans-serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Lora", Georgia, "Times New Roman", serif;
 
   /* Sombras */
   --shadow-sm: 0 1px 3px 0 rgb(26 20 16 / 0.06), 0 1px 2px -1px rgb(26 20 16 / 0.04);
@@ -89,267 +89,73 @@
 }
 
 /* ─────────────────────────────────────────────
-   RESET & BASE
+   RESET & BASE — inside @layer base so that
+   Tailwind @layer utilities can override these.
 ───────────────────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
 
-body {
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--color-text);
-  background: var(--color-bg);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── TIPOGRAFÍA ──
+     No :where() — we need real element specificity (0-0-1)
+     to beat Tailwind preflight's :where(h1..h6){font-size:inherit}
+     which has 0-0-0.  Tailwind utilities (0-1-0, @layer utilities)
+     still override these because utilities layer > base layer.
+  */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.15;
+    color: inherit;
+    letter-spacing: -0.01em;
+  }
+
+  h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); }
+  h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); }
+  h3 { font-size: clamp(1.25rem, 2.5vw, 1.625rem); }
+  h4 { font-size: 1.125rem; }
+
+  p {
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Scroll margin para anclas */
+  :target {
+    scroll-margin-top: 80px;
+  }
+
+  /* ── FOCUS VISIBLE (accesibilidad) ── */
+  :focus-visible {
+    outline: 2px solid var(--color-verde-500);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
 }
 
 /* ─────────────────────────────────────────────
-   TIPOGRAFÍA
-───────────────────────────────────────────── */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1.15;
-  color: var(--color-text);
-  letter-spacing: -0.01em;
-}
-
-h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); }
-h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); }
-h3 { font-size: clamp(1.25rem, 2.5vw, 1.625rem); }
-h4 { font-size: 1.125rem; }
-
-p {
-  line-height: 1.7;
-  color: var(--color-text-secondary);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Scroll margin para anclas */
-:target {
-  scroll-margin-top: 80px;
-}
-
-/* ─────────────────────────────────────────────
-   FOCUS VISIBLE (accesibilidad)
-───────────────────────────────────────────── */
-:focus-visible {
-  outline: 2px solid var(--color-verde-500);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
-}
-
-/* ─────────────────────────────────────────────
-   UTILITIES DE RITMO VERTICAL
-───────────────────────────────────────────── */
-.section-padding {
-  padding-top: clamp(3rem, 7vw, 6rem);
-  padding-bottom: clamp(3rem, 7vw, 6rem);
-}
-
-.section-padding-sm {
-  padding-top: clamp(2rem, 4vw, 3.5rem);
-  padding-bottom: clamp(2rem, 4vw, 3.5rem);
-}
-
-.container {
-  max-width: 72rem;
-  margin-inline: auto;
-  padding-inline: clamp(1rem, 4vw, 1.5rem);
-}
-
-/* ─────────────────────────────────────────────
-   BOTONES BASE
-───────────────────────────────────────────── */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 600;
-  line-height: 1;
-  padding: 0.75rem 1.375rem;
-  border-radius: var(--radius-md);
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all 200ms var(--ease-out);
-  white-space: nowrap;
-  text-decoration: none;
-  letter-spacing: 0.01em;
-}
-
-.btn:active {
-  transform: translateY(1px);
-}
-
-/* Primario verde */
-.btn-verde {
-  background: var(--color-verde-600);
-  color: #fff;
-  border-color: var(--color-verde-600);
-}
-.btn-verde:hover {
-  background: var(--color-verde-700);
-  border-color: var(--color-verde-700);
-}
-
-/* Primario azul */
-.btn-azul {
-  background: var(--color-azul-600);
-  color: #fff;
-  border-color: var(--color-azul-600);
-}
-.btn-azul:hover {
-  background: var(--color-azul-700);
-  border-color: var(--color-azul-700);
-}
-
-/* Outline verde */
-.btn-outline-verde {
-  background: transparent;
-  color: var(--color-verde-600);
-  border-color: var(--color-verde-600);
-}
-.btn-outline-verde:hover {
-  background: var(--color-verde-600);
-  color: #fff;
-}
-
-/* Outline azul */
-.btn-outline-azul {
-  background: transparent;
-  color: var(--color-azul-600);
-  border-color: var(--color-azul-600);
-}
-.btn-outline-azul:hover {
-  background: var(--color-azul-600);
-  color: #fff;
-}
-
-/* Ghost claro (sobre fondos oscuros) */
-.btn-ghost-white {
-  background: transparent;
-  color: #fff;
-  border-color: rgba(255,255,255,0.5);
-}
-.btn-ghost-white:hover {
-  background: rgba(255,255,255,0.12);
-  border-color: rgba(255,255,255,0.8);
-}
-
-/* Sólido blanco */
-.btn-white {
-  background: #fff;
-  color: var(--color-text);
-  border-color: #fff;
-}
-.btn-white:hover {
-  background: var(--color-stone-100);
-}
-
-/* Grande */
-.btn-lg {
-  font-size: 1rem;
-  padding: 0.875rem 1.75rem;
-  border-radius: var(--radius-lg);
-}
-
-/* ─────────────────────────────────────────────
-   CARDS BASE
-───────────────────────────────────────────── */
-.card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  transition: box-shadow 250ms var(--ease-out), transform 250ms var(--ease-out);
-}
-
-.card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-}
-
-/* ─────────────────────────────────────────────
-   BADGES
-───────────────────────────────────────────── */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  line-height: 1;
-  padding: 0.3rem 0.65rem;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.02em;
-}
-
-.badge-verde {
-  background: var(--color-verde-100);
-  color: var(--color-verde-700);
-}
-
-.badge-azul {
-  background: var(--color-azul-100);
-  color: var(--color-azul-700);
-}
-
-.badge-stone {
-  background: var(--color-stone-100);
-  color: var(--color-stone-600);
-}
-
-.badge-ambar {
-  background: var(--color-ambar-100);
-  color: var(--color-ambar-600);
-}
-
-/* ─────────────────────────────────────────────
-   INPUTS
-───────────────────────────────────────────── */
-.input {
-  width: 100%;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: var(--color-text);
-  background: var(--color-surface);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 0.7rem 1rem;
-  transition: border-color 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
-  outline: none;
-}
-
-.input::placeholder {
-  color: var(--color-text-muted);
-}
-
-.input:focus {
-  border-color: var(--color-verde-500);
-  box-shadow: 0 0 0 3px rgb(61 138 56 / 0.12);
-}
-
-.input:focus-within {
-  border-color: var(--color-verde-500);
-}
-
-/* ─────────────────────────────────────────────
-   ANIMACIONES SUAVE (entrada)
+   KEYFRAMES — outside layers (globally available)
 ───────────────────────────────────────────── */
 @keyframes fadeUp {
   from {
@@ -367,87 +173,303 @@ a {
   to { opacity: 1; }
 }
 
-.animate-fade-up {
-  animation: fadeUp 0.6s var(--ease-out) both;
-}
+/* ─────────────────────────────────────────────
+   COMPONENTS & CUSTOM UTILITIES — inside @layer
+   components so Tailwind utilities can override.
+───────────────────────────────────────────── */
+@layer components {
+  /* ── RITMO VERTICAL ── */
+  .section-padding {
+    padding-top: clamp(3rem, 7vw, 6rem);
+    padding-bottom: clamp(3rem, 7vw, 6rem);
+  }
 
-.animate-fade-in {
-  animation: fadeIn 0.5s var(--ease-out) both;
-}
+  .section-padding-sm {
+    padding-top: clamp(2rem, 4vw, 3.5rem);
+    padding-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
 
-.animate-delay-100 { animation-delay: 100ms; }
-.animate-delay-200 { animation-delay: 200ms; }
-.animate-delay-300 { animation-delay: 300ms; }
-.animate-delay-400 { animation-delay: 400ms; }
+  .container {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 1.5rem);
+  }
+
+  /* ── BOTONES BASE ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.75rem 1.375rem;
+    border-radius: var(--radius-md);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 200ms var(--ease-out);
+    white-space: nowrap;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .btn:active {
+    transform: translateY(1px);
+  }
+
+  /* Primario verde */
+  .btn-verde {
+    background: var(--color-verde-600);
+    color: #fff;
+    border-color: var(--color-verde-600);
+  }
+  .btn-verde:hover {
+    background: var(--color-verde-700);
+    border-color: var(--color-verde-700);
+  }
+
+  /* Primario azul */
+  .btn-azul {
+    background: var(--color-azul-600);
+    color: #fff;
+    border-color: var(--color-azul-600);
+  }
+  .btn-azul:hover {
+    background: var(--color-azul-700);
+    border-color: var(--color-azul-700);
+  }
+
+  /* Outline verde */
+  .btn-outline-verde {
+    background: transparent;
+    color: var(--color-verde-600);
+    border-color: var(--color-verde-600);
+  }
+  .btn-outline-verde:hover {
+    background: var(--color-verde-600);
+    color: #fff;
+  }
+
+  /* Outline azul */
+  .btn-outline-azul {
+    background: transparent;
+    color: var(--color-azul-600);
+    border-color: var(--color-azul-600);
+  }
+  .btn-outline-azul:hover {
+    background: var(--color-azul-600);
+    color: #fff;
+  }
+
+  /* Ghost claro (sobre fondos oscuros) */
+  .btn-ghost-white {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255,255,255,0.5);
+  }
+  .btn-ghost-white:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.8);
+  }
+
+  /* Sólido blanco */
+  .btn-white {
+    background: #fff;
+    color: var(--color-text);
+    border-color: #fff;
+  }
+  .btn-white:hover {
+    background: var(--color-stone-100);
+  }
+
+  /* Grande */
+  .btn-lg {
+    font-size: 1rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: var(--radius-lg);
+  }
+
+  /* ── CARDS BASE ── */
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: box-shadow 250ms var(--ease-out), transform 250ms var(--ease-out);
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  /* ── BADGES ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.3rem 0.65rem;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.02em;
+  }
+
+  .badge-verde {
+    background: var(--color-verde-100);
+    color: var(--color-verde-700);
+  }
+
+  .badge-azul {
+    background: var(--color-azul-100);
+    color: var(--color-azul-700);
+  }
+
+  .badge-stone {
+    background: var(--color-stone-100);
+    color: var(--color-stone-600);
+  }
+
+  .badge-ambar {
+    background: var(--color-ambar-100);
+    color: var(--color-ambar-600);
+  }
+
+  /* ── INPUTS ── */
+  .input {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 0.7rem 1rem;
+    transition: border-color 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+    outline: none;
+  }
+
+  .input::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .input:focus {
+    border-color: var(--color-verde-500);
+    box-shadow: 0 0 0 3px rgb(61 138 56 / 0.12);
+  }
+
+  .input:focus-within {
+    border-color: var(--color-verde-500);
+  }
+
+  /* ── ANIMACIONES SUAVE (entrada) ── */
+  .animate-fade-up {
+    animation: fadeUp 0.6s var(--ease-out) both;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s var(--ease-out) both;
+  }
+
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+
+  /* ── FONDOS DECORATIVOS REUTILIZABLES ── */
+  .pattern-diagonal-light {
+    background-image: repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%);
+    background-size: 24px 24px;
+  }
+
+  .pattern-dots-light {
+    background-image: radial-gradient(circle, #fff 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .wave-bottom {
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  /* ── DIVISORES DECORATIVOS ── */
+  .divider {
+    height: 1px;
+    background: var(--color-border-light);
+    border: none;
+    margin: 0;
+  }
+
+  /* ── MAPA EMBED ── */
+  .map-container {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Dentro de una card el radius y borde ya los gestiona la card */
+  .card .map-container {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .map-container iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* ── font-display shorthand ── */
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .display-kpi {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    line-height: 1;
+  }
+
+  .display-price {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    line-height: 1;
+  }
+
+  .display-404 {
+    font-family: var(--font-display);
+    font-size: clamp(6rem, 20vw, 12rem);
+    line-height: 1;
+  }
+
+  /* ── STAT BLOCK ── */
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--color-text);
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+}
 
 /* ─────────────────────────────────────────────
-   DIVISORES DECORATIVOS
+   NOTE: No .on-dark overrides needed.
+   All text colors on dark backgrounds use
+   explicit utility classes (text-white, etc.)
+   directly on each element.
 ───────────────────────────────────────────── */
-.divider {
-  height: 1px;
-  background: var(--color-border-light);
-  border: none;
-  margin: 0;
-}
-
-/* ─────────────────────────────────────────────
-   MAPA EMBED
-───────────────────────────────────────────── */
-.map-container {
-  position: relative;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  border: 1px solid var(--color-border-light);
-  box-shadow: var(--shadow-sm);
-}
-
-/* Dentro de una card el radius y borde ya los gestiona la card */
-.card .map-container {
-  border-radius: 0;
-  border: none;
-  box-shadow: none;
-}
-
-.map-container iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-/* ─────────────────────────────────────────────
-   UTILITY — font-display shorthand
-───────────────────────────────────────────── */
-.font-display {
-  font-family: var(--font-display);
-}
-
-/* ─────────────────────────────────────────────
-   STAT BLOCK
-───────────────────────────────────────────── */
-.stat-value {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 400;
-  line-height: 1;
-  color: var(--color-text);
-}
-
-.stat-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-}
-
-/* ─────────────────────────────────────────────
-   OVERRIDES PARA MODO OSCURO (hero sections)
-───────────────────────────────────────────── */
-.on-dark h1,
-.on-dark h2,
-.on-dark h3,
-.on-dark h4,
-.on-dark p {
-  color: inherit;
-}

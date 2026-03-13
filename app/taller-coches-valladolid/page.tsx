@@ -139,19 +139,12 @@ export default async function TallerPage() {
 
       {/* ── HERO ─────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-azul-900)] via-[var(--color-azul-800)] to-[var(--color-azul-600)]">
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
-            backgroundSize: "24px 24px",
-          }}
-        />
+        <div className="absolute inset-0 opacity-[0.06] pattern-diagonal-light" />
         <div className="container relative py-20 sm:py-28">
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 mb-5 animate-fade-up">
               <Wrench size={16} className="text-[var(--color-azul-300)]" />
-              <span className="text-[var(--color-azul-300)] text-xs font-semibold uppercase tracking-[0.1em]">
+              <span className="text-[var(--color-azul-200)] text-xs font-semibold uppercase tracking-[0.1em]">
                 {TALLER_CONFIG.addressShort} · Valladolid
               </span>
             </div>
@@ -162,7 +155,7 @@ export default async function TallerPage() {
               <br />
               <span className="text-[var(--color-azul-200)] italic">y Compra-Venta</span>
             </h1>
-            <p className="text-[var(--color-azul-100)] text-lg leading-relaxed mb-8 max-w-xl animate-fade-up animate-delay-200">
+            <p className="font-display text-[var(--color-azul-200)] text-lg leading-relaxed mb-8 max-w-xl animate-fade-up animate-delay-200">
               Taller mecánico multimarca con más de {SITE_CONFIG.experience} años de experiencia
               en Valladolid. Reparamos tu coche con honestidad, presupuesto previo y garantía.
             </p>
@@ -182,8 +175,7 @@ export default async function TallerPage() {
           </div>
         </div>
         <div
-          className="absolute bottom-0 left-0 right-0 h-10 bg-[var(--color-bg)]"
-          style={{ clipPath: "ellipse(55% 100% at 50% 100%)" }}
+          className="absolute bottom-0 left-0 right-0 h-10 bg-[var(--color-bg)] wave-bottom"
         />
       </section>
 
@@ -239,17 +231,12 @@ export default async function TallerPage() {
       </section>
 
       {/* ── STATS / CONFIANZA ────────────────────── */}
-      <section className="section-padding bg-[var(--color-azul-900)] on-dark">
+      <section className="section-padding bg-[var(--color-azul-900)]">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             {garantias.map(({ valor, label }) => (
               <div key={label} className="text-center">
-                <p
-                  className="text-white leading-none mb-2 font-display"
-                  style={{
-                    fontSize: "clamp(1.8rem, 4vw, 2.75rem)",
-                  }}
-                >
+                <p className="text-white leading-none mb-2 display-kpi">
                   {valor}
                 </p>
                 <p className="text-[var(--color-azul-300)] text-xs font-semibold uppercase tracking-[0.08em]">

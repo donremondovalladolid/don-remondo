@@ -160,13 +160,6 @@ export default async function TallerPage() {
               en Valladolid. Reparamos tu coche con honestidad, presupuesto previo y garantía.
             </p>
             <div className="flex flex-wrap gap-3 animate-fade-up animate-delay-300">
-              <a
-                href={`tel:${TALLER_CONFIG.phoneRaw}`}
-                className="btn btn-white btn-lg"
-              >
-                <Phone size={17} className="text-[var(--color-azul-700)]" />
-                Pedir presupuesto
-              </a>
               <Link href="/coches-segunda-mano" className="btn btn-ghost-white btn-lg">
                 <Car size={17} />
                 Ver coches en venta

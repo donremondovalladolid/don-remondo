@@ -149,19 +149,6 @@ export default function EsparragosPage() {
               producto de temporada, de marzo a junio, con el sabor auténtico
               de la Ribera del Duero.
             </p>
-            <div className="flex flex-wrap gap-3 animate-fade-up animate-delay-300">
-              <a
-                href={`tel:${ESPARRAGOS_CONFIG.phoneRaw}`}
-                className="btn btn-white btn-lg"
-              >
-                <Phone size={17} className="text-[var(--color-verde-700)]" />
-                Llamar para pedir
-              </a>
-              <Link href="/contacto?asunto=esparragos" className="btn btn-ghost-white btn-lg">
-                Escribirnos
-                <ArrowRight size={16} />
-              </Link>
-            </div>
           </div>
         </div>
 

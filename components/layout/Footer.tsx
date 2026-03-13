@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin, Leaf, Wrench, Car, ArrowUpRight } from "lucide-react";
+import { Phone, MapPin, Leaf, Wrench } from "lucide-react";
 import { SITE_CONFIG, ESPARRAGOS_CONFIG, TALLER_CONFIG } from "@/lib/config";
 
 const footerLinks = {
@@ -21,33 +21,6 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer className="bg-[var(--color-stone-800)] text-[var(--color-stone-300)]">
-
-      {/* CTA strip */}
-      <div className="border-b border-[var(--color-stone-700)]">
-        <div className="container py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p
-            className="text-white text-lg font-display"
-          >
-            ¿Tienes alguna pregunta?
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={`tel:${SITE_CONFIG.phoneRaw}`}
-              className="btn btn-white text-[0.8rem] py-2 px-4"
-            >
-              <Phone size={14} className="text-[var(--color-verde-600)]" />
-              {SITE_CONFIG.phone}
-            </a>
-            <Link
-              href="/contacto"
-              className="btn btn-ghost-white text-[0.8rem] py-2 px-4"
-            >
-              Escribir mensaje
-              <ArrowUpRight size={13} />
-            </Link>
-          </div>
-        </div>
-      </div>
 
       {/* Cuerpo principal */}
       <div className="container py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
@@ -71,15 +44,6 @@ export default function Footer() {
           <p className="text-sm text-[var(--color-stone-400)] leading-relaxed mb-4 max-w-[220px]">
             Negocio familiar en Valladolid desde {SITE_CONFIG.founded}. Espárragos frescos y taller mecánico de confianza.
           </p>
-          <div className="space-y-1.5 text-xs text-[var(--color-stone-400)]">
-            <a
-              href={`mailto:${SITE_CONFIG.email}`}
-              className="flex items-center gap-2 hover:text-white transition-colors"
-            >
-              <Mail size={12} className="text-[var(--color-stone-500)] shrink-0" />
-              {SITE_CONFIG.email}
-            </a>
-          </div>
         </div>
 
         {/* Espárragos */}
@@ -172,13 +136,6 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-          <a
-            href={`tel:${SITE_CONFIG.phoneRaw}`}
-            className="inline-flex items-center gap-2 bg-[var(--color-stone-700)] hover:bg-[var(--color-stone-600)] text-white text-sm font-semibold px-3.5 py-2.5 rounded-[var(--radius-md)] transition-colors"
-          >
-            <Phone size={13} className="text-[var(--color-ambar-400)]" />
-            {SITE_CONFIG.phone}
-          </a>
         </div>
       </div>
 

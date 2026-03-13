@@ -2,14 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Phone, Menu, X, Leaf, Wrench } from "lucide-react";
-import { SITE_CONFIG } from "@/lib/config";
+import { Menu, X, Leaf, Wrench } from "lucide-react";
 
 const navLinks = [
   { href: "/esparragos-valladolid", label: "Espárragos", icon: Leaf, color: "text-green-700" },
   { href: "/taller-coches-valladolid", label: "Taller y Coches", icon: Wrench, color: "text-blue-700" },
-  { href: "/coches-segunda-mano", label: "Coches en Venta", icon: null, color: "text-blue-700" },
-  { href: "/contacto", label: "Contacto", icon: null, color: "text-gray-700" },
 ];
 
 export default function Header() {
@@ -45,22 +42,14 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Tel + hamburguesa */}
+          {/* Contacto + hamburguesa */}
           <div className="flex items-center gap-2">
-            <a
-              href={`tel:${SITE_CONFIG.phoneRaw}`}
+            <Link
+              href="/contacto"
               className="hidden sm:flex items-center gap-1.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold px-3 py-2 rounded-lg transition-colors"
             >
-              <Phone size={15} />
-              {SITE_CONFIG.phone}
-            </a>
-            <a
-              href={`tel:${SITE_CONFIG.phoneRaw}`}
-              className="sm:hidden flex items-center justify-center w-9 h-9 bg-green-700 text-white rounded-lg"
-              aria-label="Llamar"
-            >
-              <Phone size={17} />
-            </a>
+              Contacto
+            </Link>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50"
@@ -87,13 +76,6 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <a
-              href={`tel:${SITE_CONFIG.phoneRaw}`}
-              className="flex items-center gap-2 px-3 py-3 rounded-lg text-sm font-semibold text-green-700 hover:bg-green-50 transition-colors mt-1 border-t border-gray-100 pt-3"
-            >
-              <Phone size={16} />
-              {SITE_CONFIG.phone}
-            </a>
           </nav>
         </div>
       )}

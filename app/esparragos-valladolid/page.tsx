@@ -1,53 +1,82 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Phone, MapPin, Clock, ArrowRight, CheckCircle2, Leaf, CalendarDays, ExternalLink } from "lucide-react";
-import { ESPARRAGOS_CONFIG, SITE_CONFIG } from "@/lib/config";
+import { Phone, MapPin, Clock, CheckCircle2, Leaf, CalendarDays, ExternalLink } from "lucide-react";
+import { ESPARRAGOS_CONFIG, ESPARRAGOS_REMONDO_CONFIG, SITE_CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Espárragos Valladolid | Espárragos Frescos de Tudela de Duero",
   description:
-    "Compra espárragos frescos en Valladolid. Origen Tudela de Duero, temporada de primavera. Espárragos blancos y verdes de máxima calidad. Don Remondo.",
+    "Compra espárragos frescos en Valladolid y Remondo (Segovia). Origen Tudela de Duero, temporada de primavera. Espárragos blancos y verdes de máxima calidad. Don Remondo.",
   keywords: [
     "espárragos Valladolid",
     "espárragos Tudela de Duero",
     "comprar espárragos Valladolid",
     "espárragos frescos Valladolid",
     "verdulería espárragos Valladolid",
+    "espárragos Remondo Segovia",
   ],
   openGraph: {
-    title: "Espárragos Frescos de Tudela de Duero | Don Remondo Valladolid",
+    title: "Espárragos Frescos de Tudela de Duero | Don Remondo",
     description:
-      "Espárragos blancos y verdes directamente del campo. Temporada marzo-junio en Valladolid.",
+      "Espárragos blancos y verdes directamente del campo. Temporada marzo-junio. Tiendas en Valladolid y Remondo (Segovia).",
     url: `${SITE_CONFIG.url}/esparragos-valladolid`,
   },
 };
 
 const schemaOrg = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: ESPARRAGOS_CONFIG.name,
-  description:
-    "Venta de espárragos frescos en Valladolid. Origen Tudela de Duero. Espárragos blancos y verdes de temporada.",
-  url: `${SITE_CONFIG.url}/esparragos-valladolid`,
-  telephone: ESPARRAGOS_CONFIG.phoneRaw,
-  email: ESPARRAGOS_CONFIG.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: ESPARRAGOS_CONFIG.addressShort,
-    addressLocality: ESPARRAGOS_CONFIG.city,
-    addressRegion: "Castilla y León",
-    postalCode: ESPARRAGOS_CONFIG.cp,
-    addressCountry: "ES",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: ESPARRAGOS_CONFIG.lat,
-    longitude: ESPARRAGOS_CONFIG.lng,
-  },
-  openingHours: "Mo-Sa 09:00-14:00 Mo-Sa 17:00-20:00",
-  hasMap: ESPARRAGOS_CONFIG.mapsUrl,
-  priceRange: "€",
-  servesCuisine: "Espárragos frescos",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      name: ESPARRAGOS_CONFIG.name,
+      description:
+        "Venta de espárragos frescos en Valladolid. Origen Tudela de Duero. Espárragos blancos y verdes de temporada.",
+      url: `${SITE_CONFIG.url}/esparragos-valladolid`,
+      telephone: ESPARRAGOS_CONFIG.phoneRaw,
+      email: ESPARRAGOS_CONFIG.email,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: ESPARRAGOS_CONFIG.addressShort,
+        addressLocality: ESPARRAGOS_CONFIG.city,
+        addressRegion: "Castilla y León",
+        postalCode: ESPARRAGOS_CONFIG.cp,
+        addressCountry: "ES",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: ESPARRAGOS_CONFIG.lat,
+        longitude: ESPARRAGOS_CONFIG.lng,
+      },
+      openingHours: "Mo-Su 05:00-10:00",
+      hasMap: ESPARRAGOS_CONFIG.mapsUrl,
+      priceRange: "€",
+    },
+    {
+      "@type": "LocalBusiness",
+      name: ESPARRAGOS_REMONDO_CONFIG.name,
+      description:
+        "Venta de espárragos frescos en Remondo, Segovia. Origen Tudela de Duero. Espárragos blancos y verdes de temporada.",
+      url: `${SITE_CONFIG.url}/esparragos-valladolid`,
+      telephone: ESPARRAGOS_REMONDO_CONFIG.phoneRaw,
+      email: ESPARRAGOS_REMONDO_CONFIG.email,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: ESPARRAGOS_REMONDO_CONFIG.addressShort,
+        addressLocality: ESPARRAGOS_REMONDO_CONFIG.city,
+        addressRegion: "Castilla y León",
+        postalCode: ESPARRAGOS_REMONDO_CONFIG.cp,
+        addressCountry: "ES",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: ESPARRAGOS_REMONDO_CONFIG.lat,
+        longitude: ESPARRAGOS_REMONDO_CONFIG.lng,
+      },
+      openingHours: "Mo-Su 15:00-19:30",
+      hasMap: ESPARRAGOS_REMONDO_CONFIG.mapsUrl,
+      priceRange: "€",
+    },
+  ],
 };
 
 const caracteristicas = [
@@ -87,7 +116,7 @@ export default function EsparragosPage() {
             <div className="flex items-center gap-2 mb-4">
               <Leaf size={18} className="text-green-200" />
               <span className="text-green-200 text-sm font-medium uppercase tracking-wide">
-                Tudela de Duero · Valladolid
+                Tudela de Duero · Valladolid · Remondo
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-4 leading-tight">
@@ -97,17 +126,8 @@ export default function EsparragosPage() {
             </h1>
             <p className="text-green-100 text-lg mb-8 leading-relaxed">
               Espárragos blancos y verdes directamente del campo. Producto de temporada
-              con el sabor auténtico de la Ribera del Duero. Disponibles en Valladolid.
+              con el sabor auténtico de la Ribera del Duero. Dos puntos de venta a tu disposición.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href={`tel:${ESPARRAGOS_CONFIG.phoneRaw}`}
-                className="inline-flex items-center justify-center gap-2 bg-white text-green-700 font-bold px-6 py-3 rounded-xl hover:bg-green-50 transition-colors"
-              >
-                <Phone size={18} />
-                Llamar para pedir: {ESPARRAGOS_CONFIG.phone}
-              </a>
-            </div>
           </div>
         </div>
       </section>
@@ -164,7 +184,7 @@ export default function EsparragosPage() {
               </div>
             </div>
 
-            {/* Origen + Datos */}
+            {/* Origen + Temporada */}
             <div>
               <div className="bg-gray-50 rounded-2xl p-6 mb-6">
                 <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
@@ -216,93 +236,162 @@ export default function EsparragosPage() {
             ¿Quieres pedir espárragos?
           </h2>
           <p className="text-gray-600 mb-6">
-            Llámanos y te indicamos disponibilidad. También puedes pasarte por la tienda.
+            Llámanos y te indicamos disponibilidad. También puedes pasarte por cualquiera de nuestras tiendas.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
             <a
               href={`tel:${ESPARRAGOS_CONFIG.phoneRaw}`}
-              className="inline-flex items-center justify-center gap-2 bg-green-700 hover:bg-green-800 text-white font-bold px-6 py-3 rounded-xl transition-colors"
+              className="inline-flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors"
             >
-              <Phone size={18} />
+              <Phone size={16} />
               {ESPARRAGOS_CONFIG.phone}
             </a>
             <Link
               href="/contacto"
-              className="inline-flex items-center justify-center gap-2 border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+              className="inline-flex items-center gap-2 border border-green-700 text-green-700 hover:bg-green-700 hover:text-white font-semibold px-5 py-2.5 rounded-lg transition-colors"
             >
               Formulario de contacto
-              <ArrowRight size={16} />
             </Link>
           </div>
+          <p className="text-sm text-gray-400 mt-4">
+            o escríbenos a{" "}
+            <a href={`mailto:${ESPARRAGOS_CONFIG.email}`} className="text-green-700 hover:underline font-medium">
+              {ESPARRAGOS_CONFIG.email}
+            </a>
+          </p>
         </div>
       </section>
 
-      {/* DIRECCIÓN + MAPA */}
+      {/* PUNTOS DE VENTA */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Dónde encontrarnos</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-1 space-y-4">
-              <div className="flex items-start gap-3">
-                <MapPin size={20} className="text-green-600 mt-0.5 shrink-0" />
-                <div>
-                  <p className="font-semibold text-gray-900">Dirección</p>
-                  <p className="text-gray-600 text-sm">{ESPARRAGOS_CONFIG.address}</p>
-                </div>
+          <h2 className="text-3xl font-bold text-gray-900 mb-3 text-center">
+            Dónde encontrarnos
+          </h2>
+          <p className="text-gray-500 text-center mb-12 max-w-xl mx-auto">
+            Dos puntos de venta con horarios complementarios para que nunca te quedes sin espárragos.
+          </p>
+
+          {/* Tienda 1 — Valladolid */}
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-green-700 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">
+                1
               </div>
-              <div className="flex items-start gap-3">
-                <Clock size={20} className="text-green-600 mt-0.5 shrink-0" />
-                <div>
-                  <p className="font-semibold text-gray-900">Horario</p>
-                  {ESPARRAGOS_CONFIG.horarioLineas.map((h) => (
-                    <p key={h} className="text-gray-600 text-sm">{h}</p>
-                  ))}
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Phone size={20} className="text-green-600 mt-0.5 shrink-0" />
-                <div>
-                  <p className="font-semibold text-gray-900">Teléfono</p>
-                  <a
-                    href={`tel:${ESPARRAGOS_CONFIG.phoneRaw}`}
-                    className="text-green-700 font-medium hover:underline text-sm"
-                  >
-                    {ESPARRAGOS_CONFIG.phone}
-                  </a>
-                </div>
-              </div>
-              <a
-                href={ESPARRAGOS_CONFIG.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-green-700 hover:text-green-800 font-medium mt-2"
-              >
-                <ExternalLink size={14} />
-                Abrir en Google Maps
-              </a>
+              <h3 className="text-xl font-bold text-gray-900">Valladolid — Av. del Euro, 24</h3>
             </div>
-            <div className="lg:col-span-2">
-              <div className="rounded-2xl overflow-hidden shadow-sm border border-gray-100 h-72 bg-green-50 flex items-center justify-center">
-                <div className="text-center text-gray-400">
-                  <MapPin size={32} className="mx-auto mb-2 text-green-300" />
-                  <p className="text-sm font-medium">Mapa — Av. del Euro, 24</p>
-                  <p className="text-xs text-gray-300 mt-1">
-                    Insertar iframe de Google Maps aquí
-                  </p>
-                  <a
-                    href={ESPARRAGOS_CONFIG.mapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-green-600 hover:underline mt-3"
-                  >
-                    <ExternalLink size={12} />
-                    Ver en Google Maps
-                  </a>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <MapPin size={20} className="text-green-600 mt-0.5 shrink-0" />
+                  <div>
+                    <p className="font-semibold text-gray-900">Dirección</p>
+                    <p className="text-gray-600 text-sm">{ESPARRAGOS_CONFIG.address}</p>
+                  </div>
                 </div>
+                <div className="flex items-start gap-3">
+                  <Clock size={20} className="text-green-600 mt-0.5 shrink-0" />
+                  <div>
+                    <p className="font-semibold text-gray-900">Horario</p>
+                    {ESPARRAGOS_CONFIG.horarioLineas.map((h) => (
+                      <p key={h} className="text-gray-600 text-sm">{h}</p>
+                    ))}
+                  </div>
+                </div>
+                <a
+                  href={ESPARRAGOS_CONFIG.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-green-700 hover:text-green-800 font-medium mt-2"
+                >
+                  <ExternalLink size={14} />
+                  Abrir en Google Maps
+                </a>
               </div>
-              <p className="text-xs text-gray-400 mt-2 text-center">
-                Pendiente: insertar iframe embed de Google Maps con la dirección exacta
-              </p>
+              <div className="lg:col-span-2">
+                <div className="rounded-2xl overflow-hidden shadow-sm border border-gray-100 h-72 bg-green-50 flex items-center justify-center">
+                  <div className="text-center text-gray-400">
+                    <MapPin size={32} className="mx-auto mb-2 text-green-300" />
+                    <p className="text-sm font-medium">Mapa — Av. del Euro, 24 · Valladolid</p>
+                    <p className="text-xs text-gray-300 mt-1">Insertar iframe de Google Maps aquí</p>
+                    <a
+                      href={ESPARRAGOS_CONFIG.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs text-green-600 hover:underline mt-3"
+                    >
+                      <ExternalLink size={12} />
+                      Ver en Google Maps
+                    </a>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-400 mt-2 text-center">
+                  Pendiente: insertar iframe embed de Google Maps con la dirección exacta
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="border-t border-gray-100 mb-12" />
+
+          {/* Tienda 2 — Remondo */}
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-green-700 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">
+                2
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Remondo (Segovia) — C. Calvario, 8</h3>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <MapPin size={20} className="text-green-600 mt-0.5 shrink-0" />
+                  <div>
+                    <p className="font-semibold text-gray-900">Dirección</p>
+                    <p className="text-gray-600 text-sm">{ESPARRAGOS_REMONDO_CONFIG.address}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Clock size={20} className="text-green-600 mt-0.5 shrink-0" />
+                  <div>
+                    <p className="font-semibold text-gray-900">Horario</p>
+                    {ESPARRAGOS_REMONDO_CONFIG.horarioLineas.map((h) => (
+                      <p key={h} className="text-gray-600 text-sm">{h}</p>
+                    ))}
+                  </div>
+                </div>
+                <a
+                  href={ESPARRAGOS_REMONDO_CONFIG.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-green-700 hover:text-green-800 font-medium mt-2"
+                >
+                  <ExternalLink size={14} />
+                  Abrir en Google Maps
+                </a>
+              </div>
+              <div className="lg:col-span-2">
+                <div className="rounded-2xl overflow-hidden shadow-sm border border-gray-100 h-72 bg-green-50 flex items-center justify-center">
+                  <div className="text-center text-gray-400">
+                    <MapPin size={32} className="mx-auto mb-2 text-green-300" />
+                    <p className="text-sm font-medium">Mapa — C. Calvario, 8 · Remondo, Segovia</p>
+                    <p className="text-xs text-gray-300 mt-1">Insertar iframe de Google Maps aquí</p>
+                    <a
+                      href={ESPARRAGOS_REMONDO_CONFIG.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs text-green-600 hover:underline mt-3"
+                    >
+                      <ExternalLink size={12} />
+                      Ver en Google Maps
+                    </a>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-400 mt-2 text-center">
+                  Pendiente: insertar iframe embed de Google Maps con la dirección exacta
+                </p>
+              </div>
             </div>
           </div>
         </div>

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_CONFIG.name}`,
   },
   description:
-    "Espárragos frescos de Tudela de Duero y taller mecánico con compra-venta de coches en Valladolid. Calidad y confianza desde 2014.",
+    "Espárragos frescos de Tudela de Duero y taller mecánico con compra-venta de coches en Valladolid. Calidad y confianza desde 2016.",
   keywords: [
     "espárragos Valladolid",
     "espárragos Tudela de Duero",

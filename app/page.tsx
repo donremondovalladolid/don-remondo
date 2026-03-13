@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Phone, ArrowRight, Leaf, Wrench, Car, Star, MapPin, CheckCircle2 } from "lucide-react";
-import { SITE_CONFIG, ESPARRAGOS_CONFIG, TALLER_CONFIG } from "@/lib/config";
+import { SITE_CONFIG, ESPARRAGOS_CONFIG, ESPARRAGOS_REMONDO_CONFIG, TALLER_CONFIG } from "@/lib/config";
 
 const schemaOrg = {
   "@context": "https://schema.org",
@@ -32,37 +32,11 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
           <div className="max-w-3xl">
             <p className="text-green-400 text-sm font-semibold uppercase tracking-widest mb-4">
-              Valladolid · Desde 2014
+              Valladolid · Desde 2016
             </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
               Don Remondo
             </h1>
-            <p className="text-xl sm:text-2xl text-gray-300 mb-4">
-              Espárragos frescos de Tudela de Duero
-              <br />
-              <span className="text-gray-400">y Taller Mecánico de confianza</span>
-            </p>
-            <p className="text-gray-400 mb-10 max-w-xl">
-              Más de {SITE_CONFIG.experience} años sirviendo a Valladolid con producto de calidad y
-              servicio mecánico honesto. Negocio familiar, trato cercano.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href={`tel:${SITE_CONFIG.phoneRaw}`}
-                className="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors text-lg"
-              >
-                <Phone size={20} />
-                {SITE_CONFIG.phone}
-              </a>
-              <Link
-                href="/contacto"
-                className="inline-flex items-center justify-center gap-2 border border-gray-600 hover:border-gray-400 text-gray-300 hover:text-white font-semibold px-6 py-3 rounded-xl transition-colors"
-              >
-                Contactar
-                <ArrowRight size={18} />
-              </Link>
-            </div>
           </div>
         </div>
       </section>
@@ -96,9 +70,15 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
-                  <MapPin size={14} className="text-green-600 shrink-0" />
-                  {ESPARRAGOS_CONFIG.address}
+                <div className="space-y-1.5 mb-4">
+                  <div className="flex items-center gap-2 text-sm text-gray-500">
+                    <MapPin size={14} className="text-green-600 shrink-0" />
+                    {ESPARRAGOS_CONFIG.address}
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-500">
+                    <MapPin size={14} className="text-green-600 shrink-0" />
+                    {ESPARRAGOS_REMONDO_CONFIG.address}
+                  </div>
                 </div>
                 <Link
                   href="/esparragos-valladolid"
@@ -163,7 +143,7 @@ export default function HomePage() {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { icon: Star, value: "+10 años", label: "de experiencia", color: "text-yellow-500" },
+              { icon: Star, value: "+7 años", label: "de experiencia", color: "text-yellow-500" },
               { icon: Leaf, value: "Temporada", label: "espárrago fresco", color: "text-green-600" },
               { icon: Car, value: "Catálogo", label: "coches en stock", color: "text-blue-600" },
               { icon: CheckCircle2, value: "Confianza", label: "trato cercano", color: "text-gray-700" },

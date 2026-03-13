@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Taller Mecánico Valladolid | Compra-Venta de Coches",
   description:
-    "Taller mecánico de confianza en Valladolid. Servicio técnico multimarca y compra-venta de coches de segunda mano. Más de 10 años de experiencia. Don Remondo.",
+    "Taller mecánico de confianza en Valladolid. Servicio técnico multimarca y compra-venta de coches de segunda mano. Más de 7 años de experiencia. Don Remondo.",
   keywords: [
     "taller mecánico Valladolid",
     "taller coches Valladolid",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Taller Mecánico y Compra-Venta de Coches en Valladolid | Don Remondo",
     description:
-      "Taller mecánico multimarca con más de 10 años de experiencia. Compra-venta de coches revisados y con garantía en Valladolid.",
+      "Taller mecánico multimarca con más de 7 años de experiencia. Compra-venta de coches revisados y con garantía en Valladolid.",
     url: `${SITE_CONFIG.url}/taller-coches-valladolid`,
   },
 };
@@ -47,7 +47,7 @@ const schemaOrg = {
         addressCountry: "ES",
       },
       geo: { "@type": "GeoCoordinates", latitude: TALLER_CONFIG.lat, longitude: TALLER_CONFIG.lng },
-      openingHours: "Mo-Fr 09:00-14:00 Mo-Fr 16:00-19:00",
+      openingHours: "Mo-Fr 09:00-13:00 Mo-Fr 16:00-20:00",
       hasMap: TALLER_CONFIG.mapsUrl,
       priceRange: "€€",
     },
@@ -78,7 +78,7 @@ const servicios = [
 ];
 
 const garantias = [
-  { valor: "+10", unidad: "años", label: "de experiencia" },
+  { valor: "+7", unidad: "años", label: "de experiencia" },
   { valor: "100%", unidad: "", label: "multimarca" },
   { valor: "Garantía", unidad: "", label: "en cada reparación" },
   { valor: "Presupuesto", unidad: "", label: "sin compromiso" },
@@ -127,13 +127,6 @@ export default async function TallerPage() {
               Reparamos tu coche y también tenemos vehículos de segunda mano revisados.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href={`tel:${TALLER_CONFIG.phoneRaw}`}
-                className="inline-flex items-center justify-center gap-2 bg-white text-blue-800 font-bold px-6 py-3 rounded-xl hover:bg-blue-50 transition-colors"
-              >
-                <Phone size={18} />
-                {TALLER_CONFIG.phone}
-              </a>
               <Link
                 href="/coches-segunda-mano"
                 className="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-semibold px-6 py-3 rounded-xl hover:bg-blue-800 transition-colors"
@@ -210,6 +203,39 @@ export default async function TallerPage() {
           </div>
           <p className="text-center text-sm text-gray-400 mt-3">
             Galería del taller — pendiente de añadir fotos reales
+          </p>
+        </div>
+      </section>
+
+      {/* CTA CONTACTO */}
+      <section className="py-12 bg-blue-50 border-y border-blue-100">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">
+            ¿Necesitas presupuesto o tienes alguna consulta?
+          </h2>
+          <p className="text-gray-600 mb-6">
+            Llámanos o escríbenos y te respondemos sin compromiso.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <a
+              href={`tel:${TALLER_CONFIG.phoneRaw}`}
+              className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors"
+            >
+              <Phone size={16} />
+              {TALLER_CONFIG.phone}
+            </a>
+            <Link
+              href="/contacto"
+              className="inline-flex items-center gap-2 border border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white font-semibold px-5 py-2.5 rounded-lg transition-colors"
+            >
+              Formulario de contacto
+            </Link>
+          </div>
+          <p className="text-sm text-gray-400 mt-4">
+            o escríbenos a{" "}
+            <a href={`mailto:${TALLER_CONFIG.email}`} className="text-blue-700 hover:underline font-medium">
+              {TALLER_CONFIG.email}
+            </a>
           </p>
         </div>
       </section>
@@ -318,18 +344,6 @@ export default async function TallerPage() {
                   {TALLER_CONFIG.horarioLineas.map((h) => (
                     <p key={h} className="text-gray-600 text-sm">{h}</p>
                   ))}
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Phone size={20} className="text-blue-600 mt-0.5 shrink-0" />
-                <div>
-                  <p className="font-semibold text-gray-900">Teléfono</p>
-                  <a
-                    href={`tel:${TALLER_CONFIG.phoneRaw}`}
-                    className="text-blue-700 font-medium hover:underline text-sm"
-                  >
-                    {TALLER_CONFIG.phone}
-                  </a>
                 </div>
               </div>
               <a

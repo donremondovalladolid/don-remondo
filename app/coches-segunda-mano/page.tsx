@@ -67,16 +67,9 @@ export default async function CochesPage() {
           <h1 className="text-3xl sm:text-4xl font-bold mb-3">
             Coches Segunda Mano en Valladolid
           </h1>
-          <p className="text-blue-200 max-w-xl text-lg mb-6">
+          <p className="text-blue-200 max-w-xl text-lg">
             Vehículos revisados por nuestro taller mecánico. Garantía, transparencia y buen precio.
           </p>
-          <a
-            href={`tel:${TALLER_CONFIG.phoneRaw}`}
-            className="inline-flex items-center gap-2 bg-white text-blue-800 font-bold px-5 py-2.5 rounded-xl hover:bg-blue-50 transition-colors"
-          >
-            <Phone size={16} />
-            {TALLER_CONFIG.phone} — Consultar disponibilidad
-          </a>
         </div>
       </section>
 
@@ -217,7 +210,7 @@ export default async function CochesPage() {
               href="/contacto"
               className="inline-flex items-center justify-center gap-2 border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white font-semibold px-6 py-3 rounded-xl transition-colors"
             >
-              Escribirnos
+              Formulario de contacto
               <ArrowRight size={16} />
             </Link>
           </div>

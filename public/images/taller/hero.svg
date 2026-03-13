@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" fill="none">
+  <rect width="1200" height="600" fill="#0e2560"/>
+  <rect width="1200" height="600" fill="url(#gt1)" opacity="0.6"/>
+  <defs>
+    <linearGradient id="gt1" x1="0" y1="0" x2="1200" y2="600">
+      <stop offset="0%" stop-color="#081540"/>
+      <stop offset="100%" stop-color="#1e47a0"/>
+    </linearGradient>
+  </defs>
+  <!-- Wrench icon -->
+  <g opacity="0.12" transform="translate(500,140) scale(3)">
+    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="#fff" stroke-width="1.5" fill="none"/>
+  </g>
+  <!-- Car silhouette -->
+  <g opacity="0.1" transform="translate(420,280)">
+    <path d="M60 80 L80 40 L280 40 L320 80 L340 80 L340 120 L320 120 L310 100 L90 100 L80 120 L20 120 L20 80Z" fill="#fff"/>
+    <circle cx="100" cy="120" r="18" fill="#fff"/>
+    <circle cx="300" cy="120" r="18" fill="#fff"/>
+  </g>
+  <text x="600" y="300" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#b2c8ec" opacity="0.8">Foto: Taller mecanico</text>
+  <text x="600" y="340" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#80a4de" opacity="0.6">1200 x 600 px</text>
+</svg>

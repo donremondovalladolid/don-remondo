@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#faf9f7"/>
+  <!-- Family/team suggestion -->
+  <g opacity="0.2">
+    <!-- Person 1 -->
+    <circle cx="320" cy="170" r="28" fill="#4d4039"/>
+    <rect x="296" y="206" width="48" height="70" rx="8" fill="#4d4039"/>
+    <!-- Person 2 -->
+    <circle cx="400" cy="160" r="30" fill="#4d4039"/>
+    <rect x="374" y="198" width="52" height="75" rx="8" fill="#4d4039"/>
+    <!-- Person 3 -->
+    <circle cx="480" cy="170" r="28" fill="#4d4039"/>
+    <rect x="456" y="206" width="48" height="70" rx="8" fill="#4d4039"/>
+  </g>
+  <text x="400" y="330" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#4d4039" opacity="0.7">Foto: El equipo / La familia</text>
+  <text x="400" y="358" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#8f7b70" opacity="0.5">800 x 500 px</text>
+</svg>

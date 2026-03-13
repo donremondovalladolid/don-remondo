@@ -4,7 +4,7 @@ import {
   Phone, MapPin, Clock, ArrowRight, CheckCircle2, Wrench,
   Car, Shield, Star, Gauge, Zap, Settings, ExternalLink,
 } from "lucide-react";
-import { TALLER_CONFIG, SITE_CONFIG } from "@/lib/config";
+import { TALLER_CONFIG, SITE_CONFIG, IMAGES } from "@/lib/config";
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
@@ -139,6 +139,12 @@ export default async function TallerPage() {
 
       {/* ── HERO ─────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-azul-900)] via-[var(--color-azul-800)] to-[var(--color-azul-600)]">
+        <img
+          src={IMAGES.taller.hero}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-soft-light"
+        />
         <div className="absolute inset-0 opacity-[0.06] pattern-diagonal-light" />
         <div className="container relative py-20 sm:py-28">
           <div className="max-w-2xl">
@@ -239,20 +245,29 @@ export default async function TallerPage() {
             ))}
           </div>
 
-          <div className="bg-[var(--color-azul-800)] rounded-[var(--radius-xl)] p-8 text-center max-w-2xl mx-auto">
-            <div className="w-12 h-12 rounded-xl bg-[var(--color-ambar-100)] flex items-center justify-center mx-auto mb-4">
-              <Star size={22} className="text-[var(--color-ambar-500)]" />
+          <div className="bg-[var(--color-azul-800)] rounded-[var(--radius-xl)] overflow-hidden max-w-2xl mx-auto">
+            <div className="overflow-hidden">
+              <img
+                src={IMAGES.taller.interior}
+                alt="Interior del taller mecánico Don Remondo"
+                className="w-full h-48 sm:h-56 object-cover opacity-80"
+              />
             </div>
-            <h3
-              className="text-white text-xl mb-3"
-            >
-              Taller de confianza en Valladolid
-            </h3>
-            <p className="text-[var(--color-azul-300)] text-sm leading-relaxed">
-              Somos un taller familiar con más de {SITE_CONFIG.experience} años dando servicio
-              en Valladolid. Trabajamos con honestidad y transparencia: siempre con
-              presupuesto previo aprobado, sin sorpresas.
-            </p>
+            <div className="p-8 text-center">
+              <div className="w-12 h-12 rounded-xl bg-[var(--color-ambar-100)] flex items-center justify-center mx-auto mb-4">
+                <Star size={22} className="text-[var(--color-ambar-500)]" />
+              </div>
+              <h3
+                className="text-white text-xl mb-3"
+              >
+                Taller de confianza en Valladolid
+              </h3>
+              <p className="text-[var(--color-azul-300)] text-sm leading-relaxed">
+                Somos un taller familiar con más de {SITE_CONFIG.experience} años dando servicio
+                en Valladolid. Trabajamos con honestidad y transparencia: siempre con
+                presupuesto previo aprobado, sin sorpresas.
+              </p>
+            </div>
           </div>
         </div>
       </section>

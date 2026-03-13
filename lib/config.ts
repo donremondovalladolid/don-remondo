@@ -48,6 +48,73 @@ export const ESPARRAGOS_REMONDO_CONFIG = {
   mapsUrl: "https://maps.google.com/?q=C.+Calvario,+8,+40216+Remondo,+Segovia",
 };
 
+export const ESPARRAGOS_ENVIOS = {
+  dias: ["Lunes", "Martes", "Miércoles"],
+  nota: "Realizamos envíos de espárragos los lunes, martes y miércoles.",
+};
+
+export const OTROS_PRODUCTOS = [
+  {
+    nombre: "Manzanas",
+    descripcionCorta: "Variedades de temporada, crujientes y sabrosas.",
+    disponibleEn: ["Valladolid"],
+    imagen: "/images/productos/manzanas.svg",
+  },
+  {
+    nombre: "Pimientos",
+    descripcionCorta: "Rojos, verdes e italianos. Siempre frescos.",
+    disponibleEn: ["Valladolid"],
+    imagen: "/images/productos/pimientos.svg",
+  },
+  {
+    nombre: "Cebollas",
+    descripcionCorta: "De distintas variedades según la época del año.",
+    disponibleEn: ["Valladolid"],
+    imagen: "/images/productos/cebollas.svg",
+  },
+  {
+    nombre: "Patatas",
+    descripcionCorta: "Patatas de calidad para todo tipo de preparaciones.",
+    disponibleEn: ["Valladolid"],
+    imagen: "/images/productos/patatas.svg",
+  },
+  {
+    nombre: "Tomates",
+    descripcionCorta: "De rama, pera y ensalada. Producto nacional.",
+    disponibleEn: ["Valladolid"],
+    imagen: "/images/productos/tomates.svg",
+  },
+  {
+    nombre: "Lechugas",
+    descripcionCorta: "Frescas del día, varias variedades disponibles.",
+    disponibleEn: ["Valladolid"],
+    imagen: "/images/productos/lechugas.svg",
+  },
+] as const;
+
+/** Rutas de imágenes — sustituir por fotos reales cuando estén disponibles */
+export const IMAGES = {
+  home: {
+    esparragosCard: "/images/home/esparragos-card.svg",
+    tallerCard: "/images/home/taller-card.svg",
+    familia: "/images/home/familia.svg",
+  },
+  esparragos: {
+    hero: "/images/esparragos/hero.svg",
+    blanco: "/images/esparragos/blanco.svg",
+    verde: "/images/esparragos/verde.svg",
+    origen: "/images/esparragos/origen.svg",
+  },
+  taller: {
+    hero: "/images/taller/hero.svg",
+    interior: "/images/taller/interior.svg",
+  },
+  tiendas: {
+    valladolid: "/images/tiendas/valladolid.svg",
+    remondo: "/images/tiendas/remondo.svg",
+  },
+} as const;
+
 export const TALLER_CONFIG = {
   name: "Don Remondo — Taller y Coches",
   address: "C. Villacarralón, 14, 47008 Valladolid",

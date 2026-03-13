@@ -3,7 +3,7 @@ import {
   Phone, ArrowRight, Leaf, Wrench, Car,
   CheckCircle2, MapPin, Clock, Shield, Star
 } from "lucide-react";
-import { SITE_CONFIG, ESPARRAGOS_CONFIG, ESPARRAGOS_REMONDO_CONFIG, TALLER_CONFIG } from "@/lib/config";
+import { SITE_CONFIG, ESPARRAGOS_CONFIG, ESPARRAGOS_REMONDO_CONFIG, TALLER_CONFIG, IMAGES } from "@/lib/config";
 
 const schemaOrg = {
   "@context": "https://schema.org",
@@ -127,7 +127,14 @@ export default function HomePage() {
               className="group relative card overflow-hidden block min-h-[420px]"
             >
               {/* Header visual */}
-              <div className="relative bg-gradient-to-br from-[var(--color-verde-800)] via-[var(--color-verde-700)] to-[var(--color-verde-500)] px-8 pt-10 pb-14">
+              <div className="relative bg-gradient-to-br from-[var(--color-verde-800)] via-[var(--color-verde-700)] to-[var(--color-verde-500)] px-8 pt-10 pb-14 overflow-hidden">
+                {/* Imagen de fondo */}
+                <img
+                  src={IMAGES.home.esparragosCard}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-soft-light"
+                />
                 {/* Patrón decorativo */}
                 <div className="absolute inset-0 opacity-10 pattern-dots-light" />
                 <div className="relative">
@@ -189,7 +196,13 @@ export default function HomePage() {
               className="group relative card overflow-hidden block min-h-[420px]"
             >
               {/* Header visual */}
-              <div className="relative bg-gradient-to-br from-[var(--color-azul-900)] via-[var(--color-azul-700)] to-[var(--color-azul-500)] px-8 pt-10 pb-14">
+              <div className="relative bg-gradient-to-br from-[var(--color-azul-900)] via-[var(--color-azul-700)] to-[var(--color-azul-500)] px-8 pt-10 pb-14 overflow-hidden">
+                <img
+                  src={IMAGES.home.tallerCard}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-soft-light"
+                />
                 <div className="absolute inset-0 opacity-10 pattern-dots-light" />
                 <div className="relative">
                   <div className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center mb-5">
@@ -346,8 +359,15 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Tarjetas de ubicación */}
+            {/* Imagen + Tarjetas de ubicación */}
             <div className="space-y-4">
+              <div className="rounded-[var(--radius-xl)] overflow-hidden border border-[var(--color-border-light)] shadow-[var(--shadow-sm)]">
+                <img
+                  src={IMAGES.home.familia}
+                  alt="El equipo de Don Remondo"
+                  className="w-full h-auto"
+                />
+              </div>
               {[
                 {
                   label: "Espárragos · Valladolid",

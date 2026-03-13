@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <rect width="600" height="400" fill="#f2f7f0"/>
+  <!-- Shop front smaller/rural -->
+  <rect x="120" y="140" width="360" height="200" rx="4" fill="#dceeda" opacity="0.5"/>
+  <rect x="120" y="140" width="360" height="35" rx="4" fill="#b8dbb3" opacity="0.5"/>
+  <!-- Door -->
+  <rect x="260" y="210" width="80" height="130" rx="3" fill="#8ec489" opacity="0.3"/>
+  <!-- Window -->
+  <rect x="150" y="210" width="80" height="60" rx="3" fill="#8ec489" opacity="0.2"/>
+  <rect x="370" y="210" width="80" height="60" rx="3" fill="#8ec489" opacity="0.2"/>
+  <!-- Rural touch: small hills -->
+  <path d="M0 380 Q100 350 200 370 Q300 340 400 365 Q500 345 600 380 L600 400 L0 400Z" fill="#b8dbb3" opacity="0.3"/>
+  <text x="300" y="160" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#215220" opacity="0.6">DON REMONDO</text>
+  <text x="300" y="375" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#215220" opacity="0.7">Foto: Tienda Remondo</text>
+</svg>

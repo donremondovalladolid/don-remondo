@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   Phone, MapPin, Clock, CheckCircle2, Leaf,
-  CalendarDays, ExternalLink, ArrowRight, Sprout
+  CalendarDays, ExternalLink, ArrowRight, Sprout,
+  ShoppingBasket, Truck
 } from "lucide-react";
-import { ESPARRAGOS_CONFIG, ESPARRAGOS_REMONDO_CONFIG, SITE_CONFIG } from "@/lib/config";
+import {
+  ESPARRAGOS_CONFIG, ESPARRAGOS_REMONDO_CONFIG, SITE_CONFIG,
+  OTROS_PRODUCTOS, ESPARRAGOS_ENVIOS, IMAGES
+} from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Espárragos Valladolid | Espárragos Frescos de Tudela de Duero",
@@ -17,6 +21,8 @@ export const metadata: Metadata = {
     "espárragos frescos Valladolid",
     "verdulería espárragos Valladolid",
     "espárragos Remondo Segovia",
+    "frutas y verduras Valladolid",
+    "productos frescos Valladolid",
   ],
   openGraph: {
     title: "Espárragos Frescos de Tudela de Duero | Don Remondo",
@@ -86,11 +92,13 @@ const variedades = [
     titulo: "Espárrago blanco",
     desc: "El clásico de Tudela de Duero. Sabor delicado, textura suave y color marfil. Se cosecha antes de que asome a la superficie.",
     badge: "El más valorado",
+    imagen: IMAGES.esparragos.blanco,
   },
   {
     titulo: "Espárrago verde",
     desc: "Más intenso y con mayor contenido en fibra. Ideal para parrilla, salteados y revueltos. Carácter más pronunciado.",
     badge: "Ideal para cocinar",
+    imagen: IMAGES.esparragos.verde,
   },
 ];
 
@@ -126,6 +134,13 @@ export default function EsparragosPage() {
 
       {/* ── HERO ─────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-verde-900)] via-[var(--color-verde-800)] to-[var(--color-verde-600)]">
+        {/* Imagen de fondo */}
+        <img
+          src={IMAGES.esparragos.hero}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-soft-light"
+        />
         {/* Patrón fondo */}
         <div className="absolute inset-0 opacity-[0.06] pattern-diagonal-light" />
 
@@ -177,6 +192,14 @@ export default function EsparragosPage() {
                 key={v.titulo}
                 className="card p-0 overflow-hidden"
               >
+                {/* Imagen */}
+                <div className="aspect-[3/2] bg-[var(--color-verde-50)] overflow-hidden">
+                  <img
+                    src={v.imagen}
+                    alt={v.titulo}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 {/* Franja visual */}
                 <div className="h-2 bg-gradient-to-r from-[var(--color-verde-700)] to-[var(--color-verde-400)]" />
                 <div className="p-7">
@@ -215,6 +238,51 @@ export default function EsparragosPage() {
         </div>
       </section>
 
+      {/* ── OTROS PRODUCTOS ──────────────────────── */}
+      <section className="section-padding bg-white">
+        <div className="container">
+          <div className="text-center mb-12">
+            <p className="text-[var(--color-text-muted)] text-sm font-semibold uppercase tracking-[0.1em] mb-3">
+              También en nuestra tienda
+            </p>
+            <h2>
+              Otros productos<br />
+              <span className="text-[var(--color-verde-700)] italic">disponibles todo el año</span>
+            </h2>
+            <p className="text-[var(--color-text-secondary)] mt-3 max-w-lg mx-auto text-sm">
+              Además de espárragos de temporada, en nuestra tienda de Valladolid
+              encontrarás una selección de productos frescos durante todo el año.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {OTROS_PRODUCTOS.map((producto) => (
+              <div
+                key={producto.nombre}
+                className="flex flex-col items-center text-center p-5 rounded-[var(--radius-xl)] bg-[var(--color-stone-50)] border border-[var(--color-border-light)] hover:border-[var(--color-verde-300)] hover:bg-[var(--color-verde-50)] transition-colors"
+              >
+                <div className="w-16 h-16 rounded-[var(--radius-lg)] overflow-hidden mb-3">
+                  <img
+                    src={producto.imagen}
+                    alt={producto.nombre}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <p className="font-semibold text-[var(--color-text)] text-sm mb-1">{producto.nombre}</p>
+                <p className="text-xs text-[var(--color-text-muted)] leading-snug">{producto.descripcionCorta}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex items-center justify-center gap-3 p-4 rounded-[var(--radius-xl)] bg-[var(--color-verde-50)] border border-[var(--color-verde-200)] max-w-lg mx-auto">
+            <ShoppingBasket size={18} className="text-[var(--color-verde-700)] shrink-0" />
+            <p className="text-sm text-[var(--color-verde-900)]">
+              <strong>Solo en nuestra tienda de Valladolid</strong> · Av. del Euro, 24
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ── ORIGEN + TEMPORADA ───────────────────── */}
       <section className="section-padding bg-white">
         <div className="container">
@@ -229,6 +297,15 @@ export default function EsparragosPage() {
                 Tudela de Duero,<br />
                 <span className="text-[var(--color-verde-700)] italic">tierra de espárragos</span>
               </h2>
+
+              <div className="rounded-[var(--radius-xl)] overflow-hidden border border-[var(--color-border-light)] shadow-[var(--shadow-sm)] mb-6">
+                <img
+                  src={IMAGES.esparragos.origen}
+                  alt="Campos de Tudela de Duero, Ribera del Duero"
+                  className="w-full h-auto"
+                />
+              </div>
+
               <p className="text-[var(--color-text-secondary)] leading-relaxed mb-4">
                 Tudela de Duero es un municipio de la provincia de Valladolid situado a orillas
                 del río Duero. Su suelo arenoso y el microclima de la Ribera del Duero crean
@@ -315,6 +392,12 @@ export default function EsparragosPage() {
               Llámanos y te indicamos disponibilidad o pásate por cualquiera
               de nuestras tiendas durante la temporada.
             </p>
+            <div className="flex items-center justify-center gap-2 mb-7 p-3 rounded-[var(--radius-lg)] bg-white border border-[var(--color-verde-200)] max-w-sm mx-auto">
+              <Truck size={16} className="text-[var(--color-verde-700)] shrink-0" />
+              <p className="text-sm text-[var(--color-verde-900)]">
+                Envíos: <strong>{ESPARRAGOS_ENVIOS.dias.join(", ")}</strong>
+              </p>
+            </div>
             <div className="flex flex-wrap justify-center gap-3">
               <a
                 href={`tel:${ESPARRAGOS_CONFIG.phoneRaw}`}
@@ -356,6 +439,7 @@ export default function EsparragosPage() {
             </h2>
             <p className="text-[var(--color-text-secondary)] mt-3 max-w-md mx-auto text-sm">
               Horarios complementarios para que siempre puedas conseguir tus espárragos.
+              La tienda de Valladolid también ofrece otros productos frescos todo el año.
             </p>
           </div>
 
@@ -373,6 +457,10 @@ export default function EsparragosPage() {
                     Valladolid
                   </h3>
                   <p className="text-sm text-[var(--color-text-muted)]">Av. del Euro, 24</p>
+                  <div className="flex flex-wrap gap-1.5 mt-1.5">
+                    <span className="badge badge-verde">Espárragos</span>
+                    <span className="badge badge-verde">Otros productos</span>
+                  </div>
                 </div>
               </div>
 
@@ -406,8 +494,15 @@ export default function EsparragosPage() {
                   </a>
                 </div>
 
-                {/* Mapa */}
-                <div className="lg:col-span-2">
+                {/* Foto + Mapa */}
+                <div className="lg:col-span-2 space-y-3">
+                  <div className="rounded-[var(--radius-xl)] overflow-hidden border border-[var(--color-border-light)] shadow-[var(--shadow-sm)]">
+                    <img
+                      src={IMAGES.tiendas.valladolid}
+                      alt="Tienda Don Remondo en Valladolid"
+                      className="w-full h-48 lg:h-52 object-cover"
+                    />
+                  </div>
                   <div className="map-container h-64 lg:h-72">
                     <iframe
                       src={ESPARRAGOS_CONFIG.mapsEmbed}
@@ -436,6 +531,9 @@ export default function EsparragosPage() {
                     Remondo
                   </h3>
                   <p className="text-sm text-[var(--color-text-muted)]">C. Calvario, 8 · Segovia</p>
+                  <div className="flex flex-wrap gap-1.5 mt-1.5">
+                    <span className="badge badge-verde">Solo espárragos</span>
+                  </div>
                 </div>
               </div>
 
@@ -469,8 +567,15 @@ export default function EsparragosPage() {
                   </a>
                 </div>
 
-                {/* Mapa */}
-                <div className="lg:col-span-2">
+                {/* Foto + Mapa */}
+                <div className="lg:col-span-2 space-y-3">
+                  <div className="rounded-[var(--radius-xl)] overflow-hidden border border-[var(--color-border-light)] shadow-[var(--shadow-sm)]">
+                    <img
+                      src={IMAGES.tiendas.remondo}
+                      alt="Tienda Don Remondo en Remondo, Segovia"
+                      className="w-full h-48 lg:h-52 object-cover"
+                    />
+                  </div>
                   <div className="map-container h-64 lg:h-72">
                     <iframe
                       src={ESPARRAGOS_REMONDO_CONFIG.mapsEmbed}

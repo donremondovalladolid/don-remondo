@@ -1,13 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { DM_Serif_Display, Manrope } from "next/font/google";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/config";
 import ConditionalLayout from "@/components/layout/ConditionalLayout";
 
-const inter = Inter({
+const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-display",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
@@ -46,8 +55,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={inter.variable}>
-      <body className="font-sans antialiased">
+    <html lang="es" className={`${dmSerifDisplay.variable} ${manrope.variable}`}>
+      <body className="antialiased">
         <ConditionalLayout>{children}</ConditionalLayout>
       </body>
     </html>

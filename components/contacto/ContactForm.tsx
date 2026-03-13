@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 type FormState = "idle" | "loading" | "success" | "error";
 
@@ -39,15 +39,20 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
 
   if (state === "success") {
     return (
-      <div className="flex flex-col items-center justify-center py-12 text-center">
-        <CheckCircle2 size={52} className="text-green-600 mb-4" />
-        <h3 className="text-xl font-bold text-gray-900 mb-2">¡Mensaje enviado!</h3>
-        <p className="text-gray-500 max-w-sm">
+      <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-up">
+        <div className="w-16 h-16 rounded-full bg-verde-100 flex items-center justify-center mb-5">
+          <CheckCircle2 size={32} className="text-verde-700" />
+        </div>
+        <h3 className="font-display text-2xl text-stone-900 mb-2">
+          Mensaje enviado
+        </h3>
+        <p className="text-stone-500 max-w-sm leading-relaxed">
           Nos pondremos en contacto contigo en la mayor brevedad posible.
+          Gracias por escribirnos.
         </p>
         <button
           onClick={() => setState("idle")}
-          className="mt-6 text-sm text-blue-600 hover:underline"
+          className="mt-6 text-sm text-azul-700 font-medium hover:text-azul-800 underline underline-offset-2 transition-colors"
         >
           Enviar otro mensaje
         </button>
@@ -56,11 +61,15 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
+      {/* Nombre + Teléfono */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="nombre">
-            Nombre *
+          <label
+            className="block text-sm font-medium text-stone-700 mb-1.5"
+            htmlFor="nombre"
+          >
+            Nombre <span className="text-azul-600">*</span>
           </label>
           <input
             id="nombre"
@@ -68,11 +77,14 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
             type="text"
             required
             placeholder="Tu nombre"
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="input"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="telefono">
+          <label
+            className="block text-sm font-medium text-stone-700 mb-1.5"
+            htmlFor="telefono"
+          >
             Teléfono
           </label>
           <input
@@ -80,14 +92,18 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
             name="telefono"
             type="tel"
             placeholder="Tu teléfono"
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="input"
           />
         </div>
       </div>
 
+      {/* Email */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">
-          Email *
+        <label
+          className="block text-sm font-medium text-stone-700 mb-1.5"
+          htmlFor="email"
+        >
+          Email <span className="text-azul-600">*</span>
         </label>
         <input
           id="email"
@@ -95,22 +111,28 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
           type="email"
           required
           placeholder="tu@email.com"
-          className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="input"
         />
       </div>
 
+      {/* Asunto */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="asunto">
-          Asunto *
+        <label
+          className="block text-sm font-medium text-stone-700 mb-1.5"
+          htmlFor="asunto"
+        >
+          Asunto <span className="text-azul-600">*</span>
         </label>
         <select
           id="asunto"
           name="asunto"
           required
           defaultValue={asunto || ""}
-          className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+          className="input bg-white"
         >
-          <option value="" disabled>Selecciona un asunto</option>
+          <option value="" disabled>
+            Selecciona un asunto
+          </option>
           <option value="esparragos">Espárragos</option>
           <option value="taller">Taller mecánico</option>
           <option value="coches">Compra-venta de coches</option>
@@ -118,41 +140,57 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
         </select>
       </div>
 
+      {/* Mensaje */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="mensaje">
-          Mensaje *
+        <label
+          className="block text-sm font-medium text-stone-700 mb-1.5"
+          htmlFor="mensaje"
+        >
+          Mensaje <span className="text-azul-600">*</span>
         </label>
         <textarea
           id="mensaje"
           name="mensaje"
           required
-          rows={4}
+          rows={5}
           placeholder="Escribe tu mensaje aquí..."
-          className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          className="input resize-none"
         />
       </div>
 
+      {/* Error */}
       {state === "error" && (
-        <div className="flex items-center gap-2 text-red-600 text-sm bg-red-50 p-3 rounded-xl">
-          <AlertCircle size={16} />
-          Error al enviar el mensaje. Llámanos directamente.
+        <div className="flex items-center gap-2.5 text-red-700 text-sm bg-red-50 border border-red-100 p-3.5 rounded-xl">
+          <AlertCircle size={16} className="shrink-0" />
+          <span>
+            Error al enviar el mensaje. Por favor llámanos directamente.
+          </span>
         </div>
       )}
 
+      {/* Submit */}
       <button
         type="submit"
         disabled={state === "loading"}
-        className="w-full flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 disabled:bg-blue-400 text-white font-semibold py-3 px-6 rounded-xl transition-colors"
+        className="btn btn-azul btn-lg w-full"
       >
         {state === "loading" ? (
-          <>Enviando...</>
+          <>
+            <Loader2 size={18} className="animate-spin" />
+            Enviando...
+          </>
         ) : (
           <>
-            <Send size={16} />
+            <Send size={18} />
             Enviar mensaje
           </>
         )}
       </button>
+
+      <p className="text-center text-xs text-stone-400">
+        Campos marcados con{" "}
+        <span className="text-azul-600 font-medium">*</span> son obligatorios
+      </p>
     </form>
   );
 }

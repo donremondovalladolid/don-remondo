@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Car, Phone, Filter, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Car, Phone, ArrowRight, CheckCircle2, Shield, Wrench, Star } from "lucide-react";
 import { TALLER_CONFIG, SITE_CONFIG } from "@/lib/config";
 import { prisma } from "@/lib/prisma";
 
@@ -26,7 +26,16 @@ export const metadata: Metadata = {
   },
 };
 
-const schemaItemList = (coches: { id: number; marca: string; modelo: string; anio: number; precio: number; slug: string }[]) => ({
+const schemaItemList = (
+  coches: {
+    id: number;
+    marca: string;
+    modelo: string;
+    anio: number;
+    precio: number;
+    slug: string;
+  }[]
+) => ({
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Coches de segunda mano en Valladolid — Don Remondo",
@@ -39,6 +48,13 @@ const schemaItemList = (coches: { id: number; marca: string; modelo: string; ani
     name: `${c.marca} ${c.modelo} ${c.anio}`,
   })),
 });
+
+const garantias = [
+  { icon: Wrench, label: "Revisados por nuestro taller" },
+  { icon: Shield, label: "Garantía por escrito" },
+  { icon: Star, label: "Financiación disponible" },
+  { icon: Car, label: "Tasamos tu coche" },
+];
 
 export default async function CochesPage() {
   const coches = await prisma.coche.findMany({
@@ -55,58 +71,78 @@ export default async function CochesPage() {
         />
       )}
 
-      {/* HERO */}
-      <section className="bg-blue-900 text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <div className="flex items-center gap-2 mb-3">
-            <Car size={18} className="text-blue-300" />
-            <span className="text-blue-300 text-sm font-medium uppercase tracking-wide">
+      {/* ── HERO ─────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-[var(--color-azul-900)]">
+        <div
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
+            backgroundSize: "24px 24px",
+          }}
+        />
+        <div className="container relative py-16 sm:py-20">
+          <div className="flex items-center gap-2 mb-4 animate-fade-up">
+            <Car size={16} className="text-[var(--color-azul-300)]" />
+            <span className="text-[var(--color-azul-300)] text-xs font-semibold uppercase tracking-[0.1em]">
               Don Remondo · Valladolid
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-            Coches Segunda Mano en Valladolid
+          <h1
+            className="text-white mb-4 animate-fade-up animate-delay-100"
+          >
+            Coches Segunda Mano
+            <br />
+            <span className="text-[var(--color-azul-200)] italic">en Valladolid</span>
           </h1>
-          <p className="text-blue-200 max-w-xl text-lg">
-            Vehículos revisados por nuestro taller mecánico. Garantía, transparencia y buen precio.
+          <p className="text-[var(--color-azul-200)] text-lg max-w-xl leading-relaxed animate-fade-up animate-delay-200">
+            Vehículos revisados por nuestro propio taller mecánico.
+            Garantía, transparencia y buen precio.
           </p>
         </div>
+        <div
+          className="absolute bottom-0 left-0 right-0 h-8 bg-[var(--color-bg)]"
+          style={{ clipPath: "ellipse(55% 100% at 50% 100%)" }}
+        />
       </section>
 
-      {/* GARANTÍAS BANNER */}
-      <div className="bg-blue-50 border-b border-blue-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
-          <div className="flex flex-wrap gap-4 justify-center sm:justify-start">
-            {[
-              "Vehículos revisados por nuestro taller",
-              "Garantía por escrito",
-              "Financiación disponible",
-              "Tasamos tu coche",
-            ].map((item) => (
-              <div key={item} className="flex items-center gap-1.5 text-sm text-blue-800">
-                <CheckCircle2 size={14} className="text-blue-600 shrink-0" />
-                {item}
+      {/* ── GARANTÍAS STRIP ──────────────────────── */}
+      <div className="bg-white border-b border-[var(--color-border-light)]">
+        <div className="container py-4">
+          <div className="flex flex-wrap gap-x-8 gap-y-3 justify-center sm:justify-start">
+            {garantias.map(({ icon: Icon, label }) => (
+              <div
+                key={label}
+                className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]"
+              >
+                <Icon size={14} className="text-[var(--color-azul-600)] shrink-0" />
+                {label}
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* CATÁLOGO */}
-      <section className="py-12 bg-gray-50 min-h-[60vh]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      {/* ── CATÁLOGO ─────────────────────────────── */}
+      <section className="section-padding bg-[var(--color-bg)] min-h-[60vh]">
+        <div className="container">
           {coches.length === 0 ? (
-            <div className="bg-white rounded-2xl p-16 text-center shadow-sm border border-gray-100">
-              <Car size={52} className="text-gray-200 mx-auto mb-4" />
-              <h2 className="text-xl font-bold text-gray-900 mb-2">
+            <div className="bg-white rounded-[var(--radius-xl)] p-16 text-center border border-[var(--color-border-light)] shadow-[var(--shadow-sm)]">
+              <div className="w-16 h-16 rounded-2xl bg-[var(--color-azul-100)] flex items-center justify-center mx-auto mb-5">
+                <Car size={30} className="text-[var(--color-azul-400)]" />
+              </div>
+              <h2
+                className="text-xl mb-3"
+              >
                 Próximamente tendremos coches en venta
               </h2>
-              <p className="text-gray-500 mb-6 max-w-sm mx-auto text-sm">
-                Estamos preparando el catálogo. Llámanos para consultar qué vehículos tenemos disponibles.
+              <p className="text-[var(--color-text-muted)] mb-7 max-w-sm mx-auto text-sm">
+                Estamos preparando el catálogo. Llámanos para consultar qué vehículos
+                tenemos disponibles.
               </p>
               <a
                 href={`tel:${TALLER_CONFIG.phoneRaw}`}
-                className="inline-flex items-center gap-2 bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl hover:bg-blue-800 transition-colors"
+                className="btn btn-azul btn-lg"
               >
                 <Phone size={16} />
                 Llamar: {TALLER_CONFIG.phone}
@@ -114,16 +150,13 @@ export default async function CochesPage() {
             </div>
           ) : (
             <>
-              <div className="flex items-center justify-between mb-6">
-                <p className="text-gray-500 text-sm">
-                  <span className="font-semibold text-gray-900">{coches.length}</span>{" "}
+              <div className="flex items-center justify-between mb-7">
+                <p className="text-[var(--color-text-muted)] text-sm">
+                  <span className="font-semibold text-[var(--color-text)]">{coches.length}</span>{" "}
                   {coches.length === 1 ? "vehículo disponible" : "vehículos disponibles"}
                 </p>
-                <div className="flex items-center gap-1 text-sm text-gray-500">
-                  <Filter size={14} />
-                  <span>Ordenado por disponibilidad</span>
-                </div>
               </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {coches.map((coche) => {
                   const fotos = JSON.parse(coche.fotos) as string[];
@@ -131,50 +164,55 @@ export default async function CochesPage() {
                     <Link
                       key={coche.id}
                       href={`/coches-segunda-mano/${coche.slug}`}
-                      className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden group"
+                      className="card group overflow-hidden"
                     >
-                      <div className="aspect-video bg-gray-100 relative overflow-hidden">
+                      {/* Imagen */}
+                      <div className="aspect-video bg-[var(--color-stone-100)] relative overflow-hidden">
                         {fotos[0] ? (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={fotos[0]}
                             alt={`${coche.marca} ${coche.modelo} ${coche.anio}`}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
-                            <Car size={36} className="text-gray-300" />
+                            <Car size={36} className="text-[var(--color-stone-300)]" />
                           </div>
                         )}
                         {coche.destacado && (
-                          <span className="absolute top-2 left-2 bg-blue-700 text-white text-xs font-bold px-2 py-1 rounded-lg">
+                          <span className="absolute top-2.5 left-2.5 badge badge-azul shadow-sm">
                             Destacado
                           </span>
                         )}
                       </div>
-                      <div className="p-4">
-                        <h2 className="font-bold text-gray-900 text-lg">
+
+                      {/* Datos */}
+                      <div className="p-5">
+                        <h2
+                          className="text-lg mb-1 leading-snug"
+                        >
                           {coche.marca} {coche.modelo}
                         </h2>
-                        <div className="flex flex-wrap gap-2 mt-1 mb-3">
-                          <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
-                            {coche.anio}
-                          </span>
-                          <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
-                            {coche.km.toLocaleString("es-ES")} km
-                          </span>
-                          <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
-                            {coche.combustible}
-                          </span>
-                          <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
-                            {coche.cambio}
-                          </span>
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {[
+                            coche.anio,
+                            `${coche.km.toLocaleString("es-ES")} km`,
+                            coche.combustible,
+                            coche.cambio,
+                          ].map((tag) => (
+                            <span key={tag} className="badge badge-stone">
+                              {tag}
+                            </span>
+                          ))}
                         </div>
-                        <div className="flex items-center justify-between">
-                          <span className="text-2xl font-bold text-blue-700">
+                        <div className="flex items-center justify-between pt-3 border-t border-[var(--color-border-light)]">
+                          <span
+                            className="text-2xl font-bold text-[var(--color-azul-700)] font-display"
+                          >
                             {coche.precio.toLocaleString("es-ES")} €
                           </span>
-                          <span className="text-sm text-blue-600 font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                          <span className="text-sm text-[var(--color-azul-600)] font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
                             Ver ficha <ArrowRight size={14} />
                           </span>
                         </div>
@@ -188,31 +226,35 @@ export default async function CochesPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-12 bg-white border-t border-gray-100">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-3">
-            ¿No encuentras lo que buscas?
-          </h2>
-          <p className="text-gray-500 mb-6">
-            Dinos qué coche necesitas y te avisamos cuando tengamos algo disponible.
-            También compramos tu vehículo.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a
-              href={`tel:${TALLER_CONFIG.phoneRaw}`}
-              className="inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold px-6 py-3 rounded-xl transition-colors"
+      {/* ── CTA ──────────────────────────────────── */}
+      <section className="section-padding-sm bg-white border-t border-[var(--color-border-light)]">
+        <div className="container">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2
+              className="mb-3"
             >
-              <Phone size={16} />
-              {TALLER_CONFIG.phone}
-            </a>
-            <Link
-              href="/contacto"
-              className="inline-flex items-center justify-center gap-2 border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white font-semibold px-6 py-3 rounded-xl transition-colors"
-            >
-              Formulario de contacto
-              <ArrowRight size={16} />
-            </Link>
+              ¿No encuentras lo que buscas?
+            </h2>
+            <p className="text-[var(--color-text-secondary)] mb-7">
+              Dinos qué coche necesitas y te avisamos cuando tengamos algo
+              disponible. También compramos tu vehículo.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href={`tel:${TALLER_CONFIG.phoneRaw}`}
+                className="btn btn-azul btn-lg"
+              >
+                <Phone size={17} />
+                {TALLER_CONFIG.phone}
+              </a>
+              <Link
+                href="/contacto?asunto=coches"
+                className="btn btn-outline-azul btn-lg"
+              >
+                Formulario de contacto
+                <ArrowRight size={16} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

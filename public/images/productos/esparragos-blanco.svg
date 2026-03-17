@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="none">
+  <rect width="300" height="300" fill="#f5fbf5"/>
+  <!-- espárrago blanco -->
+  <rect x="136" y="85" width="16" height="120" rx="8" fill="#f0ead8"/>
+  <rect x="138" y="85" width="12" height="115" rx="6" fill="#f8f3e5"/>
+  <ellipse cx="144" cy="85" rx="9" ry="7" fill="#e0d8c0"/>
+  <!-- etiqueta roja Extra -->
+  <rect x="128" y="155" width="36" height="10" rx="5" fill="#e03030" opacity="0.85"/>
+  <text x="146" y="163" text-anchor="middle" font-family="Georgia,serif" font-size="7" fill="white">EXTRA</text>
+  <text x="150" y="230" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#5a4a20" opacity="0.8">Espárrago Blanco</text>
+  <text x="150" y="250" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#8a7040" opacity="0.6">Producción propia · Temporada</text>
+</svg>

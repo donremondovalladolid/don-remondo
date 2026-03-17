@@ -133,7 +133,7 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
           <option value="" disabled>
             Selecciona un asunto
           </option>
-          <option value="esparragos">Espárragos</option>
+          <option value="productos">Productos frescos</option>
           <option value="taller">Taller mecánico</option>
           <option value="coches">Compra-venta de coches</option>
           <option value="otro">Otro</option>

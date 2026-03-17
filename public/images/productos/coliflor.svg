@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="none">
+  <rect width="300" height="300" fill="#fafaf5"/>
+  <circle cx="150" cy="145" r="50" fill="#f0ead0"/>
+  <circle cx="150" cy="145" r="38" fill="#e8e0b8"/>
+  <!-- textura coliflor -->
+  <circle cx="138" cy="138" r="10" fill="#ddd5a0" opacity="0.8"/>
+  <circle cx="162" cy="138" r="10" fill="#ddd5a0" opacity="0.8"/>
+  <circle cx="150" cy="128" r="10" fill="#ddd5a0" opacity="0.8"/>
+  <circle cx="138" cy="155" r="9" fill="#ddd5a0" opacity="0.7"/>
+  <circle cx="162" cy="155" r="9" fill="#ddd5a0" opacity="0.7"/>
+  <circle cx="150" cy="160" r="8" fill="#ddd5a0" opacity="0.7"/>
+  <path d="M115 160 Q150 175 185 160" stroke="#8a9a50" stroke-width="3" fill="none" opacity="0.5"/>
+  <text x="150" y="225" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#5a5220" opacity="0.8">Coliflor</text>
+  <text x="150" y="245" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#8a8050" opacity="0.6">Producción propia · Sept–Dic</text>
+</svg>

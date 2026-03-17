@@ -9,10 +9,10 @@ import { SITE_CONFIG } from "@/lib/config";
 const navLinks = [
   {
     href: "/esparragos-valladolid",
-    label: "Espárragos",
+    label: "Productos",
     icon: Leaf,
     accent: "verde",
-    desc: "Frescos · Tudela de Duero",
+    desc: "Frescos · Producción propia",
   },
   {
     href: "/taller-coches-valladolid",
@@ -87,7 +87,7 @@ export default function Header() {
                 Don Remondo
               </span>
               <span className="text-[0.65rem] text-[var(--color-text-muted)] font-semibold tracking-[0.08em] uppercase hidden sm:block">
-                Espárragos · Taller · Coches
+                Productos · Taller · Coches
               </span>
             </div>
           </Link>

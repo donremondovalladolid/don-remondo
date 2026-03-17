@@ -22,14 +22,16 @@ const lora = Lora({
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE_CONFIG.name} | Espárragos y Taller Mecánico en Valladolid`,
+    default: `${SITE_CONFIG.name} | Productos Frescos y Taller Mecánico en Valladolid`,
     template: `%s | ${SITE_CONFIG.name}`,
   },
   description:
-    "Espárragos frescos de Tudela de Duero y taller mecánico con compra-venta de coches en Valladolid. Calidad y confianza desde 2016.",
+    "Espárragos y productos frescos de producción propia, y taller mecánico con compra-venta de coches en Valladolid. Calidad y confianza desde 2016.",
   keywords: [
     "espárragos Valladolid",
-    "espárragos Tudela de Duero",
+    "espárragos frescos Valladolid",
+    "productos frescos Valladolid",
+    "frutas verduras Valladolid",
     "taller mecánico Valladolid",
     "compra venta coches Valladolid",
     "coches segunda mano Valladolid",
@@ -40,9 +42,9 @@ export const metadata: Metadata = {
     locale: "es_ES",
     url: SITE_CONFIG.url,
     siteName: SITE_CONFIG.name,
-    title: `${SITE_CONFIG.name} | Espárragos y Taller en Valladolid`,
+    title: `${SITE_CONFIG.name} | Productos Frescos y Taller en Valladolid`,
     description:
-      "Espárragos frescos de Tudela de Duero y taller mecánico con compra-venta de coches en Valladolid.",
+      "Espárragos y productos frescos de producción propia, y taller mecánico con compra-venta de coches en Valladolid.",
   },
   robots: {
     index: true,

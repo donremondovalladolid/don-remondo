@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Phone, ArrowRight, Leaf, Wrench, Car,
   CheckCircle2, MapPin, Clock, Shield, Star
@@ -12,7 +13,7 @@ const schemaOrg = {
   url: SITE_CONFIG.url,
   telephone: SITE_CONFIG.phoneRaw,
   description:
-    "Negocio familiar en Valladolid. Venta de espárragos frescos de Tudela de Duero y taller mecánico con compra-venta de coches.",
+    "Negocio familiar en Valladolid. Productos frescos de producción propia y taller mecánico con compra-venta de coches.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Valladolid",
@@ -82,8 +83,8 @@ export default function HomePage() {
               </span>
             </h1>
 
-            <p className="text-[var(--color-stone-300)] text-lg sm:text-xl leading-relaxed max-w-xl mb-10 animate-fade-up animate-delay-200">
-              Espárragos frescos de Tudela de Duero y taller mecánico de confianza.
+              <p className="text-[var(--color-stone-300)] text-lg sm:text-xl leading-relaxed max-w-xl mb-10 animate-fade-up animate-delay-200">
+              Productos frescos de producción propia y taller mecánico de confianza.
               Dos negocios, una misma familia.
             </p>
 
@@ -129,11 +130,13 @@ export default function HomePage() {
               {/* Header visual */}
               <div className="relative bg-gradient-to-br from-[var(--color-verde-800)] via-[var(--color-verde-700)] to-[var(--color-verde-500)] px-8 pt-10 pb-14 overflow-hidden">
                 {/* Imagen de fondo */}
-                <img
-                  src={IMAGES.home.esparragosCard}
+                <Image
+                  src={IMAGES.home.productosCard}
                   alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-soft-light"
+                  aria-hidden={true}
+                  fill
+                  className="object-cover opacity-30 mix-blend-soft-light"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 {/* Patrón decorativo */}
                 <div className="absolute inset-0 opacity-10 pattern-dots-light" />
@@ -144,10 +147,10 @@ export default function HomePage() {
                   <h3
                     className="text-white text-2xl sm:text-3xl mb-2"
                   >
-                    Espárragos Frescos
+                    Productos Frescos
                   </h3>
                   <p className="text-[var(--color-verde-200)] text-sm font-medium">
-                    Tudela de Duero · Temporada Marzo–Junio
+                    Producción propia · Espárragos, hortalizas y fruta
                   </p>
                 </div>
               </div>
@@ -155,14 +158,14 @@ export default function HomePage() {
               {/* Cuerpo */}
               <div className="px-8 pt-8 pb-7 flex flex-col flex-1">
                 <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed mb-5">
-                  Espárragos blancos y verdes directamente del campo de la Ribera del Duero.
-                  Solo producto de temporada, máxima frescura garantizada.
+                  Espárragos blancos y trigueros de producción propia, hortalizas frescas
+                  todo el año y fruta de calidad. Sin intermediarios.
                 </p>
 
                 <ul className="space-y-2 mb-6">
                   {[
-                    "Origen Tudela de Duero",
-                    "Blanco y verde · Cosecha anual",
+                    "Espárragos de producción propia",
+                    "Patata Voyager · Tomate RAF · Naranja NANNI",
                     "Venta directa al público",
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-[var(--color-text)]">
@@ -339,8 +342,8 @@ export default function HomePage() {
                 <span className="text-[var(--color-verde-700)] italic">con raíces</span>
               </h2>
               <p className="text-[var(--color-text-secondary)] leading-relaxed mb-4">
-                Llevamos desde {SITE_CONFIG.founded} trabajando en lo que nos apasiona. Por un lado,
-                traemos hasta Valladolid los mejores espárragos de Tudela de Duero, frescos y de temporada.
+                 Llevamos desde {SITE_CONFIG.founded} trabajando en lo que nos apasiona. Por un lado,
+                traemos productos frescos de producción propia hasta Valladolid: espárragos, hortalizas y fruta de calidad.
                 Por otro, mantenemos y reparamos coches con honestidad y sin sorpresas.
               </p>
               <p className="text-[var(--color-text-secondary)] leading-relaxed mb-8">
@@ -350,7 +353,7 @@ export default function HomePage() {
               <div className="flex flex-wrap gap-3">
                 <Link href="/esparragos-valladolid" className="btn btn-verde">
                   <Leaf size={15} />
-                  Espárragos
+                  Productos
                 </Link>
                 <Link href="/taller-coches-valladolid" className="btn btn-outline-azul">
                   <Wrench size={15} />
@@ -370,10 +373,10 @@ export default function HomePage() {
               </div>
               {[
                 {
-                  label: "Espárragos · Valladolid",
+                  label: "Productos · Valladolid",
                   address: ESPARRAGOS_CONFIG.address,
                   horario: ESPARRAGOS_CONFIG.horario,
-                  extra: "Temporada: " + ESPARRAGOS_CONFIG.temporada,
+                  extra: "Espárragos: " + ESPARRAGOS_CONFIG.temporada,
                   color: "verde",
                   icon: Leaf,
                 },
@@ -381,7 +384,7 @@ export default function HomePage() {
                   label: "Espárragos · Remondo (Segovia)",
                   address: ESPARRAGOS_REMONDO_CONFIG.address,
                   horario: ESPARRAGOS_REMONDO_CONFIG.horario,
-                  extra: "Temporada: " + ESPARRAGOS_REMONDO_CONFIG.temporada,
+                  extra: "Espárragos: " + ESPARRAGOS_REMONDO_CONFIG.temporada,
                   color: "verde",
                   icon: Leaf,
                 },

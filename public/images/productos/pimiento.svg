@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="none">
+  <rect width="300" height="300" fill="#fff5f0"/>
+  <!-- pimiento rojo -->
+  <path d="M120 110 Q105 130 110 160 Q115 185 130 190 Q145 195 150 175 Q155 195 170 190 Q185 185 190 160 Q195 130 180 110 Q165 95 150 100 Q135 95 120 110Z" fill="#e03030"/>
+  <path d="M120 110 Q105 130 110 160 Q115 185 130 190 Q135 170 150 175 Q150 155 138 130 Q130 112 120 110Z" fill="#c82020" opacity="0.5"/>
+  <rect x="147" y="90" width="6" height="18" rx="3" fill="#3d6b20"/>
+  <text x="150" y="225" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#7a1a00" opacity="0.8">Pimiento</text>
+  <text x="150" y="245" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#c02020" opacity="0.6">Italiano · California</text>
+</svg>

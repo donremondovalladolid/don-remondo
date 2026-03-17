@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="none">
+  <rect width="300" height="300" fill="#f0f7f2"/>
+  <ellipse cx="150" cy="155" rx="28" ry="68" fill="#7ec87a"/>
+  <ellipse cx="150" cy="155" rx="22" ry="60" fill="#a0d89c"/>
+  <path d="M145 87 Q150 80 155 87 Q152 93 150 90 Q148 93 145 87Z" fill="#3d8a38"/>
+  <text x="150" y="250" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#215220" opacity="0.8">Pepino</text>
+</svg>

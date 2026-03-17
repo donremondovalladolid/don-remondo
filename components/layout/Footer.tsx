@@ -3,9 +3,9 @@ import { Phone, MapPin, Leaf, Wrench } from "lucide-react";
 import { SITE_CONFIG, ESPARRAGOS_CONFIG, TALLER_CONFIG } from "@/lib/config";
 
 const footerLinks = {
-  esparragos: [
-    { href: "/esparragos-valladolid", label: "Sobre los espárragos" },
-    { href: "/contacto?asunto=esparragos", label: "Pedir espárragos" },
+  productos: [
+    { href: "/esparragos-valladolid", label: "Nuestros productos" },
+    { href: "/contacto?asunto=productos", label: "Pedir productos" },
   ],
   taller: [
     { href: "/taller-coches-valladolid", label: "Servicios del taller" },
@@ -42,22 +42,22 @@ export default function Footer() {
             </span>
           </Link>
           <p className="text-sm text-[var(--color-stone-400)] leading-relaxed mb-4 max-w-[220px]">
-            Negocio familiar en Valladolid desde {SITE_CONFIG.founded}. Espárragos frescos y taller mecánico de confianza.
+            Negocio familiar en Valladolid desde {SITE_CONFIG.founded}. Productos frescos y taller mecánico de confianza.
           </p>
         </div>
 
-        {/* Espárragos */}
+        {/* Productos */}
         <div>
           <div className="flex items-center gap-2 mb-4">
             <div className="w-5 h-5 rounded-full bg-[var(--color-verde-800)] flex items-center justify-center">
               <Leaf size={11} className="text-[var(--color-verde-300)]" />
             </div>
             <h3 className="text-white text-sm font-semibold tracking-wide uppercase font-sans">
-              Espárragos
+              Productos
             </h3>
           </div>
           <ul className="space-y-2.5 mb-4">
-            {footerLinks.esparragos.map((l) => (
+            {footerLinks.productos.map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
@@ -75,7 +75,7 @@ export default function Footer() {
             </div>
             <div className="flex items-start gap-1.5">
               <span className="w-[11px] shrink-0" />
-              <span>Temporada: {ESPARRAGOS_CONFIG.temporada}</span>
+              <span>Espárragos: {ESPARRAGOS_CONFIG.temporada}</span>
             </div>
           </div>
         </div>

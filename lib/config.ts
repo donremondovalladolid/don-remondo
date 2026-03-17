@@ -1,6 +1,6 @@
 export const SITE_CONFIG = {
   name: "Don Remondo",
-  tagline: "Espárragos frescos y Taller Mecánico en Valladolid",
+  tagline: "Productos frescos y Taller Mecánico en Valladolid",
   phone: "676 981 870",
   phoneRaw: "676981870",
   email: "info@donremondo.es",
@@ -10,7 +10,7 @@ export const SITE_CONFIG = {
 };
 
 export const ESPARRAGOS_CONFIG = {
-  name: "Don Remondo — Espárragos Valladolid",
+  name: "Don Remondo — Productos Valladolid",
   address: "Av. del Euro, 24, 47009 Valladolid",
   addressShort: "Av. del Euro, 24",
   city: "Valladolid",
@@ -20,7 +20,7 @@ export const ESPARRAGOS_CONFIG = {
   email: "donremondocalle@hotmail.com",
   horario: "Todos los días: 05:00 – 10:00",
   horarioLineas: ["Todos los días: 05:00 – 10:00"],
-  temporada: "Marzo – Junio",
+  temporada: "Final de marzo – mediados de junio",
   lat: 41.6388,
   lng: -4.7209,
   mapsEmbed:
@@ -40,7 +40,7 @@ export const ESPARRAGOS_REMONDO_CONFIG = {
   email: "donremondocalle@hotmail.com",
   horario: "Todos los días: 15:00 – 19:30",
   horarioLineas: ["Todos los días: 15:00 – 19:30"],
-  temporada: "Marzo – Junio",
+  temporada: "Final de marzo – mediados de junio",
   lat: 41.2833,
   lng: -4.4167,
   mapsEmbed:
@@ -53,64 +53,215 @@ export const ESPARRAGOS_ENVIOS = {
   nota: "Realizamos envíos de espárragos los lunes, martes y miércoles.",
 };
 
-export const OTROS_PRODUCTOS = [
+/** Categorías del espárrago blanco */
+export const ESPARRAGOS_BLANCO_CATEGORIAS = [
   {
-    nombre: "Manzanas",
-    descripcionCorta: "Variedades de temporada, crujientes y sabrosas.",
-    disponibleEn: ["Valladolid"],
-    imagen: "/images/productos/manzanas.svg",
+    nombre: "Extra",
+    colorEtiqueta: "roja",
+    colorHex: "#e03030",
+    colorBg: "#fef2f2",
+    pack: "Packs de 10–12 espárragos",
+    descripcion: "La categoría más selecta. Espárragos gruesos y uniformes.",
+    imagen: "/images/esparragos/blanco-extra.png",
   },
   {
-    nombre: "Pimientos",
-    descripcionCorta: "Rojos, verdes e italianos. Siempre frescos.",
-    disponibleEn: ["Valladolid"],
-    imagen: "/images/productos/pimientos.svg",
+    nombre: "Primera",
+    colorEtiqueta: "verde",
+    colorHex: "#2d7028",
+    colorBg: "#f0faf0",
+    pack: "Packs de 12–17 espárragos",
+    descripcion: "Excelente calibre y presentación. La elección más popular.",
+    imagen: "/images/esparragos/blanco-primera.png",
   },
   {
-    nombre: "Cebollas",
-    descripcionCorta: "De distintas variedades según la época del año.",
-    disponibleEn: ["Valladolid"],
-    imagen: "/images/productos/cebollas.svg",
+    nombre: "Segunda",
+    colorEtiqueta: "amarilla",
+    colorHex: "#b08000",
+    colorBg: "#fefce8",
+    pack: "Packs de 12–19 espárragos",
+    descripcion: "Mismo sabor de producción propia. Calibre más variado.",
+    imagen: "/images/esparragos/blanco-segunda.png",
   },
   {
-    nombre: "Patatas",
-    descripcionCorta: "Patatas de calidad para todo tipo de preparaciones.",
-    disponibleEn: ["Valladolid"],
-    imagen: "/images/productos/patatas.svg",
-  },
-  {
-    nombre: "Tomates",
-    descripcionCorta: "De rama, pera y ensalada. Producto nacional.",
-    disponibleEn: ["Valladolid"],
-    imagen: "/images/productos/tomates.svg",
-  },
-  {
-    nombre: "Lechugas",
-    descripcionCorta: "Frescas del día, varias variedades disponibles.",
-    disponibleEn: ["Valladolid"],
-    imagen: "/images/productos/lechugas.svg",
+    nombre: "Tercera",
+    colorEtiqueta: "blanca",
+    colorHex: "#6b7280",
+    colorBg: "#f9fafb",
+    pack: "Espárragos finos",
+    descripcion: "Espárragos finos. Ideales para revueltos y guarniciones.",
+    imagen: "/images/esparragos/blanco-tercera.png",
   },
 ] as const;
 
-/** Rutas de imágenes — sustituir por fotos reales cuando estén disponibles */
+/** Variedades de espárrago triguero */
+export const ESPARRAGOS_TRIGUERO_VARIEDADES = [
+  {
+    nombre: "Finos",
+    formato: "Mazos de 300g",
+    descripcion: "Más delicados, perfectos para la plancha o el wok.",
+    imagen: "/images/esparragos/trigueros-fino.png",
+  },
+  {
+    nombre: "Gruesos",
+    formato: "Mazos de 300g",
+    descripcion: "Más carnosos. Ideales para la brasa o al horno.",
+    imagen: "/images/esparragos/trigueros-grueso.png",
+  },
+] as const;
+
+/** Productos disponibles todo el año — tienda de Valladolid */
+export const PRODUCTOS_TODO_EL_ANO = [
+  {
+    nombre: "Patata",
+    descripcion: "Variedad Voyager, nuestra especialidad. Piel fina, textura mantecosa y sabor excepcional.",
+    variedadDestacada: "Variedad Voyager",
+    produccionPropia: true,
+    imagen: "/images/productos/patata.svg",
+  },
+  {
+    nombre: "Puerro",
+    descripcion: "De producción propia en la zona. Tiernos, con el punto justo de intensidad.",
+    produccionPropia: true,
+    imagen: "/images/productos/puerro.svg",
+  },
+  {
+    nombre: "Zanahoria",
+    descripcion: "Producción propia en la zona. Dulces y crujientes, perfectas en crudo o cocinadas.",
+    produccionPropia: true,
+    imagen: "/images/productos/zanahoria.svg",
+  },
+  {
+    nombre: "Pimiento",
+    descripcion: "Rojos y verdes en dos variedades: Italiano (más dulce y alargado) y California (carnoso y redondo).",
+    variedades: ["Italiano", "California"],
+    imagen: "/images/productos/pimiento.svg",
+  },
+  {
+    nombre: "Berenjena",
+    descripcion: "Piel brillante y pulpa firme. Perfecta para asar, freír o hacer al horno.",
+    imagen: "/images/productos/berenjena.svg",
+  },
+  {
+    nombre: "Pepino",
+    descripcion: "Frescos y crujientes. De piel fina, ideales para ensaladas y gazpacho.",
+    imagen: "/images/productos/pepino.svg",
+  },
+  {
+    nombre: "Calabacín",
+    descripcion: "Tiernos y versátiles. En temporada punta, también los tenemos de producción propia.",
+    imagen: "/images/productos/calabacin.svg",
+  },
+  {
+    nombre: "Manzana",
+    descripcion: "Cuatro variedades según la temporada: Golden, Fuji, Royal Gala y Reineta.",
+    variedades: ["Golden", "Fuji", "Royal Gala", "Reineta"],
+    imagen: "/images/productos/manzana.svg",
+  },
+  {
+    nombre: "Tomate",
+    descripcion: "Gran variedad: RAF (con la subvariedad Delicius como estrella), Pera, Roja, Azul, Daniela y Asurcado.",
+    variedades: ["RAF Delicius", "Pera", "Roja", "Azul", "Daniela", "Asurcado"],
+    variedadDestacada: "RAF Delicius",
+    imagen: "/images/productos/tomate.svg",
+  },
+] as const;
+
+/** Productos de temporada (excluidos espárragos, que tienen su propia sección) */
+export const PRODUCTOS_TEMPORADA = [
+  {
+    nombre: "Repollo",
+    descripcion: "Producción propia en la zona. Hojas prietas y sabor intenso.",
+    temporada: "Septiembre – Diciembre",
+    produccionPropia: true,
+    imagen: "/images/productos/repollo.svg",
+  },
+  {
+    nombre: "Lombarda",
+    descripcion: "Producción propia. Color morado intenso, rica en antioxidantes.",
+    temporada: "Septiembre – Diciembre",
+    produccionPropia: true,
+    imagen: "/images/productos/lombarda.svg",
+  },
+  {
+    nombre: "Coliflor",
+    descripcion: "Producción propia en la zona. Blanca, compacta y de sabor suave.",
+    temporada: "Septiembre – Diciembre",
+    produccionPropia: true,
+    imagen: "/images/productos/coliflor.svg",
+  },
+  {
+    nombre: "Brócoli",
+    descripcion: "Producción propia. Racimos prietos, verde intenso y máxima frescura.",
+    temporada: "Septiembre – Diciembre",
+    produccionPropia: true,
+    imagen: "/images/productos/brocoli.svg",
+  },
+  {
+    nombre: "Romanesca",
+    descripcion: "Producción propia. La variante más vistosa de la coliflor, con su característica espiral.",
+    temporada: "Septiembre – Diciembre",
+    produccionPropia: true,
+    imagen: "/images/productos/romanesca.svg",
+  },
+  {
+    nombre: "Cardo",
+    descripcion: "Producción propia. Un clásico castellano de invierno, solo disponible unas semanas.",
+    temporada: "Diciembre – Febrero",
+    produccionPropia: true,
+    imagen: "/images/productos/cardo.jpeg",
+  },
+  {
+    nombre: "Naranja",
+    descripcion: "Marca NANNI con hojas. La referencia en calidad: zumo abundante, dulzor equilibrado y piel aromática.",
+    temporada: "Diciembre – Febrero",
+    marcaDestacada: "NANNI con hojas",
+    imagen: "/images/productos/naranja.svg",
+  },
+] as const;
+
 export const IMAGES = {
   home: {
-    esparragosCard: "/images/home/esparragos-card.svg",
+    productosCard: "/images/esparragos/blanco-extra.png",
     tallerCard: "/images/home/taller-card.svg",
     familia: "/images/home/familia.svg",
   },
   esparragos: {
-    hero: "/images/esparragos/hero.svg",
-    blanco: "/images/esparragos/blanco.svg",
-    verde: "/images/esparragos/verde.svg",
-    origen: "/images/esparragos/origen.svg",
+    hero: "/images/esparragos/campo.jpeg",
+    blancoExtra: "/images/esparragos/blanco-extra.png",
+    blancoPrimera: "/images/esparragos/blanco-primera.png",
+    blancoSegunda: "/images/esparragos/blanco-segunda.png",
+    blancoTercera: "/images/esparragos/blanco-tercera.png",
+    trigueroFino: "/images/esparragos/trigueros-fino.png",
+    trigueroGrueso: "/images/esparragos/trigueros-grueso.png",
+    /** fallback SVG para categorías sin foto propia */
+    blanco: "/images/productos/esparragos-blanco.svg",
+    triguero: "/images/productos/esparragos-triguero.svg",
+    origen: "/images/esparragos/campo.jpeg",
+  },
+  productos: {
+    patata: "/images/productos/patata.svg",
+    puerro: "/images/productos/puerro.svg",
+    zanahoria: "/images/productos/zanahoria.svg",
+    pimiento: "/images/productos/pimiento.svg",
+    berenjena: "/images/productos/berenjena.svg",
+    pepino: "/images/productos/pepino.svg",
+    calabacin: "/images/productos/calabacin.svg",
+    manzana: "/images/productos/manzana.svg",
+    tomate: "/images/productos/tomate.svg",
+    repollo: "/images/productos/repollo.svg",
+    lombarda: "/images/productos/lombarda.svg",
+    coliflor: "/images/productos/coliflor.svg",
+    brocoli: "/images/productos/brocoli.svg",
+    romanesca: "/images/productos/romanesca.svg",
+    cardo: "/images/productos/cardo.jpeg",
+    naranja: "/images/productos/naranja.svg",
   },
   taller: {
     hero: "/images/taller/hero.svg",
     interior: "/images/taller/interior.svg",
   },
   tiendas: {
-    valladolid: "/images/tiendas/valladolid.svg",
+    valladolid: "/images/tiendas/mercaolid.jpeg",
     remondo: "/images/tiendas/remondo.svg",
   },
 } as const;

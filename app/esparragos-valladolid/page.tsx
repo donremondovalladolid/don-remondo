@@ -151,7 +151,7 @@ export default function ProductosPage() {
           alt=""
           aria-hidden={true}
           fill
-          className="object-cover opacity-25 mix-blend-soft-light"
+          className="object-cover opacity-45 mix-blend-soft-light"
           priority
         />
         <div className="absolute inset-0 opacity-[0.06] pattern-diagonal-light" />
@@ -179,7 +179,7 @@ export default function ProductosPage() {
                 <Phone size={16} />
                 {ESPARRAGOS_CONFIG.phone}
               </a>
-              <Link href="#esparragos" className="btn btn-outline-white">
+              <Link href="#esparragos" className="btn btn-ghost-white">
                 Espárragos de temporada
                 <ArrowRight size={16} />
               </Link>
@@ -568,7 +568,7 @@ export default function ProductosPage() {
             </a>
             <Link
               href="/contacto?asunto=productos"
-              className="btn btn-outline-white"
+              className="btn btn-ghost-white"
             >
               Enviar mensaje
               <ArrowRight size={16} />

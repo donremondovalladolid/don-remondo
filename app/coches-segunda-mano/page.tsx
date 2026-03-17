@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Car, Phone, ArrowRight, CheckCircle2, Shield, Wrench, Star } from "lucide-react";
+import { Car, Phone, ArrowRight, CheckCircle2 } from "lucide-react";
 import { TALLER_CONFIG, SITE_CONFIG } from "@/lib/config";
 import { prisma } from "@/lib/prisma";
 
@@ -49,13 +49,6 @@ const schemaItemList = (
   })),
 });
 
-const garantias = [
-  { icon: Wrench, label: "Revisados por nuestro taller" },
-  { icon: Shield, label: "Garantía por escrito" },
-  { icon: Star, label: "Financiación disponible" },
-  { icon: Car, label: "Tasamos tu coche" },
-];
-
 export default async function CochesPage() {
   const coches = await prisma.coche.findMany({
     where: { vendido: false },
@@ -97,23 +90,6 @@ export default async function CochesPage() {
           className="absolute bottom-0 left-0 right-0 h-8 bg-[var(--color-bg)] wave-bottom"
         />
       </section>
-
-      {/* ── GARANTÍAS STRIP ──────────────────────── */}
-      <div className="bg-white border-b border-[var(--color-border-light)]">
-        <div className="container py-4">
-          <div className="flex flex-wrap gap-x-8 gap-y-3 justify-center sm:justify-start">
-            {garantias.map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]"
-              >
-                <Icon size={14} className="text-[var(--color-azul-600)] shrink-0" />
-                {label}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
 
       {/* ── CATÁLOGO ─────────────────────────────── */}
       <section className="section-padding bg-[var(--color-bg)] min-h-[60vh]">

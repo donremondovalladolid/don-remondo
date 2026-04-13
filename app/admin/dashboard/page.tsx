@@ -4,6 +4,26 @@ import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
+type Coche = {
+  id: number;
+  slug: string;
+  marca: string;
+  modelo: string;
+  anio: number;
+  km: number;
+  precio: number;
+  combustible: string;
+  cambio: string;
+  color: string;
+  puertas: number;
+  descripcion: string;
+  fotos: string;
+  vendido: boolean;
+  destacado: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 async function logout() {
   "use server";
   const { cookies } = await import("next/headers");
@@ -11,12 +31,13 @@ async function logout() {
 }
 
 export default async function AdminDashboard() {
-  const coches = await prisma.coche.findMany({
+  const rawCoches = await prisma.coche.findMany({
     orderBy: [{ vendido: "asc" }, { createdAt: "desc" }],
   });
+  const coches: Coche[] = rawCoches as Coche[];
 
-  const disponibles = coches.filter((c) => !c.vendido).length;
-  const vendidos = coches.filter((c) => c.vendido).length;
+  const disponibles = (coches as { vendido: boolean }[]).filter((c) => !c.vendido).length;
+  const vendidos = (coches as { vendido: boolean }[]).filter((c) => c.vendido).length;
 
   return (
     <div className="min-h-screen bg-gray-50">

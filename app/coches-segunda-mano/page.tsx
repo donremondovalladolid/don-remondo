@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Car, Phone, ArrowRight, CheckCircle2 } from "lucide-react";
 import { TALLER_CONFIG, SITE_CONFIG } from "@/lib/config";
 import { prisma } from "@/lib/prisma";
+import { Coche } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -50,10 +51,11 @@ const schemaItemList = (
 });
 
 export default async function CochesPage() {
-  const coches = await prisma.coche.findMany({
+  const rawCoches = await prisma.coche.findMany({
     where: { vendido: false },
     orderBy: [{ destacado: "desc" }, { createdAt: "desc" }],
   });
+  const coches: Coche[] = rawCoches as Coche[];
 
   return (
     <>

@@ -83,7 +83,7 @@ export default function HomePage() {
               </span>
             </h1>
 
-              <p className="text-[var(--color-stone-300)] text-lg sm:text-xl leading-relaxed max-w-xl mb-10 animate-fade-up animate-delay-200">
+            <p className="text-[var(--color-stone-300)] text-lg sm:text-xl leading-relaxed max-w-xl mb-10 animate-fade-up animate-delay-200">
               Productos frescos de producción propia y taller mecánico de confianza.
               Dos negocios, una misma familia.
             </p>
@@ -135,7 +135,7 @@ export default function HomePage() {
                   alt=""
                   aria-hidden={true}
                   fill
-                  className="object-cover opacity-30 mix-blend-soft-light"
+                  className="object-cover opacity-50 mix-blend-overlay"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 {/* Patrón decorativo */}
@@ -204,7 +204,7 @@ export default function HomePage() {
                   src={IMAGES.home.tallerCard}
                   alt=""
                   aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-soft-light"
+                  className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-overlay"
                 />
                 <div className="absolute inset-0 opacity-10 pattern-dots-light" />
                 <div className="relative">
@@ -217,7 +217,7 @@ export default function HomePage() {
                     Taller y Coches
                   </h3>
                   <p className="text-[var(--color-azul-200)] text-sm font-medium">
-                    Mecánica multimarca · Compra-Venta · Garantía
+                    Mecánica multimarca · Venta de coches · Garantía
                   </p>
                 </div>
               </div>
@@ -225,7 +225,7 @@ export default function HomePage() {
               {/* Cuerpo */}
               <div className="px-8 pt-8 pb-7 flex flex-col flex-1">
                 <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed mb-5">
-                  Taller mecánico con más de {SITE_CONFIG.experience} años de experiencia.
+                  Taller mecánico.
                   Reparamos cualquier marca y también tenemos coches de segunda mano revisados.
                 </p>
 
@@ -296,15 +296,14 @@ export default function HomePage() {
                 className="flex flex-col items-center text-center gap-2 py-4"
               >
                 <div
-                  className={`w-10 h-10 rounded-xl flex items-center justify-center mb-1 ${
-                    color === "verde"
-                      ? "bg-[var(--color-verde-100)]"
-                      : color === "azul"
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center mb-1 ${color === "verde"
+                    ? "bg-[var(--color-verde-100)]"
+                    : color === "azul"
                       ? "bg-[var(--color-azul-100)]"
                       : color === "ambar"
-                      ? "bg-[var(--color-ambar-100)]"
-                      : "bg-[var(--color-stone-100)]"
-                  }`}
+                        ? "bg-[var(--color-ambar-100)]"
+                        : "bg-[var(--color-stone-100)]"
+                    }`}
                 >
                   <Icon
                     size={18}
@@ -312,10 +311,10 @@ export default function HomePage() {
                       color === "verde"
                         ? "text-[var(--color-verde-700)]"
                         : color === "azul"
-                        ? "text-[var(--color-azul-700)]"
-                        : color === "ambar"
-                        ? "text-[var(--color-ambar-500)]"
-                        : "text-[var(--color-stone-600)]"
+                          ? "text-[var(--color-azul-700)]"
+                          : color === "ambar"
+                            ? "text-[var(--color-ambar-500)]"
+                            : "text-[var(--color-stone-600)]"
                     }
                   />
                 </div>
@@ -342,7 +341,7 @@ export default function HomePage() {
                 <span className="text-[var(--color-verde-700)] italic">con raíces</span>
               </h2>
               <p className="text-[var(--color-text-secondary)] leading-relaxed mb-4">
-                 Llevamos desde {SITE_CONFIG.founded} trabajando en lo que nos apasiona. Por un lado,
+                Llevamos desde {SITE_CONFIG.founded} trabajando en lo que nos apasiona. Por un lado,
                 traemos productos frescos de producción propia hasta Valladolid: espárragos, hortalizas y fruta de calidad.
                 Por otro, mantenemos y reparamos coches con honestidad y sin sorpresas.
               </p>
@@ -398,18 +397,16 @@ export default function HomePage() {
               ].map((loc) => (
                 <div
                   key={loc.label}
-                  className={`flex items-start gap-4 p-4 rounded-[var(--radius-lg)] border ${
-                    loc.color === "verde"
-                      ? "border-[var(--color-verde-200)] bg-[var(--color-verde-50)]"
-                      : "border-[var(--color-azul-200)] bg-[var(--color-azul-50)]"
-                  }`}
+                  className={`flex items-start gap-4 p-4 rounded-[var(--radius-lg)] border ${loc.color === "verde"
+                    ? "border-[var(--color-verde-200)] bg-[var(--color-verde-50)]"
+                    : "border-[var(--color-azul-200)] bg-[var(--color-azul-50)]"
+                    }`}
                 >
                   <div
-                    className={`w-9 h-9 rounded-[var(--radius-md)] flex items-center justify-center shrink-0 mt-0.5 ${
-                      loc.color === "verde"
-                        ? "bg-[var(--color-verde-100)]"
-                        : "bg-[var(--color-azul-100)]"
-                    }`}
+                    className={`w-9 h-9 rounded-[var(--radius-md)] flex items-center justify-center shrink-0 mt-0.5 ${loc.color === "verde"
+                      ? "bg-[var(--color-verde-100)]"
+                      : "bg-[var(--color-azul-100)]"
+                      }`}
                   >
                     <loc.icon
                       size={16}
@@ -422,11 +419,10 @@ export default function HomePage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p
-                      className={`text-sm font-semibold mb-0.5 ${
-                        loc.color === "verde"
-                          ? "text-[var(--color-verde-800)]"
-                          : "text-[var(--color-azul-800)]"
-                      }`}
+                      className={`text-sm font-semibold mb-0.5 ${loc.color === "verde"
+                        ? "text-[var(--color-verde-800)]"
+                        : "text-[var(--color-azul-800)]"
+                        }`}
                     >
                       {loc.label}
                     </p>

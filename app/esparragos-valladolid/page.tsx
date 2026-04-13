@@ -188,88 +188,9 @@ export default function ProductosPage() {
         </div>
       </section>
 
-      {/* ── PRODUCTOS TODO EL AÑO ────────────────── */}
-      <section className="section-padding bg-white">
-        <div className="container">
-          <div className="text-center mb-12">
-            <p className="text-[var(--color-text-muted)] text-sm font-semibold uppercase tracking-[0.1em] mb-3">
-              Disponibles todo el año
-            </p>
-            <h2>
-              Hortalizas y fruta<br />
-              <span className="text-[var(--color-verde-700)] italic">en nuestra tienda de Valladolid</span>
-            </h2>
-            <p className="text-[var(--color-text-secondary)] mt-4 max-w-xl mx-auto">
-              Además de los espárragos de temporada, en nuestra tienda de Valladolid
-              encontrarás una selección de productos frescos durante todo el año.
-              Patata, puerro y zanahoria son de producción propia en la zona.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PRODUCTOS_TODO_EL_ANO.map((producto) => (
-              <div
-                key={producto.nombre}
-                className="card p-0 overflow-hidden"
-              >
-                {/* Imagen */}
-                <div className="aspect-[3/2] bg-[var(--color-stone-50)] overflow-hidden">
-                  <img
-                    src={producto.imagen}
-                    alt={producto.nombre}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-5">
-                  <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3 className="text-lg">{producto.nombre}</h3>
-                    <div className="flex gap-1.5 shrink-0">
-                      {"produccionPropia" in producto && producto.produccionPropia && (
-                        <span className="badge badge-verde">Producción propia</span>
-                      )}
-                    </div>
-                  </div>
-                  <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed mb-3">
-                    {producto.descripcion}
-                  </p>
-                  {"variedades" in producto && producto.variedades && (
-                    <div className="flex flex-wrap gap-1.5">
-                      {(producto.variedades as readonly string[]).map((v) => (
-                        <span
-                          key={v}
-                          className={`badge ${"variedadDestacada" in producto && (producto as { variedadDestacada?: string }).variedadDestacada === v ? "badge-ambar" : "badge-stone"}`}
-                        >
-                          {v}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  {"variedadDestacada" in producto &&
-                    (producto as { variedadDestacada?: string }).variedadDestacada &&
-                    !("variedades" in producto) && (
-                    <span className="badge badge-ambar">
-                      {(producto as { variedadDestacada?: string }).variedadDestacada}
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8 flex items-center justify-center gap-3 p-4 rounded-[var(--radius-xl)] bg-[var(--color-verde-50)] border border-[var(--color-verde-200)] max-w-lg mx-auto">
-            <ShoppingBasket size={18} className="text-[var(--color-verde-700)] shrink-0" />
-            <p className="text-sm text-[var(--color-verde-900)]">
-              <strong>Solo en nuestra tienda de Valladolid</strong> · Av. del Euro, 24 · Todos los días 05:00–10:00
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* ── ESPÁRRAGOS ───────────────────────────── */}
       <section id="esparragos" className="section-padding bg-[var(--color-stone-50)]">
         <div className="container">
-
-          {/* Cabecera sección */}
           <div className="text-center mb-12">
             <p className="text-[var(--color-text-muted)] text-sm font-semibold uppercase tracking-[0.1em] mb-3">
               Producto estrella · Temporada
@@ -427,6 +348,85 @@ export default function ProductosPage() {
         </div>
       </section>
 
+      {/* ── HORTALIZAS Y FRUTA ────────────────────── */}
+      <section className="section-padding bg-white">
+        <div className="container">
+          <div className="text-center mb-12">
+            <p className="text-[var(--color-text-muted)] text-sm font-semibold uppercase tracking-[0.1em] mb-3">
+              Disponibles todo el año
+            </p>
+            <h2>
+              Hortalizas y fruta<br />
+              <span className="text-[var(--color-verde-700)] italic">en nuestra tienda de Valladolid</span>
+            </h2>
+            <p className="text-[var(--color-text-secondary)] mt-4 max-w-xl mx-auto">
+              Además de los espárragos de temporada, en nuestra tienda de Valladolid
+              encontrarás una selección de productos frescos durante todo el año.
+              Patata, puerro y zanahoria son de producción propia en la zona.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PRODUCTOS_TODO_EL_ANO.map((producto) => (
+              <div
+                key={producto.nombre}
+                className="card p-0 overflow-hidden"
+              >
+                {/* Imagen */}
+                <div className="aspect-[3/2] bg-[var(--color-stone-50)] overflow-hidden relative">
+                  <Image
+                    src={producto.imagen}
+                    alt={producto.nombre}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <h3 className="text-lg">{producto.nombre}</h3>
+                    <div className="flex gap-1.5 shrink-0">
+                      {"produccionPropia" in producto && producto.produccionPropia && (
+                        <span className="badge badge-verde">Producción propia</span>
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed mb-3">
+                    {producto.descripcion}
+                  </p>
+                  {"variedades" in producto && producto.variedades && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {(producto.variedades as readonly string[]).map((v) => (
+                        <span
+                          key={v}
+                          className={`badge ${"variedadDestacada" in producto && (producto as { variedadDestacada?: string }).variedadDestacada === v ? "badge-ambar" : "badge-stone"}`}
+                        >
+                          {v}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {"variedadDestacada" in producto &&
+                    (producto as { variedadDestacada?: string }).variedadDestacada &&
+                    !("variedades" in producto) && (
+                    <span className="badge badge-ambar">
+                      {(producto as { variedadDestacada?: string }).variedadDestacada}
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex items-center justify-center gap-3 p-4 rounded-[var(--radius-xl)] bg-[var(--color-verde-50)] border border-[var(--color-verde-200)] max-w-lg mx-auto">
+            <ShoppingBasket size={18} className="text-[var(--color-verde-700)] shrink-0" />
+            <p className="text-sm text-[var(--color-verde-900)]">
+              <strong>Solo en nuestra tienda de Valladolid</strong> · Av. del Euro, 24 · Todos los días 05:00–10:00
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ── OTROS PRODUCTOS DE TEMPORADA ────────── */}
       <section className="section-padding bg-white">
         <div className="container">
@@ -471,11 +471,7 @@ export default function ProductosPage() {
               {PRODUCTOS_TEMPORADA.filter((p) => p.temporada === "Septiembre – Diciembre").map((p) => (
                 <div key={p.nombre} className="card p-0 overflow-hidden">
                   <div className="aspect-square bg-[var(--color-stone-50)] overflow-hidden relative">
-                    {p.imagen.endsWith(".svg") ? (
-                      <img src={p.imagen} alt={p.nombre} className="w-full h-full object-cover" />
-                    ) : (
-                      <Image src={p.imagen} alt={p.nombre} fill className="object-cover" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-                    )}
+                    <Image src={p.imagen} alt={p.nombre} fill className="object-cover" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw" />
                   </div>
                   <div className="p-3">
                     <p className="font-semibold text-sm text-[var(--color-text)] mb-1">{p.nombre}</p>
@@ -513,11 +509,7 @@ export default function ProductosPage() {
               {PRODUCTOS_TEMPORADA.filter((p) => p.temporada === "Diciembre – Febrero").map((p) => (
                 <div key={p.nombre} className="card p-0 overflow-hidden">
                   <div className="aspect-[3/2] bg-[var(--color-stone-50)] overflow-hidden relative">
-                    {p.imagen.endsWith(".svg") ? (
-                      <img src={p.imagen} alt={p.nombre} className="w-full h-full object-cover" />
-                    ) : (
-                      <Image src={p.imagen} alt={p.nombre} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
-                    )}
+                    <Image src={p.imagen} alt={p.nombre} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
                   </div>
                   <div className="p-5">
                     <div className="flex items-start justify-between gap-2 mb-1">

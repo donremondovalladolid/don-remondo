@@ -94,7 +94,7 @@ export default function ContactoPage() {
 
             {/* Email taller */}
             <a
-              href={`mailto:${TALLER_CONFIG.email}`}
+              href={`mailto:${TALLER_CONFIG.email},${TALLER_CONFIG.email2}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
               <div className="w-11 h-11 rounded-xl bg-[var(--color-azul-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-azul-200)] transition-colors">
@@ -104,8 +104,9 @@ export default function ContactoPage() {
                 <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
                   Email taller
                 </p>
-                <p className="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-azul-700)] transition-colors break-all">
-                  {TALLER_CONFIG.email}
+                <p className="text-[0.8rem] leading-tight font-medium text-[var(--color-text)] group-hover:text-[var(--color-azul-700)] transition-colors break-all">
+                  {TALLER_CONFIG.email}<br />
+                  <span className="mt-1 block">{TALLER_CONFIG.email2}</span>
                 </p>
               </div>
             </a>

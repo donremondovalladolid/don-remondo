@@ -8,6 +8,26 @@ import {
 import { TALLER_CONFIG, SITE_CONFIG } from "@/lib/config";
 import { prisma } from "@/lib/prisma";
 
+type Coche = {
+  id: number;
+  slug: string;
+  marca: string;
+  modelo: string;
+  anio: number;
+  km: number;
+  precio: number;
+  combustible: string;
+  cambio: string;
+  color: string;
+  puertas: number;
+  descripcion: string;
+  fotos: string;
+  vendido: boolean;
+  destacado: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -26,17 +46,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CocheDetallePage({ params }: Props) {
   const { slug } = await params;
-  const coche = await prisma.coche.findUnique({ where: { slug } });
-  if (!coche) notFound();
+  const rawCoche = await prisma.coche.findUnique({ where: { slug } });
+  if (!rawCoche) notFound();
+  const coche: Coche = rawCoche as Coche;
 
   const fotos = JSON.parse(coche.fotos) as string[];
 
-  // Coches relacionados: hasta 3 coches disponibles distintos al actual
-  const relacionados = await prisma.coche.findMany({
+  const rawRelacionados = await prisma.coche.findMany({
     where: { vendido: false, slug: { not: slug } },
     take: 3,
     orderBy: [{ destacado: "desc" }, { createdAt: "desc" }],
   });
+  const relacionados: Coche[] = rawRelacionados as Coche[];
 
   const schemaOrg = {
     "@context": "https://schema.org",

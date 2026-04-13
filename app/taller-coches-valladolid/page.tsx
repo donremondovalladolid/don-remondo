@@ -6,25 +6,27 @@ import {
 } from "lucide-react";
 import { TALLER_CONFIG, SITE_CONFIG, IMAGES } from "@/lib/config";
 import { prisma } from "@/lib/prisma";
+import { Coche } from "@/lib/types";
+import ScrollAnimation from "@/components/ScrollAnimation";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Taller Mecánico Valladolid | Compra-Venta de Coches",
+  title: "Taller Mecánico Valladolid | Venta de Coches",
   description:
-    "Taller mecánico de confianza en Valladolid. Servicio técnico multimarca y compra-venta de coches de segunda mano. Más de 7 años de experiencia. Don Remondo.",
+    "Taller mecánico de confianza en Valladolid. Servicio técnico multimarca y venta de coches de segunda mano. Más de 7 años de experiencia. Don Remondo.",
   keywords: [
     "taller mecánico Valladolid",
     "taller coches Valladolid",
-    "compra venta coches Valladolid",
+    "venta coches Valladolid",
     "coches segunda mano Valladolid",
     "reparación coches Valladolid",
     "revisión coche Valladolid",
   ],
   openGraph: {
-    title: "Taller Mecánico y Compra-Venta de Coches en Valladolid | Don Remondo",
+    title: "Taller Mecánico y Venta de Coches en Valladolid | Don Remondo",
     description:
-      "Taller mecánico multimarca con más de 7 años de experiencia. Compra-venta de coches revisados y con garantía en Valladolid.",
+      "Taller mecánico multimarca con más de 7 años de experiencia. Venta de coches revisados y con garantía en Valladolid.",
     url: `${SITE_CONFIG.url}/taller-coches-valladolid`,
   },
 };
@@ -53,8 +55,8 @@ const schemaOrg = {
     },
     {
       "@type": "CarDealer",
-      name: `${TALLER_CONFIG.name} — Compra-Venta Coches`,
-      description: "Compra-venta de coches de segunda mano en Valladolid. Vehículos revisados con garantía.",
+      name: `${TALLER_CONFIG.name} — Venta de Coches`,
+      description: "Venta de coches de segunda mano en Valladolid. Vehículos revisados con garantía.",
       url: `${SITE_CONFIG.url}/coches-segunda-mano`,
       telephone: TALLER_CONFIG.phoneRaw,
       address: {
@@ -72,37 +74,55 @@ const servicios = [
   {
     icon: Wrench,
     titulo: "Mecánica general",
-    desc: "Frenos, embrague, distribución, amortiguadores y todo tipo de reparaciones.",
+    desc: "Transmisión, embrague, distribución, motor, suspensión y dirección.",
     color: "azul",
   },
   {
     icon: Gauge,
-    titulo: "Mecánica rápida",
-    desc: "Cambio de aceite, filtros, ruedas, baterías y revisiones en el día.",
+    titulo: "Diagnosis",
+    desc: "Diagnóstico de motores y sistemas electrónicos de todas las marcas.",
     color: "azul",
   },
   {
     icon: Zap,
-    titulo: "Diagnóstico electrónico",
-    desc: "Lectura y borrado de códigos de error en todas las marcas y modelos.",
+    titulo: "Averías eléctricas",
+    desc: "Reparación de sistemas eléctricos, centralitas y electrónica del vehículo.",
     color: "azul",
   },
   {
     icon: Settings,
-    titulo: "Pre-ITV",
-    desc: "Revisión completa antes de pasar la ITV para que no haya sorpresas.",
+    titulo: "Baterías",
+    desc: "Cambio de baterías, diagnosis de carga y sistemas de arranque.",
     color: "azul",
   },
   {
     icon: Shield,
-    titulo: "Garantía en reparaciones",
-    desc: "Todas nuestras reparaciones incluyen garantía por escrito.",
-    color: "verde",
+    titulo: "Frenos",
+    desc: "Servicio y reparación de frenos: discos, pastillas y líquido de frenos.",
+    color: "azul",
   },
   {
     icon: Car,
-    titulo: "Compra-venta de coches",
-    desc: "Vendemos coches revisados y con garantía. También compramos tu vehículo.",
+    titulo: "Neumáticos",
+    desc: "Neumáticos, calibración de ruedas, alineación y equilibrado.",
+    color: "azul",
+  },
+  {
+    icon: Wrench,
+    titulo: "Cambio de aceite",
+    desc: "Cambio de aceite, filtros de motor y filtros de habitáculo.",
+    color: "verde",
+  },
+  {
+    icon: Wrench,
+    titulo: "Aire acondicionado",
+    desc: "Recarga de gas, reparación de climatización y mantenimiento.",
+    color: "verde",
+  },
+  {
+    icon: Shield,
+    titulo: "Suspensión y dirección",
+    desc: "Reparación de amortiguadores, rótulas, dirección y tren delantero.",
     color: "verde",
   },
 ];
@@ -115,36 +135,41 @@ const garantias = [
 ];
 
 export default async function TallerPage() {
-  const cochesDestacados = await prisma.coche.findMany({
+  const rawDestacados = await prisma.coche.findMany({
     where: { vendido: false, destacado: true },
     take: 3,
     orderBy: { createdAt: "desc" },
   });
+  const cochesDestacados: Coche[] = rawDestacados as Coche[];
 
-  const cochesRecientes =
-    cochesDestacados.length > 0
-      ? cochesDestacados
-      : await prisma.coche.findMany({
-          where: { vendido: false },
-          take: 3,
-          orderBy: { createdAt: "desc" },
-        });
+  const rawRecientes = await prisma.coche.findMany({
+    where: { vendido: false },
+    take: 3,
+    orderBy: { createdAt: "desc" },
+  });
+  const cochesRecientes: Coche[] = rawRecientes as Coche[];
 
   return (
     <>
+      <ScrollAnimation />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
       />
 
       {/* ── HERO ─────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-azul-900)] via-[var(--color-azul-800)] to-[var(--color-azul-600)]">
-        <img
-          src={IMAGES.taller.hero}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-soft-light"
-        />
+      <section className="relative overflow-hidden bg-[var(--color-azul-900)]">
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-azul-900)] via-[var(--color-azul-600)] to-[var(--color-azul-300)]" />
+        <div
+          className="absolute right-0 top-0 bottom-0 w-[55%] md:w-[50%] lg:w-[45%] xl:w-[40%]"
+          style={{ maskImage: 'linear-gradient(to right, transparent, black 20%)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 20%)' }}
+        >
+          <img
+            src={IMAGES.taller.hero}
+            alt="Equipo Don Remondo"
+            className="w-full h-full object-cover object-[center_25%] sm:object-[right_25%]"
+          />
+        </div>
         <div className="absolute inset-0 opacity-[0.06] pattern-diagonal-light" />
         <div className="container relative py-20 sm:py-28">
           <div className="max-w-2xl">
@@ -159,11 +184,10 @@ export default async function TallerPage() {
             >
               Taller Mecánico
               <br />
-              <span className="text-[var(--color-azul-200)] italic">y Compra-Venta</span>
+              <span className="text-[var(--color-azul-200)] italic">y Venta de coches</span>
             </h1>
             <p className="font-display text-[var(--color-azul-200)] text-lg leading-relaxed mb-8 max-w-xl animate-fade-up animate-delay-200">
-              Taller mecánico multimarca con más de {SITE_CONFIG.experience} años de experiencia
-              en Valladolid. Reparamos tu coche con honestidad, presupuesto previo y garantía.
+
             </p>
             <div className="flex flex-wrap gap-3 animate-fade-up animate-delay-300">
               <Link href="/coches-segunda-mano" className="btn btn-ghost-white btn-lg">
@@ -176,10 +200,10 @@ export default async function TallerPage() {
         <div
           className="absolute bottom-0 left-0 right-0 h-10 bg-[var(--color-bg)] wave-bottom"
         />
-      </section>
+      </section >
 
       {/* ── SERVICIOS ────────────────────────────── */}
-      <section className="section-padding bg-[var(--color-bg)]">
+      < section className="section-padding-sm bg-[var(--color-bg)]" >
         <div className="container">
           <div className="text-center mb-12">
             <p className="text-[var(--color-text-muted)] text-sm font-semibold uppercase tracking-[0.1em] mb-3">
@@ -200,19 +224,11 @@ export default async function TallerPage() {
                 className="card p-6 group hover:border-[var(--color-azul-200)] transition-colors"
               >
                 <div
-                  className={`w-11 h-11 rounded-[var(--radius-md)] flex items-center justify-center mb-4 transition-colors ${
-                    color === "azul"
-                      ? "bg-[var(--color-azul-100)] group-hover:bg-[var(--color-azul-200)]"
-                      : "bg-[var(--color-verde-100)] group-hover:bg-[var(--color-verde-200)]"
-                  }`}
+                  className="w-11 h-11 rounded-[var(--radius-md)] flex items-center justify-center mb-4 transition-colors bg-[var(--color-azul-100)] group-hover:bg-[var(--color-azul-200)]"
                 >
                   <Icon
                     size={20}
-                    className={
-                      color === "azul"
-                        ? "text-[var(--color-azul-700)]"
-                        : "text-[var(--color-verde-700)]"
-                    }
+                    className="text-[var(--color-azul-700)]"
                   />
                 </div>
                 <h3
@@ -227,53 +243,41 @@ export default async function TallerPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
-      {/* ── STATS / CONFIANZA ────────────────────── */}
-      <section className="section-padding bg-[var(--color-azul-900)]">
+      {/* ── FOTOS DEL TALLER ───────────────────────── */}
+      < section className="section-padding-sm bg-[var(--color-azul-900)]" >
         <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-            {garantias.map(({ valor, label }) => (
-              <div key={label} className="text-center">
-                <p className="text-white leading-none mb-2 display-kpi">
-                  {valor}
-                </p>
-                <p className="text-[var(--color-azul-300)] text-xs font-semibold uppercase tracking-[0.08em]">
-                  {label}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="bg-[var(--color-azul-800)] rounded-[var(--radius-xl)] overflow-hidden max-w-2xl mx-auto">
-            <div className="overflow-hidden">
+          <div className="grid grid-cols-1 gap-6">
+            <div className="relative aspect-[16/9] rounded-[var(--radius-xl)] overflow-hidden">
               <img
                 src={IMAGES.taller.interior}
-                alt="Interior del taller mecánico Don Remondo"
-                className="w-full h-48 sm:h-56 object-cover opacity-80"
+                alt="Interior taller Don Remondo"
+                className="w-full h-full object-cover scroll-fade-up"
               />
             </div>
-            <div className="p-8 text-center">
-              <div className="w-12 h-12 rounded-xl bg-[var(--color-ambar-100)] flex items-center justify-center mx-auto mb-4">
-                <Star size={22} className="text-[var(--color-ambar-500)]" />
+            <div className="grid grid-cols-2 gap-6">
+              <div className="relative aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden">
+                <img
+                  src={IMAGES.taller.interior2}
+                  alt="Taller zona 2"
+                  className="w-full h-full object-cover scroll-fade-up"
+                />
               </div>
-              <h3
-                className="text-white text-xl mb-3"
-              >
-                Taller de confianza en Valladolid
-              </h3>
-              <p className="text-[var(--color-azul-300)] text-sm leading-relaxed">
-                Somos un taller familiar con más de {SITE_CONFIG.experience} años dando servicio
-                en Valladolid. Trabajamos con honestidad y transparencia: siempre con
-                presupuesto previo aprobado, sin sorpresas.
-              </p>
+              <div className="relative aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden">
+                <img
+                  src={IMAGES.taller.interior3}
+                  alt="Taller zona 3"
+                  className="w-full h-full object-cover scroll-fade-up"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ── CTA CONTACTO ─────────────────────────── */}
-      <section className="section-padding-sm bg-[var(--color-azul-50)] border-y border-[var(--color-azul-100)]">
+      < section className="section-padding-sm bg-[var(--color-azul-50)] border-y border-[var(--color-azul-100)]" >
         <div className="container">
           <div className="max-w-2xl mx-auto text-center">
             <h2
@@ -300,26 +304,35 @@ export default async function TallerPage() {
                 <ArrowRight size={16} />
               </Link>
             </div>
-            <p className="text-sm text-[var(--color-text-muted)] mt-5">
-              o escríbenos a{" "}
-              <a
-                href={`mailto:${TALLER_CONFIG.email}`}
-                className="text-[var(--color-azul-700)] hover:underline font-medium"
-              >
-                {TALLER_CONFIG.email}
-              </a>
+            <p className="text-sm text-[var(--color-text-muted)] mt-5 flex flex-col items-center gap-1">
+              <span>o escríbenos a:</span>
+              <span className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
+                <a
+                  href={`mailto:${TALLER_CONFIG.email}`}
+                  className="text-[var(--color-azul-700)] hover:underline font-medium"
+                >
+                  {TALLER_CONFIG.email}
+                </a>
+                <span className="hidden sm:inline text-[var(--color-text-muted)]">|</span>
+                <a
+                  href={`mailto:${TALLER_CONFIG.email2}`}
+                  className="text-[var(--color-azul-700)] hover:underline font-medium"
+                >
+                  {TALLER_CONFIG.email2}
+                </a>
+              </span>
             </p>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ── COCHES EN VENTA — preview ────────────── */}
-      <section className="section-padding bg-white">
+      < section className="section-padding-sm bg-white" >
         <div className="container">
           <div className="flex items-end justify-between mb-10">
             <div>
               <p className="text-[var(--color-text-muted)] text-sm font-semibold uppercase tracking-[0.1em] mb-2">
-                Compra-venta
+                Venta de coches
               </p>
               <h2>
                 Coches en venta
@@ -423,10 +436,10 @@ export default async function TallerPage() {
             </Link>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ── MAPA ─────────────────────────────────── */}
-      <section className="section-padding bg-[var(--color-stone-100)]">
+      < section className="section-padding-sm bg-[var(--color-stone-100)]" >
         <div className="container">
           <div className="text-center mb-10">
             <p className="text-[var(--color-text-muted)] text-sm font-semibold uppercase tracking-[0.1em] mb-3">
@@ -488,7 +501,7 @@ export default async function TallerPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
     </>
   );
 }

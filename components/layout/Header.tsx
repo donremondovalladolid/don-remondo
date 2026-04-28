@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, Leaf, Wrench, Car, MessageSquare } from "lucide-react";
-import { SITE_CONFIG } from "@/lib/config";
+import { SITE_CONFIG, IMAGES } from "@/lib/config";
 
 const navLinks = [
   {
@@ -72,13 +73,15 @@ export default function Header() {
             className="flex items-center gap-3 shrink-0 group"
             aria-label="Don Remondo — Inicio"
           >
-            {/* Emblema */}
-            <div className="w-9 h-9 rounded-[10px] bg-[var(--color-stone-800)] flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105">
-              <span
-                className="text-[var(--color-ambar-200)] font-bold text-base leading-none font-display"
-              >
-                DR
-              </span>
+            {/* Emblema — logo rectangular */}
+            <div className="relative h-9 w-[86px] shrink-0 rounded-xl overflow-hidden border border-[var(--color-stone-200)] bg-white transition-transform duration-200 group-hover:scale-105">
+              <Image
+                src={IMAGES.logo}
+                alt="Don Remondo Logo"
+                fill
+                className="object-contain p-1"
+                sizes="86px"
+              />
             </div>
             <div className="flex flex-col leading-none gap-0.5">
               <span

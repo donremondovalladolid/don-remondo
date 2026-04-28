@@ -12,7 +12,6 @@ import {
 import {
   SITE_CONFIG,
   ESPARRAGOS_CONFIG,
-  ESPARRAGOS_REMONDO_CONFIG,
   TALLER_CONFIG,
 } from "@/lib/config";
 import ContactForm from "@/components/contacto/ContactForm";
@@ -20,7 +19,7 @@ import ContactForm from "@/components/contacto/ContactForm";
 export const metadata: Metadata = {
   title: "Contacto | Espárragos y Taller en Valladolid",
   description:
-    "Contacta con Don Remondo. Dos ubicaciones en Valladolid: tienda de espárragos y taller mecánico. Teléfono, email y formulario de contacto.",
+    "Contacta con Don Remondo. Tienda de espárragos y taller mecánico en Valladolid. Teléfono, email y formulario de contacto.",
   openGraph: {
     title: "Contacto | Don Remondo Valladolid",
     url: `${SITE_CONFIG.url}/contacto`,
@@ -174,52 +173,6 @@ export default function ContactoPage() {
                 <div className="p-4">
                   <a
                     href={ESPARRAGOS_CONFIG.mapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-outline-verde w-full text-sm justify-center"
-                  >
-                    <ExternalLink size={14} />
-                    Cómo llegar
-                  </a>
-                </div>
-              </div>
-
-              {/* Espárragos Remondo */}
-              <div className="card overflow-hidden">
-                <div className="p-5 border-b border-[var(--color-border-light)]">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-7 h-7 rounded-lg bg-[var(--color-verde-100)] flex items-center justify-center">
-                      <Leaf size={14} className="text-[var(--color-verde-700)]" />
-                    </div>
-                    <span className="text-xs font-semibold text-[var(--color-verde-700)] uppercase tracking-wide">
-                      Espárragos · Remondo
-                    </span>
-                  </div>
-                  <div className="space-y-2.5 text-sm text-[var(--color-text-secondary)]">
-                    <div className="flex items-start gap-2">
-                      <MapPin size={14} className="text-[var(--color-text-muted)] shrink-0 mt-0.5" />
-                      <span>{ESPARRAGOS_REMONDO_CONFIG.address}</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <Clock size={14} className="text-[var(--color-text-muted)] shrink-0 mt-0.5" />
-                      <span>{ESPARRAGOS_REMONDO_CONFIG.horario}</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="map-container h-[180px]">
-                  <iframe
-                    src={ESPARRAGOS_REMONDO_CONFIG.mapsEmbed}
-                    width="100%"
-                    height="100%"
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Espárragos Remondo"
-                  />
-                </div>
-                <div className="p-4">
-                  <a
-                    href={ESPARRAGOS_REMONDO_CONFIG.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-outline-verde w-full text-sm justify-center"

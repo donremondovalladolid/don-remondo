@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import {
   ESPARRAGOS_CONFIG,
-  ESPARRAGOS_REMONDO_CONFIG,
   SITE_CONFIG,
   ESPARRAGOS_ENVIOS,
   ESPARRAGOS_BLANCO_CATEGORIAS,
@@ -34,7 +33,7 @@ export const metadata: Metadata = {
     "patata Voyager Valladolid",
     "tomate RAF Valladolid",
     "naranjas NANNI Valladolid",
-    "espárragos Remondo Segovia",
+
   ],
   openGraph: {
     title: "Espárragos y Productos Frescos | Don Remondo Valladolid",
@@ -68,24 +67,6 @@ const schemaOrg = {
       },
       telephone: ESPARRAGOS_CONFIG.phone,
       openingHours: ESPARRAGOS_CONFIG.horario,
-      url: `${SITE_CONFIG.url}/esparragos-valladolid`,
-    },
-    {
-      "@type": "LocalBusiness",
-      "@id": `${SITE_CONFIG.url}/esparragos-valladolid#remondo`,
-      name: ESPARRAGOS_REMONDO_CONFIG.name,
-      description:
-        "Venta de espárragos de producción propia en Remondo (Segovia) durante la temporada.",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: ESPARRAGOS_REMONDO_CONFIG.address,
-        addressLocality: ESPARRAGOS_REMONDO_CONFIG.city,
-        addressRegion: ESPARRAGOS_REMONDO_CONFIG.province,
-        postalCode: ESPARRAGOS_REMONDO_CONFIG.cp,
-        addressCountry: "ES",
-      },
-      telephone: ESPARRAGOS_REMONDO_CONFIG.phone,
-      openingHours: ESPARRAGOS_REMONDO_CONFIG.horario,
       url: `${SITE_CONFIG.url}/esparragos-valladolid`,
     },
   ],
@@ -259,6 +240,7 @@ export default function ProductosPage() {
               <div className="w-1 h-8 rounded-full bg-[var(--color-verde-600)]" />
               <h3 className="text-xl">Espárrago blanco</h3>
             </div>
+
             <p className="text-[var(--color-text-secondary)] mb-6 max-w-2xl">
               El clásico. Se cosecha antes de que asome a la superficie para conservar
               su color marfil y su sabor delicado. Lo clasificamos en cuatro categorías
@@ -278,14 +260,14 @@ export default function ProductosPage() {
                   />
                   {/* Imagen */}
                   <div
-                    className="aspect-[4/3] overflow-hidden relative"
+                    className="aspect-[3/4] sm:aspect-[2/3] overflow-hidden relative"
                     style={{ backgroundColor: cat.colorBg }}
                   >
                     <Image
                       src={cat.imagen}
                       alt={`Espárrago blanco categoría ${cat.nombre}`}
                       fill
-                      className="object-cover"
+                      className={`object-cover ${cat.nombre === "Tercera" ? "object-right" : "object-center"}`}
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                   </div>
@@ -295,7 +277,7 @@ export default function ProductosPage() {
                         Categoría {cat.nombre}
                       </h4>
                       <span
-                        className="inline-block w-3 h-3 rounded-full border border-[var(--color-border)]"
+                        className={`inline-block w-3 h-3 rounded-full border ${cat.colorEtiqueta === "blanca" ? "border-[var(--color-stone-400)]" : "border-[var(--color-border)]"}`}
                         style={{ backgroundColor: cat.colorHex }}
                         title={`Etiqueta ${cat.colorEtiqueta}`}
                       />
@@ -321,27 +303,32 @@ export default function ProductosPage() {
               ideal para la plancha, el wok o la brasa. Se vende en mazos de 300g.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
-              {ESPARRAGOS_TRIGUERO_VARIEDADES.map((v) => (
-                <div key={v.nombre} className="card p-0 overflow-hidden">
-                  <div className="aspect-[3/2] bg-[var(--color-verde-50)] overflow-hidden relative">
-                    <Image
-                      src={v.imagen}
-                      alt={`Espárrago triguero ${v.nombre}`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                    />
-                  </div>
-                  <div className="p-5">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h4 className="font-semibold text-[var(--color-text)]">{v.nombre}</h4>
-                      <span className="badge badge-verde">{v.formato}</span>
-                    </div>
-                    <p className="text-sm text-[var(--color-text-secondary)]">{v.descripcion}</p>
+            <div className="card p-0 overflow-hidden max-w-3xl">
+              <div className="flex flex-col sm:flex-row">
+                <div className="relative w-full sm:w-2/5 aspect-[4/5] sm:aspect-auto bg-[var(--color-verde-50)]">
+                  <Image
+                    src={ESPARRAGOS_TRIGUERO_VARIEDADES[0].imagen}
+                    alt="Espárragos trigueros de producción propia"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, 40vw"
+                  />
+                </div>
+                <div className="flex-1 p-6 sm:p-8 flex flex-col justify-center">
+                  <h4 className="text-xl font-semibold mb-6 text-[var(--color-text)]">Variedades disponibles</h4>
+                  <div className="space-y-6">
+                    {ESPARRAGOS_TRIGUERO_VARIEDADES.map((v) => (
+                      <div key={v.nombre}>
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <h5 className="font-semibold text-[var(--color-text)] text-lg">{v.nombre}</h5>
+                          <span className="badge badge-verde">{v.formato}</span>
+                        </div>
+                        <p className="text-sm text-[var(--color-text-secondary)]">{v.descripcion}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
 
@@ -576,10 +563,9 @@ export default function ProductosPage() {
             <p className="text-[var(--color-text-muted)] text-sm font-semibold uppercase tracking-[0.1em] mb-3">
               Dónde encontrarnos
             </p>
-            <h2>Nuestras tiendas</h2>
+            <h2>Nuestra tienda</h2>
             <p className="text-[var(--color-text-secondary)] mt-3 max-w-md mx-auto text-sm">
-              Horarios complementarios para que siempre puedas conseguir tus productos.
-              La tienda de Valladolid ofrece todos los productos durante todo el año.
+              Todos los productos frescos durante todo el año en nuestra tienda de Valladolid.
             </p>
           </div>
 
@@ -635,95 +621,11 @@ export default function ProductosPage() {
                   </div>
                 </div>
 
-                <div className="lg:col-span-2 space-y-3 p-4">
-                  <div className="rounded-[var(--radius-xl)] overflow-hidden border border-[var(--color-border-light)] shadow-[var(--shadow-sm)] relative h-48 lg:h-52">
-                    <Image
-                      src={IMAGES.tiendas.valladolid}
-                      alt="Tienda Don Remondo en Valladolid"
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 66vw"
-                    />
-                  </div>
-                  <div className="map-container h-64 lg:h-72">
+                <div className="lg:col-span-2 p-4">
+                  <div className="map-container h-80 lg:h-[26rem] rounded-[var(--radius-xl)] overflow-hidden border border-[var(--color-border-light)] shadow-[var(--shadow-sm)]">
                     <iframe
                       src={ESPARRAGOS_CONFIG.mapsEmbed}
                       title="Tienda Don Remondo Valladolid"
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* ── Tienda Remondo ── */}
-            <div className="card p-0 overflow-hidden">
-              <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-[var(--color-border-light)]">
-                <div className="p-8">
-                  <div className="flex items-start gap-3 mb-5">
-                    <div className="w-10 h-10 rounded-xl bg-[var(--color-verde-100)] flex items-center justify-center shrink-0 mt-0.5">
-                      <MapPin size={18} className="text-[var(--color-verde-700)]" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-[var(--color-text)]">
-                        Remondo
-                      </h3>
-                      <p className="text-sm text-[var(--color-text-muted)]">C. Calvario, 8 · Segovia</p>
-                      <div className="flex flex-wrap gap-1.5 mt-1.5">
-                        <span className="badge badge-verde">Solo espárragos</span>
-                        <span className="badge badge-stone">Temporada</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 mb-5">
-                    <div className="flex items-center gap-2.5 text-sm text-[var(--color-text-secondary)]">
-                      <Clock size={14} className="text-[var(--color-text-muted)] shrink-0" />
-                      {ESPARRAGOS_REMONDO_CONFIG.horario}
-                    </div>
-                    <div className="flex items-center gap-2.5 text-sm text-[var(--color-text-secondary)]">
-                      <CalendarDays size={14} className="text-[var(--color-text-muted)] shrink-0" />
-                      {ESPARRAGOS_REMONDO_CONFIG.temporada}
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <a
-                      href={`tel:${ESPARRAGOS_REMONDO_CONFIG.phoneRaw}`}
-                      className="btn btn-verde btn-sm"
-                    >
-                      <Phone size={14} />
-                      {ESPARRAGOS_REMONDO_CONFIG.phone}
-                    </a>
-                    <a
-                      href={ESPARRAGOS_REMONDO_CONFIG.mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-outline btn-sm"
-                    >
-                      <ExternalLink size={14} />
-                      Cómo llegar
-                    </a>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-2 space-y-3 p-4">
-                  <div className="rounded-[var(--radius-xl)] overflow-hidden border border-[var(--color-border-light)] shadow-[var(--shadow-sm)]">
-                    <img
-                      src={IMAGES.tiendas.remondo}
-                      alt="Tienda Don Remondo en Remondo, Segovia"
-                      className="w-full h-48 lg:h-52 object-cover"
-                    />
-                  </div>
-                  <div className="map-container h-64 lg:h-72">
-                    <iframe
-                      src={ESPARRAGOS_REMONDO_CONFIG.mapsEmbed}
-                      title="Tienda Don Remondo Remondo Segovia"
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}

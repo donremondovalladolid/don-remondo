@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, MapPin, Leaf, Wrench } from "lucide-react";
-import { SITE_CONFIG, ESPARRAGOS_CONFIG, TALLER_CONFIG } from "@/lib/config";
+import { SITE_CONFIG, ESPARRAGOS_CONFIG, TALLER_CONFIG, IMAGES } from "@/lib/config";
 
 const footerLinks = {
   productos: [
@@ -28,12 +29,14 @@ export default function Footer() {
         {/* Marca */}
         <div className="lg:col-span-1">
           <Link href="/" className="flex items-center gap-2.5 mb-4 group w-fit">
-            <div className="w-8 h-8 rounded-[8px] bg-[var(--color-stone-700)] flex items-center justify-center shrink-0">
-              <span
-                className="text-[var(--color-ambar-200)] font-bold text-sm leading-none font-display"
-              >
-                DR
-              </span>
+            <div className="relative h-8 w-[76px] shrink-0 rounded-lg overflow-hidden border border-[var(--color-stone-600)] bg-[var(--color-stone-700)]">
+              <Image
+                src={IMAGES.logo}
+                alt="Don Remondo Logo"
+                fill
+                className="object-contain p-0.5"
+                sizes="76px"
+              />
             </div>
             <span
               className="text-white text-[1rem] font-display"

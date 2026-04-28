@@ -62,7 +62,7 @@ export const ESPARRAGOS_BLANCO_CATEGORIAS = [
     colorBg: "#fef2f2",
     pack: "Packs de 10–12 espárragos",
     descripcion: "La categoría más selecta. Espárragos gruesos y uniformes.",
-    imagen: "/images/esparragos/blanco-extra.png",
+    imagen: "/images/esparragos/real_extra.jpeg",
   },
   {
     nombre: "Primera",
@@ -71,25 +71,25 @@ export const ESPARRAGOS_BLANCO_CATEGORIAS = [
     colorBg: "#f0faf0",
     pack: "Packs de 12–17 espárragos",
     descripcion: "Excelente calibre y presentación. La elección más popular.",
-    imagen: "/images/esparragos/blanco-primera.png",
+    imagen: "/images/esparragos/real_primera.jpeg",
   },
   {
     nombre: "Segunda",
     colorEtiqueta: "amarilla",
-    colorHex: "#b08000",
+    colorHex: "#FACC15",
     colorBg: "#fefce8",
     pack: "Packs de 12–19 espárragos",
     descripcion: "Mismo sabor de producción propia. Calibre más variado.",
-    imagen: "/images/esparragos/blanco-segunda.png",
+    imagen: "/images/esparragos/real_segunda.jpeg",
   },
   {
     nombre: "Tercera",
     colorEtiqueta: "blanca",
-    colorHex: "#6b7280",
+    colorHex: "#ffffff",
     colorBg: "#f9fafb",
     pack: "Espárragos finos",
     descripcion: "Espárragos finos. Ideales para revueltos y guarniciones.",
-    imagen: "/images/esparragos/blanco-tercera.png",
+    imagen: "/images/esparragos/real_tercera.png",
   },
 ] as const;
 
@@ -99,13 +99,13 @@ export const ESPARRAGOS_TRIGUERO_VARIEDADES = [
     nombre: "Finos",
     formato: "Mazos de 300g",
     descripcion: "Más delicados, perfectos para la plancha o el wok.",
-    imagen: "/images/esparragos/trigueros-fino.png",
+    imagen: "/images/esparragos/real_trigueros.png",
   },
   {
     nombre: "Gruesos",
     formato: "Mazos de 300g",
     descripcion: "Más carnosos. Ideales para la brasa o al horno.",
-    imagen: "/images/esparragos/trigueros-grueso.png",
+    imagen: "/images/esparragos/real_trigueros.png",
   },
 ] as const;
 
@@ -220,10 +220,11 @@ export const PRODUCTOS_TEMPORADA = [
 ] as const;
 
 export const IMAGES = {
+  logo: "/images/logo-remondo.png",
   home: {
-    productosCard: "/images/esparragos/blanco-extra.png",
+    productosCard: "/images/home/productos_campo.jpeg",
     tallerCard: "/fotos/interior_taller_1.jpeg",
-    familia: "/images/home/familia.svg",
+    familia: "/fotos/equipo_almacen.jpeg",
   },
   esparragos: {
     hero: "/images/esparragos/campo.jpeg",
@@ -233,6 +234,7 @@ export const IMAGES = {
     blancoTercera: "/images/esparragos/blanco-tercera.png",
     trigueroFino: "/images/esparragos/trigueros-fino.png",
     trigueroGrueso: "/images/esparragos/trigueros-grueso.png",
+    envasados: "/images/esparragos/esparragos_envasados.jpeg",
     /** fallback SVG para categorías sin foto propia */
     blanco: "/images/productos/esparragos-blanco.svg",
     triguero: "/images/productos/esparragos-triguero.svg",
@@ -255,6 +257,17 @@ export const IMAGES = {
     romanesca: "/images/productos/romanesca.jpg",
     cardo: "/images/productos/cardo.jpeg",
     naranja: "/images/productos/naranja.jpg",
+    galeria: [
+      "/images/productos/galeria_tomates_raf_1.jpeg",
+      "/images/productos/galeria_pimientos_1.jpeg",
+      "/images/productos/galeria_manzanas.jpeg",
+      "/images/productos/galeria_puerros.jpeg",
+      "/images/productos/galeria_calabacines.jpeg",
+      "/images/productos/galeria_naranjas.jpeg",
+      "/images/productos/galeria_zanahorias.jpeg",
+      "/images/productos/galeria_tomates_raf_2.jpeg",
+      "/images/productos/galeria_pimientos_2.jpeg",
+    ]
   },
   taller: {
     hero: "/fotos/equipo_taller.jpeg",

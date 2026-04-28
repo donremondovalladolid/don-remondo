@@ -4,7 +4,7 @@ import {
   Phone, ArrowRight, Leaf, Wrench, Car,
   CheckCircle2, MapPin, Clock, Shield, Star
 } from "lucide-react";
-import { SITE_CONFIG, ESPARRAGOS_CONFIG, ESPARRAGOS_REMONDO_CONFIG, TALLER_CONFIG, IMAGES } from "@/lib/config";
+import { SITE_CONFIG, ESPARRAGOS_CONFIG, TALLER_CONFIG, IMAGES } from "@/lib/config";
 
 const schemaOrg = {
   "@context": "https://schema.org",
@@ -65,41 +65,57 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-stone-900)]/30 to-transparent pointer-events-none" />
 
         <div className="container relative py-20 sm:py-28 lg:py-32">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-2.5 mb-6 animate-fade-up">
-              <span className="inline-flex items-center gap-1.5 badge badge-ambar text-[0.7rem] px-2.5 py-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-ambar-500)] inline-block" />
-                Valladolid · Desde {SITE_CONFIG.founded}
-              </span>
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-12 lg:gap-24">
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-2.5 mb-6 animate-fade-up">
+                <span className="inline-flex items-center gap-1.5 badge badge-ambar text-[0.7rem] px-2.5 py-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-ambar-500)] inline-block" />
+                  Valladolid · Desde {SITE_CONFIG.founded}
+                </span>
+              </div>
+
+              <h1
+                className="text-white leading-[1.08] mb-6 animate-fade-up animate-delay-100"
+              >
+                Don Remondo
+                <br />
+                <span className="text-[var(--color-ambar-200)] italic">
+                  sabor y oficio
+                </span>
+              </h1>
+
+              <p className="text-[var(--color-stone-300)] text-lg sm:text-xl leading-relaxed max-w-xl mb-10 animate-fade-up animate-delay-200">
+                Productos frescos de producción propia y taller mecánico de confianza.
+                Dos negocios, una misma familia.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3 animate-fade-up animate-delay-300">
+                <a
+                  href={`tel:${SITE_CONFIG.phoneRaw}`}
+                  className="btn btn-white btn-lg"
+                >
+                  <Phone size={17} className="text-[var(--color-verde-600)]" />
+                  {SITE_CONFIG.phone}
+                </a>
+                <Link href="/contacto" className="btn btn-ghost-white btn-lg">
+                  Escríbenos
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
             </div>
 
-            <h1
-              className="text-white leading-[1.08] mb-6 animate-fade-up animate-delay-100"
-            >
-              Don Remondo
-              <br />
-              <span className="text-[var(--color-ambar-200)] italic">
-                sabor y oficio
-              </span>
-            </h1>
-
-            <p className="text-[var(--color-stone-300)] text-lg sm:text-xl leading-relaxed max-w-xl mb-10 animate-fade-up animate-delay-200">
-              Productos frescos de producción propia y taller mecánico de confianza.
-              Dos negocios, una misma familia.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 animate-fade-up animate-delay-300">
-              <a
-                href={`tel:${SITE_CONFIG.phoneRaw}`}
-                className="btn btn-white btn-lg"
-              >
-                <Phone size={17} className="text-[var(--color-verde-600)]" />
-                {SITE_CONFIG.phone}
-              </a>
-              <Link href="/contacto" className="btn btn-ghost-white btn-lg">
-                Escríbenos
-                <ArrowRight size={16} />
-              </Link>
+            {/* Logo hero */}
+            <div className="hidden md:flex shrink-0 animate-fade-up animate-delay-200 items-center justify-end">
+              <div className="relative w-56 lg:w-72 aspect-[2.4/1] rounded-2xl overflow-hidden border border-white/15 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-3">
+                <Image
+                  src={IMAGES.logo}
+                  alt="Logo Don Remondo"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1024px) 224px, 288px"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -326,6 +342,49 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── GALERÍA DE PRODUCTOS ──────────────────── */}
+      <section className="section-padding bg-[var(--color-bg)]">
+        <div className="container">
+          <div className="text-center mb-12">
+            <p className="text-[var(--color-text-muted)] text-sm font-semibold uppercase tracking-[0.1em] mb-3">
+              Calidad y variedad
+            </p>
+            <h2>
+              Nuestros Productos Frescos
+            </h2>
+            <p className="text-[var(--color-text-secondary)] mt-4 max-w-2xl mx-auto">
+              Tomates Raf, pimientos de primera, verduras de temporada y fruta con el máximo sabor. Una pequeña muestra de lo que encontrarás en nuestra tienda, directamente del campo a tu mesa.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+            {IMAGES.productos.galeria.map((img, i) => (
+              <div 
+                key={img} 
+                className={`relative overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border-light)] shadow-[var(--shadow-sm)] group ${
+                  i === 0 ? "col-span-2 row-span-2 aspect-square sm:aspect-auto" : "aspect-square"
+                }`}
+              >
+                <Image
+                  src={img}
+                  alt={`Producto fresco Don Remondo ${i + 1}`}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link href="/esparragos-valladolid" className="btn btn-verde">
+              <Leaf size={16} />
+              Ver todos los productos
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── SOBRE NOSOTROS ───────────────────────── */}
       <section className="section-padding bg-white">
         <div className="container">
@@ -376,14 +435,6 @@ export default function HomePage() {
                   address: ESPARRAGOS_CONFIG.address,
                   horario: ESPARRAGOS_CONFIG.horario,
                   extra: "Espárragos: " + ESPARRAGOS_CONFIG.temporada,
-                  color: "verde",
-                  icon: Leaf,
-                },
-                {
-                  label: "Espárragos · Remondo (Segovia)",
-                  address: ESPARRAGOS_REMONDO_CONFIG.address,
-                  horario: ESPARRAGOS_REMONDO_CONFIG.horario,
-                  extra: "Espárragos: " + ESPARRAGOS_REMONDO_CONFIG.temporada,
                   color: "verde",
                   icon: Leaf,
                 },

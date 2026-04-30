@@ -30,33 +30,53 @@ export default function ContactoPage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="bg-[var(--color-stone-900)] text-white section-padding">
-        <div className="container">
-          <div className="max-w-2xl animate-fade-up">
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-stone-200)] mb-6">
+      <section className="relative overflow-hidden bg-[var(--color-stone-800)] text-white pt-20 pb-28 sm:pt-28 sm:pb-36">
+        <div className="container relative z-10">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-stone-200)] mb-6 animate-fade-up">
               <MessageSquare size={14} />
               Estamos aquí para ayudarte
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl text-white mb-4 leading-tight">
+            <h1 className="font-display text-4xl sm:text-5xl text-white mb-4 leading-tight animate-fade-up animate-delay-100">
               Contacta con
               <br />
               Don Remondo
             </h1>
-            <p className="text-[var(--color-stone-300)] text-lg leading-relaxed">
+            <p className="text-[var(--color-stone-300)] text-lg leading-relaxed animate-fade-up animate-delay-200">
               Llámanos, escríbenos o pásate por donde prefieras.
-              Atendemos espárragos, taller y compra-venta de coches.
+              Atendemos compra de espárragos, taller y compra-venta de coches.
             </p>
           </div>
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-8 bg-[var(--color-stone-50)] wave-bottom z-20" />
       </section>
 
       {/* ── CANALES DE CONTACTO RÁPIDO ── */}
       <section className="section-padding-sm bg-[var(--color-stone-50)] border-b border-[var(--color-border-light)]">
         <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {/* Teléfono */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Teléfono Espárragos */}
             <a
-              href={`tel:${SITE_CONFIG.phoneRaw}`}
+              href={`tel:${ESPARRAGOS_CONFIG.phoneRaw}`}
+              className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
+            >
+              <div className="w-11 h-11 rounded-xl bg-[var(--color-verde-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-verde-200)] transition-colors">
+                <Phone size={20} className="text-[var(--color-verde-700)]" />
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
+                  Teléfono Espárragos
+                </p>
+                <p className="font-display text-lg text-[var(--color-text)] group-hover:text-[var(--color-verde-700)] transition-colors">
+                  {ESPARRAGOS_CONFIG.phone}
+                </p>
+                <p className="text-xs text-[var(--color-text-muted)] mt-0.5">Llamar ahora</p>
+              </div>
+            </a>
+
+            {/* Teléfono Taller */}
+            <a
+              href={`tel:${TALLER_CONFIG.phoneRaw}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
               <div className="w-11 h-11 rounded-xl bg-[var(--color-azul-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-azul-200)] transition-colors">
@@ -64,12 +84,33 @@ export default function ContactoPage() {
               </div>
               <div>
                 <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
-                  Teléfono
+                  Teléfono Taller / Coches
                 </p>
                 <p className="font-display text-lg text-[var(--color-text)] group-hover:text-[var(--color-azul-700)] transition-colors">
-                  {SITE_CONFIG.phone}
+                  {TALLER_CONFIG.phone}
                 </p>
                 <p className="text-xs text-[var(--color-text-muted)] mt-0.5">Llamar ahora</p>
+              </div>
+            </a>
+
+            {/* WhatsApp Taller */}
+            <a
+              href={`https://wa.me/34${TALLER_CONFIG.whatsappRaw}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
+            >
+              <div className="w-11 h-11 rounded-xl bg-[var(--color-azul-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-azul-200)] transition-colors">
+                <MessageSquare size={20} className="text-[var(--color-azul-700)]" />
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
+                  WhatsApp Taller
+                </p>
+                <p className="font-display text-lg text-[var(--color-text)] group-hover:text-[var(--color-azul-700)] transition-colors">
+                  {TALLER_CONFIG.whatsapp}
+                </p>
+                <p className="text-xs text-[var(--color-text-muted)] mt-0.5">Escríbenos por WhatsApp</p>
               </div>
             </a>
 
@@ -101,9 +142,9 @@ export default function ContactoPage() {
               </div>
               <div>
                 <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
-                  Email taller
+                  Email taller / Coches
                 </p>
-                <p className="text-[0.8rem] leading-tight font-medium text-[var(--color-text)] group-hover:text-[var(--color-azul-700)] transition-colors break-all">
+                <p className="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-azul-700)] transition-colors break-all">
                   {TALLER_CONFIG.email}
                 </p>
               </div>
@@ -139,10 +180,7 @@ export default function ContactoPage() {
               {/* Espárragos Valladolid */}
               <div className="card overflow-hidden">
                 <div className="p-5 border-b border-[var(--color-border-light)]">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-7 h-7 rounded-lg bg-[var(--color-verde-100)] flex items-center justify-center">
-                      <Leaf size={14} className="text-[var(--color-verde-700)]" />
-                    </div>
+                  <div className="mb-3">
                     <span className="text-xs font-semibold text-[var(--color-verde-700)] uppercase tracking-wide">
                       Espárragos · Valladolid
                     </span>
@@ -185,10 +223,7 @@ export default function ContactoPage() {
               {/* Taller */}
               <div className="card overflow-hidden">
                 <div className="p-5 border-b border-[var(--color-border-light)]">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-7 h-7 rounded-lg bg-[var(--color-azul-100)] flex items-center justify-center">
-                      <Wrench size={14} className="text-[var(--color-azul-700)]" />
-                    </div>
+                  <div className="mb-3">
                     <span className="text-xs font-semibold text-[var(--color-azul-700)] uppercase tracking-wide">
                       Taller y Venta de Coches · Valladolid
                     </span>

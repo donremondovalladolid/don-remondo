@@ -98,7 +98,7 @@ export default function CocheForm({ initialData }: { initialData?: Partial<Coche
           {isEdit && (
             <button
               onClick={handleDelete}
-              className="flex items-center gap-1.5 text-sm text-red-600 hover:text-red-700 border border-red-200 px-3 py-1.5 rounded-lg"
+              className="cursor-pointer flex items-center gap-1.5 text-sm text-red-600 hover:text-red-700 border border-red-200 px-3 py-1.5 rounded-lg"
             >
               <Trash2 size={14} />
               Eliminar
@@ -286,7 +286,7 @@ export default function CocheForm({ initialData }: { initialData?: Partial<Coche
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 disabled:bg-blue-400 text-white font-semibold py-3 rounded-xl transition-colors"
+            className="cursor-pointer w-full flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 disabled:bg-blue-400 text-white font-semibold py-3 rounded-xl transition-colors"
           >
             <Save size={16} />
             {loading ? "Guardando..." : isEdit ? "Guardar cambios" : "Añadir coche"}

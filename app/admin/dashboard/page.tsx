@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Car, Plus, LogOut, CheckCircle2, Eye } from "lucide-react";
+import { Car, Plus, CheckCircle2, Eye } from "lucide-react";
 import { prisma } from "@/lib/prisma";
+import LogoutButton from "@/components/admin/LogoutButton";
 
 export const dynamic = "force-dynamic";
 
@@ -24,11 +25,6 @@ type Coche = {
   updatedAt: Date;
 };
 
-async function logout() {
-  "use server";
-  const { cookies } = await import("next/headers");
-  (await cookies()).delete("admin-token");
-}
 
 export default async function AdminDashboard() {
   const rawCoches = await prisma.coche.findMany({
@@ -57,15 +53,7 @@ export default async function AdminDashboard() {
               <Eye size={14} />
               Ver web
             </Link>
-            <form action={logout}>
-              <button
-                type="submit"
-                className="flex items-center gap-1.5 text-sm text-red-600 hover:text-red-700 border border-red-200 px-3 py-1.5 rounded-lg"
-              >
-                <LogOut size={14} />
-                Salir
-              </button>
-            </form>
+            <LogoutButton />
           </div>
         </div>
       </header>

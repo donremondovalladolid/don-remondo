@@ -139,17 +139,20 @@ export default function ProductosPage() {
 
         <div className="container relative py-20 sm:py-28">
           <div className="max-w-2xl">
-            <h1 className="text-white mb-5">
+            <h1 className="text-white mb-5 animate-fade-up animate-delay-100">
               Productos frescos<br />
               <span className="text-[var(--color-verde-300)] italic">de producción propia</span>
             </h1>
-            <p className="text-white/80 text-lg leading-relaxed max-w-xl">
+            <p className="text-white/80 text-lg leading-relaxed max-w-xl animate-fade-up animate-delay-200">
               Espárragos, hortalizas y fruta de calidad en Valladolid.
               Cultivamos gran parte de lo que vendemos para garantizar
               frescura y sabor desde el campo hasta tu mesa.
             </p>
           </div>
         </div>
+        <div
+          className="absolute bottom-0 left-0 right-0 h-8 bg-[var(--color-stone-50)] wave-bottom"
+        />
       </section>
 
       {/* ── ESPÁRRAGOS ───────────────────────────── */}

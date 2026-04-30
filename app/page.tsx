@@ -23,32 +23,6 @@ const schemaOrg = {
   sameAs: [ESPARRAGOS_CONFIG.mapsUrl, TALLER_CONFIG.mapsUrl],
 };
 
-const confianzaItems = [
-  {
-    value: "+7",
-    label: "años de experiencia",
-    icon: Star,
-    color: "ambar",
-  },
-  {
-    value: "2",
-    label: "puntos de venta",
-    icon: MapPin,
-    color: "verde",
-  },
-  {
-    value: "100%",
-    label: "presupuesto sin compromiso",
-    icon: Shield,
-    color: "azul",
-  },
-  {
-    value: "Garantía",
-    label: "en cada reparación",
-    icon: CheckCircle2,
-    color: "stone",
-  },
-];
 
 export default function HomePage() {
   return (
@@ -59,7 +33,7 @@ export default function HomePage() {
       />
 
       {/* ── HERO ─────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-[var(--color-stone-800)]">
+      <section className="relative overflow-hidden bg-[var(--color-stone-700)]">
         {/* Fondo decorativo */}
         <div className="absolute inset-0 opacity-[0.04] pattern-diagonal-light" />
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-stone-900)]/30 to-transparent pointer-events-none" />
@@ -85,34 +59,20 @@ export default function HomePage() {
               </h1>
 
               <p className="text-[var(--color-stone-300)] text-lg sm:text-xl leading-relaxed max-w-xl mb-10 animate-fade-up animate-delay-200">
-                Productos frescos de producción propia y taller mecánico de confianza.
+                Productos frescos de producción propia, taller mecánico de confianza y venta de coches.
                 Dos negocios, una misma familia.
               </p>
-
-              <div className="flex flex-col sm:flex-row gap-3 animate-fade-up animate-delay-300">
-                <a
-                  href={`tel:${SITE_CONFIG.phoneRaw}`}
-                  className="btn btn-white btn-lg"
-                >
-                  <Phone size={17} className="text-[var(--color-verde-600)]" />
-                  {SITE_CONFIG.phone}
-                </a>
-                <Link href="/contacto" className="btn btn-ghost-white btn-lg">
-                  Escríbenos
-                  <ArrowRight size={16} />
-                </Link>
-              </div>
             </div>
 
             {/* Logo hero */}
             <div className="hidden md:flex shrink-0 animate-fade-up animate-delay-200 items-center justify-end">
-              <div className="relative w-56 lg:w-72 aspect-[2.4/1] rounded-2xl overflow-hidden border border-white/15 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-3">
+              <div className="relative w-96 lg:w-[32rem] aspect-[2.4/1] rounded-2xl overflow-hidden bg-white shadow-[0_12px_48px_rgba(0,0,0,0.45)] p-2">
                 <Image
                   src={IMAGES.logo}
                   alt="Logo Don Remondo"
                   fill
                   className="object-contain"
-                  sizes="(max-width: 1024px) 224px, 288px"
+                  sizes="(max-width: 1024px) 384px, 512px"
                   priority
                 />
               </div>
@@ -144,28 +104,25 @@ export default function HomePage() {
               className="group relative card overflow-hidden block min-h-[420px]"
             >
               {/* Header visual */}
-              <div className="relative bg-gradient-to-br from-[var(--color-verde-800)] via-[var(--color-verde-700)] to-[var(--color-verde-500)] px-8 pt-10 pb-14 overflow-hidden">
+              <div className="relative px-8 pt-10 pb-14 overflow-hidden bg-[var(--color-stone-900)]">
                 {/* Imagen de fondo */}
                 <Image
                   src={IMAGES.home.productosCard}
                   alt=""
                   aria-hidden={true}
                   fill
-                  className="object-cover opacity-50 mix-blend-overlay"
+                  className="object-cover opacity-80"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-                {/* Patrón decorativo */}
-                <div className="absolute inset-0 opacity-10 pattern-dots-light" />
+                {/* Gradiente oscuro inferior para legibilidad del texto */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10" />
                 <div className="relative">
-                  <div className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center mb-5">
-                    <Leaf size={28} className="text-white" />
-                  </div>
                   <h3
                     className="text-white text-2xl sm:text-3xl mb-2"
                   >
                     Productos Frescos
                   </h3>
-                  <p className="text-[var(--color-verde-200)] text-sm font-medium">
+                  <p className="text-white/80 text-sm font-medium">
                     Producción propia · Espárragos, hortalizas y fruta
                   </p>
                 </div>
@@ -215,24 +172,21 @@ export default function HomePage() {
               className="group relative card overflow-hidden block min-h-[420px]"
             >
               {/* Header visual */}
-              <div className="relative bg-gradient-to-br from-[var(--color-azul-900)] via-[var(--color-azul-700)] to-[var(--color-azul-500)] px-8 pt-10 pb-14 overflow-hidden">
+              <div className="relative px-8 pt-10 pb-14 overflow-hidden bg-[var(--color-stone-900)]">
                 <img
                   src={IMAGES.home.tallerCard}
                   alt=""
                   aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-overlay"
+                  className="absolute inset-0 w-full h-full object-cover opacity-80"
                 />
-                <div className="absolute inset-0 opacity-10 pattern-dots-light" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10" />
                 <div className="relative">
-                  <div className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center mb-5">
-                    <Wrench size={28} className="text-white" />
-                  </div>
                   <h3
                     className="text-white text-2xl sm:text-3xl mb-2"
                   >
-                    Taller y Coches
+                    Taller y Venta de Coches
                   </h3>
-                  <p className="text-[var(--color-azul-200)] text-sm font-medium">
+                  <p className="text-white/80 text-sm font-medium">
                     Mecánica multimarca · Venta de coches · Garantía
                   </p>
                 </div>
@@ -302,45 +256,6 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ── CONFIANZA / STATS ────────────────────── */}
-      <section className="section-padding-sm bg-[var(--color-surface-raised)] border-b border-[var(--color-border-light)]">
-        <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {confianzaItems.map(({ value, label, icon: Icon, color }) => (
-              <div
-                key={label}
-                className="flex flex-col items-center text-center gap-2 py-4"
-              >
-                <div
-                  className={`w-10 h-10 rounded-xl flex items-center justify-center mb-1 ${color === "verde"
-                    ? "bg-[var(--color-verde-100)]"
-                    : color === "azul"
-                      ? "bg-[var(--color-azul-100)]"
-                      : color === "ambar"
-                        ? "bg-[var(--color-ambar-100)]"
-                        : "bg-[var(--color-stone-100)]"
-                    }`}
-                >
-                  <Icon
-                    size={18}
-                    className={
-                      color === "verde"
-                        ? "text-[var(--color-verde-700)]"
-                        : color === "azul"
-                          ? "text-[var(--color-azul-700)]"
-                          : color === "ambar"
-                            ? "text-[var(--color-ambar-500)]"
-                            : "text-[var(--color-stone-600)]"
-                    }
-                  />
-                </div>
-                <p className="stat-value text-[1.8rem]">{value}</p>
-                <p className="stat-label text-center">{label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── GALERÍA DE PRODUCTOS ──────────────────── */}
       <section className="section-padding bg-[var(--color-bg)]">
@@ -402,26 +317,16 @@ export default function HomePage() {
               <p className="text-[var(--color-text-secondary)] leading-relaxed mb-4">
                 Llevamos desde {SITE_CONFIG.founded} trabajando en lo que nos apasiona. Por un lado,
                 traemos productos frescos de producción propia hasta Valladolid: espárragos, hortalizas y fruta de calidad.
-                Por otro, mantenemos y reparamos coches con honestidad y sin sorpresas.
+                Por otro, mantenemos, reparamos y vendemos coches con honestidad y sin sorpresas.
               </p>
-              <p className="text-[var(--color-text-secondary)] leading-relaxed mb-8">
+              <p className="text-[var(--color-text-secondary)] leading-relaxed">
                 Dos negocios muy distintos, pero con la misma filosofía: trabajo bien hecho,
                 precio justo y trato cercano.
               </p>
-              <div className="flex flex-wrap gap-3">
-                <Link href="/esparragos-valladolid" className="btn btn-verde">
-                  <Leaf size={15} />
-                  Productos
-                </Link>
-                <Link href="/taller-coches-valladolid" className="btn btn-outline-azul">
-                  <Wrench size={15} />
-                  Taller
-                </Link>
-              </div>
             </div>
 
-            {/* Imagen + Tarjetas de ubicación */}
-            <div className="space-y-4">
+            {/* Imagen de familia */}
+            <div>
               <div className="rounded-[var(--radius-xl)] overflow-hidden border border-[var(--color-border-light)] shadow-[var(--shadow-sm)]">
                 <img
                   src={IMAGES.home.familia}
@@ -429,66 +334,6 @@ export default function HomePage() {
                   className="w-full h-auto"
                 />
               </div>
-              {[
-                {
-                  label: "Productos · Valladolid",
-                  address: ESPARRAGOS_CONFIG.address,
-                  horario: ESPARRAGOS_CONFIG.horario,
-                  extra: "Espárragos: " + ESPARRAGOS_CONFIG.temporada,
-                  color: "verde",
-                  icon: Leaf,
-                },
-                {
-                  label: "Taller Mecánico · Valladolid",
-                  address: TALLER_CONFIG.address,
-                  horario: TALLER_CONFIG.horario,
-                  color: "azul",
-                  icon: Wrench,
-                },
-              ].map((loc) => (
-                <div
-                  key={loc.label}
-                  className={`flex items-start gap-4 p-4 rounded-[var(--radius-lg)] border ${loc.color === "verde"
-                    ? "border-[var(--color-verde-200)] bg-[var(--color-verde-50)]"
-                    : "border-[var(--color-azul-200)] bg-[var(--color-azul-50)]"
-                    }`}
-                >
-                  <div
-                    className={`w-9 h-9 rounded-[var(--radius-md)] flex items-center justify-center shrink-0 mt-0.5 ${loc.color === "verde"
-                      ? "bg-[var(--color-verde-100)]"
-                      : "bg-[var(--color-azul-100)]"
-                      }`}
-                  >
-                    <loc.icon
-                      size={16}
-                      className={
-                        loc.color === "verde"
-                          ? "text-[var(--color-verde-700)]"
-                          : "text-[var(--color-azul-700)]"
-                      }
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p
-                      className={`text-sm font-semibold mb-0.5 ${loc.color === "verde"
-                        ? "text-[var(--color-verde-800)]"
-                        : "text-[var(--color-azul-800)]"
-                        }`}
-                    >
-                      {loc.label}
-                    </p>
-                    <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed">
-                      {loc.address}
-                    </p>
-                    <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
-                      {loc.horario}
-                    </p>
-                    {loc.extra && (
-                      <p className="text-xs text-[var(--color-text-muted)]">{loc.extra}</p>
-                    )}
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>

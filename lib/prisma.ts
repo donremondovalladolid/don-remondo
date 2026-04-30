@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { PrismaLibSql } from "@prisma/adapter-libsql";
 import path from "path";
 
 const globalForPrisma = globalThis as unknown as {
@@ -7,14 +6,14 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 function createPrismaClient() {
-  // Construir ruta absoluta a la base de datos
   const dbPath = path.resolve(process.cwd(), "prisma/dev.db");
-  const dbUrl = process.env.DATABASE_URL?.startsWith("file:")
-    ? `file:${path.resolve(process.cwd(), process.env.DATABASE_URL.replace("file:./", ""))}`
-    : `file:${dbPath}`;
-
-  const adapter = new PrismaLibSql({ url: dbUrl });
-  return new PrismaClient({ adapter });
+  return new PrismaClient({
+    datasources: {
+      db: {
+        url: `file:${dbPath}`,
+      },
+    },
+  });
 }
 
 export const prisma = globalForPrisma.prisma ?? createPrismaClient();

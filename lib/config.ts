@@ -50,7 +50,7 @@ export const ESPARRAGOS_REMONDO_CONFIG = {
 
 export const ESPARRAGOS_ENVIOS = {
   dias: ["Lunes", "Martes", "Miércoles"],
-  nota: "Realizamos envíos de espárragos los lunes, martes y miércoles.",
+  nota: "Realizamos envíos de espárragos a toda la península ibérica los lunes, martes y miércoles.",
 };
 
 /** Categorías del espárrago blanco */
@@ -60,7 +60,7 @@ export const ESPARRAGOS_BLANCO_CATEGORIAS = [
     colorEtiqueta: "roja",
     colorHex: "#e03030",
     colorBg: "#fef2f2",
-    pack: "Packs de 10–12 espárragos",
+    pack: "Packs de 10 espárragos",
     descripcion: "La categoría más selecta. Espárragos gruesos y uniformes.",
     imagen: "/images/esparragos/real_extra.jpeg",
   },
@@ -69,7 +69,7 @@ export const ESPARRAGOS_BLANCO_CATEGORIAS = [
     colorEtiqueta: "verde",
     colorHex: "#2d7028",
     colorBg: "#f0faf0",
-    pack: "Packs de 12–17 espárragos",
+    pack: "Packs de 14–17 espárragos",
     descripcion: "Excelente calibre y presentación. La elección más popular.",
     imagen: "/images/esparragos/real_primera.jpeg",
   },
@@ -122,7 +122,7 @@ export const PRODUCTOS_TODO_EL_ANO = [
     nombre: "Puerro",
     descripcion: "De producción propia en la zona. Tiernos, con el punto justo de intensidad.",
     produccionPropia: true,
-    imagen: "/images/productos/puerro.jpeg",
+    imagen: "/images/productos/galeria_puerros.jpeg",
   },
   {
     nombre: "Zanahoria",
@@ -205,7 +205,7 @@ export const PRODUCTOS_TEMPORADA = [
   },
   {
     nombre: "Cardo",
-    descripcion: "Producción propia. Un clásico castellano de invierno, solo disponible unas semanas.",
+    descripcion: "Producción propia. Un clásico castellano, disponible todo el año.",
     temporada: "Diciembre – Febrero",
     produccionPropia: true,
     imagen: "/images/productos/cardo.jpeg",
@@ -242,7 +242,7 @@ export const IMAGES = {
   },
   productos: {
     patata: "/images/productos/patata.jpeg",
-    puerro: "/images/productos/puerro.jpeg",
+    puerro: "/images/productos/galeria_puerros.jpeg",
     zanahoria: "/images/productos/zanahoria.jpeg",
     pimiento: "/images/productos/pimiento.jpg",
     berenjena: "/images/productos/berenjena.jpg",
@@ -283,15 +283,18 @@ export const IMAGES = {
 } as const;
 
 export const TALLER_CONFIG = {
-  name: "Don Remondo — Taller y Coches",
+  name: "Don Remondo — Taller y Venta de Coches",
   address: "C. Villacarralón, 14, 47008 Valladolid",
   addressShort: "C. Villacarralón, 14",
   city: "Valladolid",
   cp: "47008",
-  phone: "676 981 870",
-  phoneRaw: "676981870",
-  email: "cochesremondo@gmail.com",
-  email2: "remondocoches@hotmail.com",
+  phone: "983 301 325",
+  phoneRaw: "983301325",
+  whatsapp: "679 675 540",
+  whatsappRaw: "679675540",
+  phoneFueraHorario: "676 981 870",
+  phoneFueraHorarioRaw: "676981870",
+  email: "remondocoches@hotmail.com",
   horario: "Lunes a Viernes: 09:00 – 13:00 / 16:00 – 20:00",
   horarioLineas: ["Lun – Vie: 09:00 – 13:00", "Lun – Vie: 16:00 – 20:00"],
   lat: 41.6421,

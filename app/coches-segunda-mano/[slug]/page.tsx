@@ -240,13 +240,22 @@ export default async function CocheDetallePage({ params }: Props) {
 
               {/* CTAs */}
               <div className="flex flex-col gap-3">
-                <a
-                  href={`tel:${TALLER_CONFIG.phoneRaw}`}
-                  className="btn btn-azul btn-lg justify-center"
-                >
-                  <Phone size={18} />
-                  Llamar: {TALLER_CONFIG.phone}
-                </a>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={`tel:${TALLER_CONFIG.phoneRaw}`}
+                    className="btn btn-azul btn-lg justify-center flex-1"
+                  >
+                    <Phone size={18} />
+                    Llamar: {TALLER_CONFIG.phone}
+                  </a>
+                  <a
+                    href={`tel:${TALLER_CONFIG.phoneFueraHorarioRaw}`}
+                    className="btn btn-outline-azul btn-lg justify-center flex-1"
+                  >
+                    <Phone size={18} />
+                    {TALLER_CONFIG.phoneFueraHorario} (Fuera de horario)
+                  </a>
+                </div>
                 <Link
                   href={`/contacto?asunto=${encodeURIComponent(
                     `Consulta sobre ${coche.marca} ${coche.modelo} ${coche.anio}`

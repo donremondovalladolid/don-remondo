@@ -24,17 +24,17 @@ export default function Footer() {
     <footer className="bg-[var(--color-stone-800)] text-[var(--color-stone-300)]">
 
       {/* Cuerpo principal */}
-      <div className="container py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+      <div className="container py-10 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-between gap-8 lg:gap-10">
 
         {/* Marca */}
-        <div className="lg:col-span-1">
+        <div className="lg:max-w-[260px]">
           <Link href="/" className="flex items-center gap-2.5 mb-4 group w-fit">
-            <div className="relative h-8 w-[76px] shrink-0 rounded-lg overflow-hidden border border-[var(--color-stone-600)] bg-[var(--color-stone-700)]">
+            <div className="relative h-8 w-[76px] shrink-0 bg-white rounded-md overflow-hidden">
               <Image
                 src={IMAGES.logo}
                 alt="Don Remondo Logo"
                 fill
-                className="object-contain p-0.5"
+                className="object-contain"
                 sizes="76px"
               />
             </div>
@@ -44,7 +44,7 @@ export default function Footer() {
               Don Remondo
             </span>
           </Link>
-          <p className="text-sm text-[var(--color-stone-400)] leading-relaxed mb-4 max-w-[220px]">
+          <p className="text-sm text-[var(--color-stone-400)] leading-relaxed mb-4">
             Negocio familiar en Valladolid desde {SITE_CONFIG.founded}. Productos frescos y taller mecánico de confianza.
           </p>
         </div>
@@ -52,9 +52,6 @@ export default function Footer() {
         {/* Productos */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-5 h-5 rounded-full bg-[var(--color-verde-800)] flex items-center justify-center">
-              <Leaf size={11} className="text-[var(--color-verde-300)]" />
-            </div>
             <h3 className="text-white text-sm font-semibold tracking-wide uppercase font-sans">
               Productos
             </h3>
@@ -86,11 +83,8 @@ export default function Footer() {
         {/* Taller */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-5 h-5 rounded-full bg-[var(--color-azul-900)] flex items-center justify-center">
-              <Wrench size={11} className="text-[var(--color-azul-300)]" />
-            </div>
             <h3 className="text-white text-sm font-semibold tracking-wide uppercase font-sans">
-              Taller y Coches
+              Taller y Venta de Coches
             </h3>
           </div>
           <ul className="space-y-2.5 mb-4">
@@ -120,9 +114,6 @@ export default function Footer() {
         {/* Contacto directo */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-5 h-5 rounded-full bg-[var(--color-stone-700)] flex items-center justify-center">
-              <Phone size={11} className="text-[var(--color-stone-300)]" />
-            </div>
             <h3 className="text-white text-sm font-semibold tracking-wide uppercase font-sans">
               Contacto
             </h3>

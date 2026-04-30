@@ -139,32 +139,15 @@ export default function ProductosPage() {
 
         <div className="container relative py-20 sm:py-28">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white/80 text-xs font-medium tracking-wide mb-6">
-              <Sprout size={13} />
-              Producción propia · Valladolid
-            </div>
             <h1 className="text-white mb-5">
               Productos frescos<br />
               <span className="text-[var(--color-verde-300)] italic">de producción propia</span>
             </h1>
-            <p className="text-white/80 text-lg leading-relaxed mb-8 max-w-xl">
+            <p className="text-white/80 text-lg leading-relaxed max-w-xl">
               Espárragos, hortalizas y fruta de calidad en Valladolid.
               Cultivamos gran parte de lo que vendemos para garantizar
               frescura y sabor desde el campo hasta tu mesa.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href={`tel:${ESPARRAGOS_CONFIG.phoneRaw}`}
-                className="btn btn-white"
-              >
-                <Phone size={16} />
-                {ESPARRAGOS_CONFIG.phone}
-              </a>
-              <Link href="#esparragos" className="btn btn-ghost-white">
-                Espárragos de temporada
-                <ArrowRight size={16} />
-              </Link>
-            </div>
           </div>
         </div>
       </section>
@@ -202,11 +185,10 @@ export default function ProductosPage() {
                 {meses.map((m) => (
                   <div
                     key={m.mes}
-                    className={`text-center py-1.5 px-1 rounded-lg text-xs font-medium transition-colors ${
-                      m.activo
-                        ? "bg-[var(--color-verde-700)] text-white"
-                        : "bg-[var(--color-stone-100)] text-[var(--color-text-muted)]"
-                    }`}
+                    className={`text-center py-1.5 px-1 rounded-lg text-xs font-medium transition-colors ${m.activo
+                      ? "bg-[var(--color-verde-700)] text-white"
+                      : "bg-[var(--color-stone-100)] text-[var(--color-text-muted)]"
+                      }`}
                   >
                     {m.mes}
                   </div>
@@ -396,10 +378,10 @@ export default function ProductosPage() {
                   {"variedadDestacada" in producto &&
                     (producto as { variedadDestacada?: string }).variedadDestacada &&
                     !("variedades" in producto) && (
-                    <span className="badge badge-ambar">
-                      {(producto as { variedadDestacada?: string }).variedadDestacada}
-                    </span>
-                  )}
+                      <span className="badge badge-ambar">
+                        {(producto as { variedadDestacada?: string }).variedadDestacada}
+                      </span>
+                    )}
                 </div>
               </div>
             ))}
@@ -411,23 +393,18 @@ export default function ProductosPage() {
               <strong>Solo en nuestra tienda de Valladolid</strong> · Av. del Euro, 24 · Todos los días 05:00–10:00
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* ── OTROS PRODUCTOS DE TEMPORADA ────────── */}
-      <section className="section-padding bg-white">
-        <div className="container">
+          <div className="w-full h-px bg-[var(--color-border-light)] my-16 max-w-5xl mx-auto" />
+
+          {/* ── OTROS PRODUCTOS DE TEMPORADA ────────── */}
           <div className="text-center mb-12">
-            <p className="text-[var(--color-text-muted)] text-sm font-semibold uppercase tracking-[0.1em] mb-3">
-              Según la época del año
-            </p>
+
             <h2>
               Otros productos<br />
-              <span className="text-[var(--color-verde-700)] italic">de temporada</span>
+              <span className="text-[var(--color-verde-700)] italic">frescos</span>
             </h2>
             <p className="text-[var(--color-text-secondary)] mt-4 max-w-xl mx-auto">
-              Crucíferas de producción propia en otoño, cardo en invierno
-              y las naranjas NANNI con hoja cuando llega la temporada.
+              Estos productos se venden todo el año. Durante los meses marcados, provienen directamente de nuestra producción propia (o son temporada óptima en el caso de las naranjas).
             </p>
           </div>
 
@@ -435,20 +412,19 @@ export default function ProductosPage() {
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-1 h-7 rounded-full bg-[var(--color-verde-400)]" />
-              <h3 className="text-lg">Crucíferas — Septiembre a Diciembre</h3>
+              <h3 className="text-lg">Crucíferas</h3>
             </div>
             <p className="text-sm text-[var(--color-text-muted)] mb-4 ml-4">
-              Repollo, lombarda, coliflor, brócoli y romanesca de producción propia en la zona.
+              Repollo, lombarda, coliflor, brócoli y romanesca. Disponibles todo el año, siendo de producción propia en la zona de Septiembre a Diciembre.
             </p>
             <div className="flex gap-1.5 mb-6 ml-4 flex-wrap">
               {mesesCruciferas.map((m) => (
                 <div
                   key={m.mes}
-                  className={`text-center py-1 px-2 rounded-md text-xs font-medium ${
-                    m.activo
-                      ? "bg-[var(--color-verde-700)] text-white"
-                      : "bg-[var(--color-stone-100)] text-[var(--color-text-muted)]"
-                  }`}
+                  className={`text-center py-1 px-2 rounded-md text-xs font-medium ${m.activo
+                    ? "bg-[var(--color-verde-700)] text-white"
+                    : "bg-[var(--color-stone-100)] text-[var(--color-text-muted)]"
+                    }`}
                 >
                   {m.mes}
                 </div>
@@ -473,20 +449,19 @@ export default function ProductosPage() {
           <div>
             <div className="flex items-center gap-3 mb-2">
               <div className="w-1 h-7 rounded-full bg-[var(--color-ambar-400)]" />
-              <h3 className="text-lg">Invierno — Diciembre a Febrero</h3>
+              <h3 className="text-lg">Cardo y Naranjas</h3>
             </div>
             <p className="text-sm text-[var(--color-text-muted)] mb-4 ml-4">
-              Cardo de producción propia y naranjas NANNI con hoja, lo mejor del invierno.
+              Cardo y naranjas NANNI con hoja. Vendidos todo el año, pero de Diciembre a Febrero el cardo es de producción propia y las naranjas están en su temporada óptima.
             </p>
             <div className="flex gap-1.5 mb-6 ml-4 flex-wrap">
               {mesesInvierno.map((m) => (
                 <div
                   key={m.mes}
-                  className={`text-center py-1 px-2 rounded-md text-xs font-medium ${
-                    m.activo
-                      ? "bg-[var(--color-ambar-500)] text-white"
-                      : "bg-[var(--color-stone-100)] text-[var(--color-text-muted)]"
-                  }`}
+                  className={`text-center py-1 px-2 rounded-md text-xs font-medium ${m.activo
+                    ? "bg-[var(--color-ambar-500)] text-white"
+                    : "bg-[var(--color-stone-100)] text-[var(--color-text-muted)]"
+                    }`}
                 >
                   {m.mes}
                 </div>
@@ -534,7 +509,7 @@ export default function ProductosPage() {
           <div className="flex items-center justify-center gap-2 mb-7 p-3 rounded-[var(--radius-lg)] bg-white/10 border border-white/20 max-w-sm mx-auto">
             <Truck size={16} className="text-[var(--color-verde-300)] shrink-0" />
             <p className="text-sm text-white/90">
-              Envíos de espárragos: <strong>{ESPARRAGOS_ENVIOS.dias.join(", ")}</strong>
+              Envíos a toda la península: <strong>{ESPARRAGOS_ENVIOS.dias.join(", ")}</strong>
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-3">
@@ -545,14 +520,16 @@ export default function ProductosPage() {
               <Phone size={16} />
               {ESPARRAGOS_CONFIG.phone}
             </a>
-            <Link
-              href="/contacto?asunto=productos"
-              className="btn btn-ghost-white"
-            >
-              Enviar mensaje
-              <ArrowRight size={16} />
-            </Link>
           </div>
+          <p className="text-sm text-white/70 mt-5 flex flex-col items-center gap-1">
+            <span>o escríbenos a:</span>
+            <a
+              href={`mailto:${ESPARRAGOS_CONFIG.email}`}
+              className="text-white hover:underline font-medium"
+            >
+              {ESPARRAGOS_CONFIG.email}
+            </a>
+          </p>
         </div>
       </section>
 
@@ -571,69 +548,51 @@ export default function ProductosPage() {
 
           <div className="space-y-10">
             {/* ── Tienda Valladolid ── */}
-            <div className="card p-0 overflow-hidden">
-              <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-[var(--color-border-light)]">
-                <div className="p-8">
-                  <div className="flex items-start gap-3 mb-5">
-                    <div className="w-10 h-10 rounded-xl bg-[var(--color-verde-100)] flex items-center justify-center shrink-0 mt-0.5">
-                      <MapPin size={18} className="text-[var(--color-verde-700)]" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-[var(--color-text)]">
-                        Valladolid
-                      </h3>
-                      <p className="text-sm text-[var(--color-text-muted)]">Av. del Euro, 24</p>
-                      <div className="flex flex-wrap gap-1.5 mt-1.5">
-                        <span className="badge badge-verde">Todos los productos</span>
-                        <span className="badge badge-verde">Todo el año</span>
-                      </div>
-                    </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+              {/* Info */}
+              <div className="space-y-4">
+                <div className="flex items-start gap-3 p-4 bg-white rounded-[var(--radius-lg)] border border-[var(--color-border-light)]">
+                  <MapPin size={18} className="text-[var(--color-verde-600)] mt-0.5 shrink-0" />
+                  <div>
+                    <p className="font-semibold text-[var(--color-text)] text-sm">Dirección</p>
+                    <p className="text-[var(--color-text-secondary)] text-sm">{ESPARRAGOS_CONFIG.address}</p>
                   </div>
-
-                  <div className="space-y-3 mb-5">
-                    <div className="flex items-center gap-2.5 text-sm text-[var(--color-text-secondary)]">
-                      <Clock size={14} className="text-[var(--color-text-muted)] shrink-0" />
-                      {ESPARRAGOS_CONFIG.horario}
-                    </div>
-                    <div className="flex items-center gap-2.5 text-sm text-[var(--color-text-secondary)]">
-                      <CalendarDays size={14} className="text-[var(--color-text-muted)] shrink-0" />
-                      Abierto todos los días
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <a
-                      href={`tel:${ESPARRAGOS_CONFIG.phoneRaw}`}
-                      className="btn btn-verde btn-sm"
-                    >
-                      <Phone size={14} />
-                      {ESPARRAGOS_CONFIG.phone}
-                    </a>
-                    <a
-                      href={ESPARRAGOS_CONFIG.mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-outline btn-sm"
-                    >
-                      <ExternalLink size={14} />
-                      Cómo llegar
-                    </a>
+                </div>
+                
+                <div className="flex items-start gap-3 p-4 bg-white rounded-[var(--radius-lg)] border border-[var(--color-border-light)]">
+                  <Clock size={18} className="text-[var(--color-verde-600)] mt-0.5 shrink-0" />
+                  <div>
+                    <p className="font-semibold text-[var(--color-text)] text-sm">Horario</p>
+                    {ESPARRAGOS_CONFIG.horarioLineas.map((h) => (
+                      <p key={h} className="text-[var(--color-text-secondary)] text-sm">{h}</p>
+                    ))}
                   </div>
                 </div>
 
-                <div className="lg:col-span-2 p-4">
-                  <div className="map-container h-80 lg:h-[26rem] rounded-[var(--radius-xl)] overflow-hidden border border-[var(--color-border-light)] shadow-[var(--shadow-sm)]">
-                    <iframe
-                      src={ESPARRAGOS_CONFIG.mapsEmbed}
-                      title="Tienda Don Remondo Valladolid"
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                    />
-                  </div>
+                <a
+                  href={ESPARRAGOS_CONFIG.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline-verde w-full justify-center"
+                >
+                  <ExternalLink size={14} />
+                  Abrir en Google Maps
+                </a>
+              </div>
+
+              {/* Mapa */}
+              <div className="lg:col-span-2">
+                <div className="map-container h-64 lg:h-[26rem] rounded-[var(--radius-xl)] overflow-hidden border border-[var(--color-border-light)] shadow-[var(--shadow-sm)]">
+                  <iframe
+                    src={ESPARRAGOS_CONFIG.mapsEmbed}
+                    title="Tienda Don Remondo Valladolid"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
                 </div>
               </div>
             </div>

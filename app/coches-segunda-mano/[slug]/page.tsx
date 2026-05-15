@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { TALLER_CONFIG, SITE_CONFIG } from "@/lib/config";
 import { prisma } from "@/lib/prisma";
+import FotoGallery from "@/components/coches/FotoGallery";
 
 type Coche = {
   id: number;
@@ -110,104 +111,49 @@ export default async function CocheDetallePage({ params }: Props) {
             Volver al catálogo
           </Link>
 
+          {/* ── GRID ÚNICO: izquierda fotos+info / derecha precio+botones ── */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
 
-            {/* ── COLUMNA IZQUIERDA: Fotos ── */}
-            <div className="lg:col-span-7">
-              {/* Foto principal */}
-              <div className="aspect-video bg-[var(--color-stone-100)] rounded-[var(--radius-xl)] overflow-hidden mb-3 border border-[var(--color-border-light)] shadow-[var(--shadow-sm)]">
-                {fotos[0] ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={fotos[0]}
-                    alt={`${coche.marca} ${coche.modelo} ${coche.anio}`}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <Car size={56} className="text-[var(--color-stone-300)]" />
-                  </div>
-                )}
-              </div>
+            {/* ── COLUMNA IZQUIERDA: Fotos → Specs → Descripción → Garantías ── */}
+            <div className="lg:col-span-7 space-y-8">
 
-              {/* Miniaturas */}
-              {fotos.length > 1 && (
-                <div className="grid grid-cols-4 gap-2">
-                  {fotos.slice(1).map((foto, i) => (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      key={i}
-                      src={foto}
-                      alt={`Foto ${i + 2}`}
-                      className="aspect-square rounded-[var(--radius-lg)] object-cover border border-[var(--color-border-light)]"
-                    />
+              {/* Fotos */}
+              <FotoGallery
+                fotos={fotos}
+                alt={`${coche.marca} ${coche.modelo} ${coche.anio}`}
+              />
+
+              {/* Especificaciones */}
+              <div>
+                <h2 className="text-base font-semibold mb-3 text-[var(--color-text)]">
+                  Especificaciones
+                </h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                  {specs.map(({ icon: Icon, label, value }) => (
+                    <div
+                      key={label}
+                      className="flex items-center gap-3 p-3 bg-white rounded-[var(--radius-lg)] border border-[var(--color-border-light)]"
+                    >
+                      <div className="w-7 h-7 rounded-[var(--radius-sm)] bg-[var(--color-azul-100)] flex items-center justify-center shrink-0">
+                        <Icon size={14} className="text-[var(--color-azul-700)]" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[0.65rem] text-[var(--color-text-muted)] uppercase tracking-wide leading-none mb-0.5">
+                          {label}
+                        </p>
+                        <p className="font-semibold text-[var(--color-text)] text-sm truncate">
+                          {value}
+                        </p>
+                      </div>
+                    </div>
                   ))}
                 </div>
-              )}
-            </div>
-
-            {/* ── COLUMNA DERECHA: Info + CTA ── */}
-            <div className="lg:col-span-5">
-
-              {/* Badges */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {coche.destacado && (
-                  <span className="badge badge-azul">Destacado</span>
-                )}
-                <span className="badge badge-verde">
-                  <CheckCircle2 size={11} />
-                  Revisado por taller
-                </span>
-              </div>
-
-              {/* Título */}
-              <h1
-                className="mb-1 leading-tight"
-              >
-                {coche.marca} {coche.modelo}
-              </h1>
-              <p className="text-sm text-[var(--color-text-muted)] mb-5">
-                Ref. #{coche.id} · {TALLER_CONFIG.city}
-              </p>
-
-              {/* Precio */}
-              <div className="bg-[var(--color-azul-50)] rounded-[var(--radius-xl)] px-6 py-5 mb-6 border border-[var(--color-azul-200)]">
-                <p className="text-xs text-[var(--color-azul-600)] font-semibold uppercase tracking-[0.08em] mb-1">
-                  Precio
-                </p>
-                <p className="text-[var(--color-azul-800)] display-price">
-                  {coche.precio.toLocaleString("es-ES")} €
-                </p>
-              </div>
-
-              {/* Ficha técnica */}
-              <div className="grid grid-cols-2 gap-2.5 mb-6">
-                {specs.map(({ icon: Icon, label, value }) => (
-                  <div
-                    key={label}
-                    className="flex items-center gap-3 p-3 bg-white rounded-[var(--radius-lg)] border border-[var(--color-border-light)]"
-                  >
-                    <div className="w-7 h-7 rounded-[var(--radius-sm)] bg-[var(--color-azul-100)] flex items-center justify-center shrink-0">
-                      <Icon size={14} className="text-[var(--color-azul-700)]" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[0.65rem] text-[var(--color-text-muted)] uppercase tracking-wide leading-none mb-0.5">
-                        {label}
-                      </p>
-                      <p className="font-semibold text-[var(--color-text)] text-sm truncate">
-                        {value}
-                      </p>
-                    </div>
-                  </div>
-                ))}
               </div>
 
               {/* Descripción */}
               {coche.descripcion && (
-                <div className="mb-6">
-                  <h2
-                    className="text-base mb-2"
-                  >
+                <div>
+                  <h2 className="text-base font-semibold mb-2 text-[var(--color-text)]">
                     Descripción
                   </h2>
                   <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">
@@ -217,7 +163,7 @@ export default async function CocheDetallePage({ params }: Props) {
               )}
 
               {/* Garantías */}
-              <div className="bg-[var(--color-verde-50)] rounded-[var(--radius-xl)] p-4 mb-6 border border-[var(--color-verde-200)]">
+              <div className="bg-[var(--color-verde-50)] rounded-[var(--radius-xl)] p-5 border border-[var(--color-verde-200)]">
                 <div className="flex items-center gap-2 mb-3">
                   <Shield size={15} className="text-[var(--color-verde-700)]" />
                   <p className="text-sm font-semibold text-[var(--color-verde-800)]">
@@ -237,23 +183,58 @@ export default async function CocheDetallePage({ params }: Props) {
                   ))}
                 </ul>
               </div>
+            </div>
+
+            {/* ── COLUMNA DERECHA: Badges → Título → Precio → CTAs → Dirección ── */}
+            <div className="lg:col-span-5">
+
+              {/* Badges */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {coche.destacado && (
+                  <span className="badge badge-azul">Destacado</span>
+                )}
+                <span className="badge badge-verde">
+                  <CheckCircle2 size={11} />
+                  Revisado por taller
+                </span>
+              </div>
+
+              {/* Título */}
+              <h1 className="mb-1 leading-tight">
+                {coche.marca} {coche.modelo}
+              </h1>
+              <p className="text-sm text-[var(--color-text-muted)] mb-5">
+                Ref. #{coche.id} · {TALLER_CONFIG.city}
+              </p>
+
+              {/* Precio */}
+              <div className="bg-[var(--color-azul-50)] rounded-[var(--radius-xl)] px-6 py-5 mb-5 border border-[var(--color-azul-200)]">
+                <p className="text-xs text-[var(--color-azul-600)] font-semibold uppercase tracking-[0.08em] mb-1">
+                  Precio
+                </p>
+                <p className="text-[var(--color-azul-800)] display-price">
+                  {coche.precio.toLocaleString("es-ES")} €
+                </p>
+              </div>
 
               {/* CTAs */}
               <div className="flex flex-col gap-3">
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="grid grid-cols-2 gap-3">
                   <a
                     href={`tel:${TALLER_CONFIG.phoneRaw}`}
-                    className="btn btn-azul btn-lg justify-center flex-1"
+                    className="btn btn-azul btn-lg justify-center text-center leading-tight"
+                    style={{ whiteSpace: "normal" }}
                   >
-                    <Phone size={18} />
+                    <Phone size={18} className="shrink-0" />
                     Llamar: {TALLER_CONFIG.phone}
                   </a>
                   <a
                     href={`tel:${TALLER_CONFIG.phoneFueraHorarioRaw}`}
-                    className="btn btn-outline-azul btn-lg justify-center flex-1"
+                    className="btn btn-outline-azul btn-lg justify-center text-center leading-tight"
+                    style={{ whiteSpace: "normal" }}
                   >
-                    <Phone size={18} />
-                    {TALLER_CONFIG.phoneFueraHorario} (Fuera de horario)
+                    <Phone size={18} className="shrink-0" />
+                    {TALLER_CONFIG.phoneFueraHorario} (fuera de horario)
                   </a>
                 </div>
                 <Link
@@ -273,7 +254,9 @@ export default async function CocheDetallePage({ params }: Props) {
                 {TALLER_CONFIG.address}
               </div>
             </div>
+
           </div>
+
         </div>
       </div>
 

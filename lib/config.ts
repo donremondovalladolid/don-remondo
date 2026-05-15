@@ -21,11 +21,11 @@ export const ESPARRAGOS_CONFIG = {
   horario: "Todos los días: 05:00 – 10:00",
   horarioLineas: ["Todos los días: 05:00 – 10:00"],
   temporada: "Final de marzo – mediados de junio",
-  lat: 41.6388,
-  lng: -4.7209,
+  lat: 41.672234,
+  lng: -4.720406,
   mapsEmbed:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d-4.7209!3d41.6388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sAv.+del+Euro+24+Valladolid!5e0!3m2!1ses!2ses!4v1",
-  mapsUrl: "https://maps.google.com/?q=Av.+del+Euro,+24,+47009+Valladolid",
+    "https://maps.google.com/maps?q=41.672234,-4.720406&hl=es&z=16&output=embed",
+  mapsUrl: "https://maps.google.com/?q=41.672234,-4.720406",
 };
 
 export const ESPARRAGOS_REMONDO_CONFIG = {

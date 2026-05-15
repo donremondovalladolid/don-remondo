@@ -22,7 +22,14 @@
 
 # misc
 .DS_Store
+**/.DS_Store
 *.pem
+
+# carpeta de archivos a revisar/borrar
+/borrar
+
+# uploads de coches (ficheros locales, no subir al repo)
+/public/uploads/
 
 # debug
 npm-debug.log*

@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { Save, ArrowLeft, Trash2 } from "lucide-react";
+import { Save, ArrowLeft, Trash2, Upload, X, Link2, ImagePlus } from "lucide-react";
 import Link from "next/link";
 
 type CocheFormData = {
@@ -42,12 +42,68 @@ export default function CocheForm({ initialData }: { initialData?: Partial<Coche
   const router = useRouter();
   const [data, setData] = useState<CocheFormData>({ ...defaultValues, ...initialData });
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
+  const [urlInput, setUrlInput] = useState("");
+  const [dragging, setDragging] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isEdit = !!initialData?.id;
 
   function set(key: keyof CocheFormData, value: string | boolean | string[]) {
     setData((prev) => ({ ...prev, [key]: value }));
+  }
+
+  // ── Upload de ficheros al servidor ──
+  async function uploadFiles(files: FileList | File[]) {
+    const fileArray = Array.from(files).filter((f) => f.type.startsWith("image/"));
+    if (fileArray.length === 0) return;
+
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      fileArray.forEach((f) => formData.append("files", f));
+
+      const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
+      if (!res.ok) throw new Error("Error en el servidor");
+
+      const { urls } = await res.json() as { urls: string[] };
+      set("fotos", [...data.fotos, ...urls]);
+    } catch {
+      setError("Error al subir las fotos. Comprueba que son imágenes válidas.");
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  // ── Drag & drop handlers ──
+  const onDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setDragging(true);
+  }, []);
+
+  const onDragLeave = useCallback(() => setDragging(false), []);
+
+  const onDrop = useCallback(async (e: React.DragEvent) => {
+    e.preventDefault();
+    setDragging(false);
+    if (e.dataTransfer.files.length > 0) {
+      await uploadFiles(e.dataTransfer.files);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data.fotos]);
+
+  // ── Añadir por URL ──
+  function addUrl() {
+    const trimmed = urlInput.trim();
+    if (!trimmed) return;
+    set("fotos", [...data.fotos, trimmed]);
+    setUrlInput("");
+  }
+
+  // ── Eliminar foto ──
+  function removePhoto(index: number) {
+    set("fotos", data.fotos.filter((_, i) => i !== index));
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -109,6 +165,7 @@ export default function CocheForm({ initialData }: { initialData?: Partial<Coche
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
         <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-6">
+
           {/* Datos básicos */}
           <div>
             <h2 className="font-bold text-gray-900 mb-4">Datos del vehículo</h2>
@@ -234,27 +291,110 @@ export default function CocheForm({ initialData }: { initialData?: Partial<Coche
             />
           </div>
 
-          {/* Fotos — URLs */}
+          {/* ── FOTOS ── */}
           <div>
-            <label className={labelClass}>URLs de fotos (una por línea)</label>
-            <textarea
-              className={`${inputClass} resize-none`}
-              rows={3}
-              value={data.fotos.join("\n")}
-              onChange={(e) =>
-                set(
-                  "fotos",
-                  e.target.value
-                    .split("\n")
-                    .map((u) => u.trim())
-                    .filter(Boolean)
-                )
-              }
-              placeholder="https://ejemplo.com/foto1.jpg&#10;https://ejemplo.com/foto2.jpg"
-            />
-            <p className="text-xs text-gray-400 mt-1">
-              Sube las fotos a Cloudinary, Google Drive o cualquier servicio y pega las URLs aquí.
-            </p>
+            <h2 className="font-bold text-gray-900 mb-3">Fotos</h2>
+
+            {/* Zona de drop / selección */}
+            <div
+              onDragOver={onDragOver}
+              onDragLeave={onDragLeave}
+              onDrop={onDrop}
+              onClick={() => fileInputRef.current?.click()}
+              className={`relative flex flex-col items-center justify-center gap-2 border-2 border-dashed rounded-xl p-8 cursor-pointer transition-colors ${
+                dragging
+                  ? "border-blue-500 bg-blue-50"
+                  : "border-gray-200 hover:border-blue-400 hover:bg-gray-50"
+              }`}
+            >
+              <input
+                ref={fileInputRef}
+                type="file"
+                multiple
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => e.target.files && uploadFiles(e.target.files)}
+              />
+              {uploading ? (
+                <div className="flex items-center gap-2 text-blue-600 text-sm font-medium">
+                  <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                  </svg>
+                  Subiendo fotos...
+                </div>
+              ) : (
+                <>
+                  <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
+                    <ImagePlus size={22} className="text-blue-600" />
+                  </div>
+                  <p className="text-sm font-medium text-gray-700">
+                    Arrastra fotos aquí o <span className="text-blue-600 underline">selecciona archivos</span>
+                  </p>
+                  <p className="text-xs text-gray-400">JPG, PNG, WEBP · Varias a la vez</p>
+                </>
+              )}
+            </div>
+
+            {/* Añadir por URL */}
+            <div className="mt-3 flex gap-2">
+              <div className="relative flex-1">
+                <Link2 size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input
+                  className={`${inputClass} pl-8`}
+                  value={urlInput}
+                  onChange={(e) => setUrlInput(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addUrl())}
+                  placeholder="O pega una URL de imagen externa..."
+                />
+              </div>
+              <button
+                type="button"
+                onClick={addUrl}
+                disabled={!urlInput.trim()}
+                className="cursor-pointer flex items-center gap-1.5 px-4 py-2 text-sm font-medium bg-gray-100 hover:bg-gray-200 disabled:opacity-40 rounded-xl transition-colors"
+              >
+                <Upload size={14} />
+                Añadir
+              </button>
+            </div>
+
+            {/* Previsualizaciones */}
+            {data.fotos.length > 0 && (
+              <div className="mt-4 grid grid-cols-3 sm:grid-cols-4 gap-3">
+                {data.fotos.map((foto, i) => (
+                  <div key={i} className="relative group aspect-square">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={foto}
+                      alt={`Foto ${i + 1}`}
+                      className="w-full h-full object-cover rounded-xl border border-gray-200"
+                    />
+                    {/* Badge de posición */}
+                    {i === 0 && (
+                      <span className="absolute top-1.5 left-1.5 bg-blue-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md">
+                        Principal
+                      </span>
+                    )}
+                    {/* Botón borrar */}
+                    <button
+                      type="button"
+                      onClick={() => removePhoto(i)}
+                      className="cursor-pointer absolute top-1.5 right-1.5 bg-red-500 hover:bg-red-600 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity shadow"
+                      aria-label="Eliminar foto"
+                    >
+                      <X size={12} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {data.fotos.length === 0 && (
+              <p className="mt-2 text-xs text-gray-400 text-center">
+                La primera foto será la imagen principal del coche.
+              </p>
+            )}
           </div>
 
           {/* Estado */}
@@ -285,7 +425,7 @@ export default function CocheForm({ initialData }: { initialData?: Partial<Coche
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || uploading}
             className="cursor-pointer w-full flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 disabled:bg-blue-400 text-white font-semibold py-3 rounded-xl transition-colors"
           >
             <Save size={16} />

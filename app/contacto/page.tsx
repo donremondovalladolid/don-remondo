@@ -67,9 +67,7 @@ export default function ContactoPage() {
               href={`tel:${ESPARRAGOS_CONFIG.phoneRaw}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
-              <div className="w-11 h-11 rounded-xl bg-[var(--color-verde-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-verde-200)] transition-colors">
-                <Phone size={20} className="text-[var(--color-verde-700)]" />
-              </div>
+              <Phone size={20} className="text-[var(--color-verde-600)] shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
                   Teléfono Espárragos
@@ -86,9 +84,7 @@ export default function ContactoPage() {
               href={`tel:${TALLER_CONFIG.phoneRaw}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
-              <div className="w-11 h-11 rounded-xl bg-[var(--color-verde-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-verde-200)] transition-colors">
-                <Phone size={20} className="text-[var(--color-verde-700)]" />
-              </div>
+              <Phone size={20} className="text-[var(--color-verde-600)] shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
                   Teléfono Taller / Coches
@@ -107,9 +103,7 @@ export default function ContactoPage() {
               rel="noopener noreferrer"
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
-              <div className="w-11 h-11 rounded-xl bg-[var(--color-verde-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-verde-200)] transition-colors">
-                <MessageSquare size={20} className="text-[var(--color-verde-700)]" />
-              </div>
+              <MessageSquare size={20} className="text-[var(--color-verde-600)] shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
                   WhatsApp Taller
@@ -126,9 +120,7 @@ export default function ContactoPage() {
               href={`mailto:${ESPARRAGOS_CONFIG.email}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
-              <div className="w-11 h-11 rounded-xl bg-[var(--color-verde-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-verde-200)] transition-colors">
-                <Mail size={20} className="text-[var(--color-verde-700)]" />
-              </div>
+              <Mail size={20} className="text-[var(--color-verde-600)] shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
                   Email espárragos
@@ -144,9 +136,7 @@ export default function ContactoPage() {
               href={`mailto:${TALLER_CONFIG.email}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
-              <div className="w-11 h-11 rounded-xl bg-[var(--color-verde-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-verde-200)] transition-colors">
-                <Mail size={20} className="text-[var(--color-verde-700)]" />
-              </div>
+              <Mail size={20} className="text-[var(--color-verde-600)] shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
                   Email taller / Coches

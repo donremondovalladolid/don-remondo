@@ -172,7 +172,7 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
       <button
         type="submit"
         disabled={state === "loading"}
-        className="btn btn-azul btn-lg w-full"
+        className="btn btn-verde btn-lg w-full"
       >
         {state === "loading" ? (
           <>
@@ -180,16 +180,13 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
             Enviando...
           </>
         ) : (
-          <>
-            <Send size={18} />
-            Enviar mensaje
-          </>
+          "Enviar mensaje"
         )}
       </button>
 
       <p className="text-center text-xs text-[var(--color-text-muted)]">
         Campos marcados con{" "}
-        <span className="text-[var(--color-azul-600)] font-medium">*</span> son obligatorios
+        <span className="text-[var(--color-verde-600)] font-medium">*</span> son obligatorios
       </p>
     </form>
   );

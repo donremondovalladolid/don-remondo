@@ -33,7 +33,7 @@ const navLinks = [
     href: "/contacto",
     label: "Contacto",
     icon: MessageSquare,
-    accent: "stone",
+    accent: "verde",
     desc: "Escríbenos o llámanos",
   },
 ];

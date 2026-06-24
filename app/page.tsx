@@ -103,18 +103,17 @@ export default function HomePage() {
               className="group relative card overflow-hidden block min-h-[420px]"
             >
               {/* Header visual */}
-              <div className="relative px-8 pt-10 pb-14 overflow-hidden bg-[var(--color-stone-900)]">
-                {/* Imagen de fondo */}
-                <Image
-                  src={IMAGES.home.productosCard}
-                  alt=""
-                  aria-hidden={true}
-                  fill
-                  className="object-cover opacity-80"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-                {/* Gradiente oscuro inferior para legibilidad del texto */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10" />
+              <div className="relative px-8 pt-10 pb-14 overflow-hidden bg-[var(--color-verde-800)]">
+                {/* Logo de fondo */}
+                <div className="absolute top-1/2 -translate-y-1/2 right-0 lg:-right-4 z-0 opacity-40 pointer-events-none">
+                  <img
+                    src="/images/logo-esparragos-blanco.png"
+                    alt=""
+                    className="w-40 lg:w-48 object-contain"
+                  />
+                </div>
+                {/* Gradiente para que destaque el texto */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 <div className="relative">
                   <h3
                     className="text-white text-2xl sm:text-3xl mb-2"
@@ -171,14 +170,22 @@ export default function HomePage() {
               className="group relative card overflow-hidden block min-h-[420px]"
             >
               {/* Header visual */}
-              <div className="relative px-8 pt-10 pb-14 overflow-hidden bg-[var(--color-stone-900)]">
-                <img
-                  src={IMAGES.home.tallerCard}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover opacity-80"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10" />
+              <div className="relative px-8 pt-10 pb-14 overflow-hidden bg-zinc-900">
+                {/* Logo de fondo */}
+                <div className="absolute top-1/2 -translate-y-1/2 right-0 lg:-right-4 z-0 opacity-60 pointer-events-none w-48 h-48 lg:w-56 lg:h-56"
+                    style={{
+                      maskImage: "radial-gradient(circle, black 30%, transparent 70%)",
+                      WebkitMaskImage: "radial-gradient(circle, black 30%, transparent 70%)"
+                    }}
+                >
+                  <img
+                    src="/images/logo-taller.jpeg"
+                    alt=""
+                    className="w-full h-full object-contain mix-blend-lighten"
+                  />
+                </div>
+                {/* Gradiente para que destaque el texto */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 <div className="relative">
                   <h3
                     className="text-white text-2xl sm:text-3xl mb-2"
@@ -237,9 +244,7 @@ export default function HomePage() {
         <div className="container py-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-[var(--radius-md)] bg-[var(--color-verde-100)] flex items-center justify-center shrink-0">
-                <Car size={17} className="text-[var(--color-verde-700)]" />
-              </div>
+              <Car size={18} className="text-[var(--color-verde-700)] shrink-0" />
               <p className="text-sm font-semibold text-[var(--color-verde-900)]">
                 ¿Buscas coche? Tenemos vehículos revisados y con garantía en Valladolid.
               </p>
@@ -249,7 +254,6 @@ export default function HomePage() {
               className="btn btn-verde text-[0.8rem] py-2 px-4 shrink-0"
             >
               Ver catálogo
-              <ArrowRight size={14} />
             </Link>
           </div>
         </div>

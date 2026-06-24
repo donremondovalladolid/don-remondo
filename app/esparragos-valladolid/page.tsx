@@ -126,7 +126,7 @@ export default function ProductosPage() {
       />
 
       {/* ── HERO ─────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-verde-900)] via-[var(--color-verde-800)] to-[var(--color-verde-600)]">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-verde-900)] via-[var(--color-verde-800)] to-[var(--color-verde-600)] h-[420px] sm:h-[500px] flex flex-col justify-center">
         <Image
           src={IMAGES.esparragos.hero}
           alt=""
@@ -135,9 +135,8 @@ export default function ProductosPage() {
           className="object-cover opacity-45 mix-blend-soft-light"
           priority
         />
-        <div className="absolute inset-0 opacity-[0.06] pattern-diagonal-light" />
 
-        <div className="container relative py-20 sm:py-28">
+        <div className="container relative">
           <div className="max-w-2xl">
             <h1 className="text-white mb-5 animate-fade-up animate-delay-100">
               Productos frescos<br />

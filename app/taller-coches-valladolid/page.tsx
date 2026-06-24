@@ -5,6 +5,7 @@ import {
   Car, Shield, Star, Gauge, Zap, Settings, ExternalLink,
 } from "lucide-react";
 import { TALLER_CONFIG, SITE_CONFIG, IMAGES } from "@/lib/config";
+import { getDynamicSchedules, getDynamicImages } from "@/lib/db-config";
 import { prisma } from "@/lib/prisma";
 import { Coche } from "@/lib/types";
 import ScrollAnimation from "@/components/ScrollAnimation";
@@ -135,6 +136,9 @@ const garantias = [
 ];
 
 export default async function TallerPage() {
+  const dynamicSchedules = await getDynamicSchedules();
+  const dynamicImages = await getDynamicImages();
+
   const rawDestacados = await prisma.coche.findMany({
     where: { vendido: false, destacado: true },
     take: 3,
@@ -158,37 +162,54 @@ export default async function TallerPage() {
       />
 
       {/* ── HERO ─────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-[var(--color-azul-900)]">
-        <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-azul-900)] via-[var(--color-azul-600)] to-[var(--color-azul-300)]" />
+      <section className="relative overflow-hidden bg-zinc-950 h-[420px] sm:h-[500px] flex flex-col justify-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-900 to-black" />
+        
+        {/* Decorative green glow */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[var(--color-verde-500)] rounded-full blur-[150px] opacity-20 pointer-events-none transform translate-x-1/3 -translate-y-1/3" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[var(--color-verde-600)] rounded-full blur-[120px] opacity-10 pointer-events-none transform -translate-x-1/2 translate-y-1/2" />
+        
         <div
-          className="absolute right-0 top-0 bottom-0 w-[55%] md:w-[50%] lg:w-[45%] xl:w-[40%]"
-          style={{ maskImage: 'linear-gradient(to right, transparent, black 20%)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 20%)' }}
+          className="absolute right-0 top-0 bottom-0 w-full md:w-[60%] lg:w-[50%] flex justify-center items-center opacity-30 md:opacity-100 pointer-events-none p-10 lg:p-20"
         >
           <img
-            src={IMAGES.taller.hero}
-            alt="Equipo Don Remondo"
-            className="w-full h-full object-cover object-[center_25%] sm:object-[right_25%]"
+            src="/images/logo-taller.jpeg"
+            alt="Logo Taller Mecánico Don Remondo"
+            className="max-w-full max-h-full object-contain animate-fade-in mix-blend-lighten"
+            style={{
+              filter: "drop-shadow(0 0 40px rgba(0,255,0,0.15))",
+              maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)",
+              WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)",
+            }}
           />
         </div>
-        <div className="absolute inset-0 opacity-[0.06] pattern-diagonal-light" />
-        <div className="container relative py-20 sm:py-28">
-          <div className="max-w-2xl">
+        
 
+        <div className="container relative">
+          <div className="max-w-xl relative z-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900/80 border border-zinc-800 text-[var(--color-verde-400)] text-sm font-semibold mb-6 animate-fade-up">
+              <span className="w-2 h-2 rounded-full bg-[var(--color-verde-500)] animate-pulse" />
+              Servicio profesional multimarca
+            </div>
             <h1
-              className="text-white mb-5 animate-fade-up animate-delay-100"
+              className="text-white mb-5 animate-fade-up animate-delay-100 drop-shadow-lg"
             >
               Taller Mecánico
               <br />
-              <span className="text-[var(--color-azul-200)] italic">y Venta de coches</span>
+              <span className="text-[var(--color-verde-400)] italic">y Venta de coches</span>
             </h1>
-            <p className="font-display text-[var(--color-azul-200)] text-lg leading-relaxed mb-8 max-w-xl animate-fade-up animate-delay-200">
-
+            <p className="text-zinc-300 text-lg leading-relaxed mb-8 max-w-lg animate-fade-up animate-delay-200 drop-shadow">
+              Expertos en mantenimiento, reparación y diagnosis multimarca. Garantía y confianza en cada trabajo.
             </p>
-            <div className="flex flex-wrap gap-3 animate-fade-up animate-delay-300">
-              <Link href="/coches-segunda-mano" className="btn btn-ghost-white btn-lg">
-                <Car size={17} />
+            <div className="flex flex-wrap gap-4 animate-fade-up animate-delay-300">
+              <Link href="/coches-segunda-mano" className="btn btn-verde btn-lg group">
+                <Car size={18} className="group-hover:translate-x-0.5 transition-transform" />
                 Ver coches en venta
               </Link>
+              <a href={`tel:${TALLER_CONFIG.phoneRaw}`} className="btn btn-ghost-white btn-lg group">
+                <Phone size={18} className="group-hover:rotate-12 transition-transform" />
+                Llamar al taller
+              </a>
             </div>
           </div>
         </div>
@@ -216,14 +237,14 @@ export default async function TallerPage() {
             {servicios.map(({ icon: Icon, titulo, desc, color }) => (
               <div
                 key={titulo}
-                className="card p-6 group hover:border-[var(--color-azul-200)] transition-colors"
+                className="card p-6 group hover:border-[var(--color-verde-300)] transition-colors"
               >
                 <div
-                  className="w-11 h-11 rounded-[var(--radius-md)] flex items-center justify-center mb-4 transition-colors bg-[var(--color-azul-100)] group-hover:bg-[var(--color-azul-200)]"
+                  className="w-11 h-11 rounded-[var(--radius-md)] flex items-center justify-center mb-4 transition-colors bg-[var(--color-stone-100)] group-hover:bg-[var(--color-verde-100)]"
                 >
                   <Icon
                     size={20}
-                    className="text-[var(--color-azul-700)]"
+                    className="text-[var(--color-stone-700)] group-hover:text-[var(--color-verde-700)] transition-colors"
                   />
                 </div>
                 <h3
@@ -241,42 +262,47 @@ export default async function TallerPage() {
       </section >
 
       {/* ── FOTOS DEL TALLER ───────────────────────── */}
-      < section className="section-padding-sm bg-[var(--color-azul-900)]" >
+      < section className="section-padding-sm bg-zinc-950" >
         <div className="container">
-          <div className="grid grid-cols-1 gap-6">
-            <div className="relative aspect-[16/9] rounded-[var(--radius-xl)] overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="relative aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden">
               <img
-                src={IMAGES.taller.interior}
+                src={dynamicImages.taller.equipo}
+                alt="Equipo de mecánicos Don Remondo"
+                className="w-full h-full object-cover object-top scroll-fade-up"
+              />
+            </div>
+            <div className="relative aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden">
+              <img
+                src={dynamicImages.taller.interior}
                 alt="Interior taller Don Remondo"
                 className="w-full h-full object-cover scroll-fade-up"
               />
             </div>
-            <div className="grid grid-cols-2 gap-6">
-              <div className="relative aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden">
-                <img
-                  src={IMAGES.taller.interior2}
-                  alt="Taller zona 2"
-                  className="w-full h-full object-cover scroll-fade-up"
-                />
-              </div>
-              <div className="relative aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden">
-                <img
-                  src={IMAGES.taller.interior3}
-                  alt="Taller zona 3"
-                  className="w-full h-full object-cover scroll-fade-up"
-                />
-              </div>
+            <div className="relative aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden">
+              <img
+                src={dynamicImages.taller.interior2}
+                alt="Taller zona 2"
+                className="w-full h-full object-cover scroll-fade-up"
+              />
+            </div>
+            <div className="relative aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden">
+              <img
+                src={dynamicImages.taller.interior3}
+                alt="Taller zona 3"
+                className="w-full h-full object-cover scroll-fade-up"
+              />
             </div>
           </div>
         </div>
       </section >
 
       {/* ── CTA CONTACTO ─────────────────────────── */}
-      < section className="section-padding-sm bg-[var(--color-azul-50)] border-y border-[var(--color-azul-100)]" >
+      < section className="section-padding-sm bg-[var(--color-stone-100)] border-y border-[var(--color-border)]" >
         <div className="container">
           <div className="max-w-2xl mx-auto text-center">
             <h2
-              className="text-[var(--color-azul-900)] mb-3"
+              className="text-[var(--color-stone-900)] mb-3"
             >
               ¿Necesitas presupuesto?
             </h2>
@@ -286,7 +312,7 @@ export default async function TallerPage() {
             <div className="flex flex-wrap justify-center gap-3">
               <a
                 href={`tel:${TALLER_CONFIG.phoneRaw}`}
-                className="btn btn-azul btn-lg"
+                className="btn btn-verde btn-lg shadow-lg shadow-verde-500/20"
               >
                 <Phone size={17} />
                 {TALLER_CONFIG.phone}
@@ -295,19 +321,19 @@ export default async function TallerPage() {
                 href={`https://wa.me/34${TALLER_CONFIG.whatsappRaw}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-outline-azul btn-lg"
+                className="btn btn-white btn-lg border border-stone-200 text-stone-800 hover:border-verde-500 hover:text-verde-700"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-[#25D366]">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                </svg>
-                {TALLER_CONFIG.whatsapp}
-              </a>
+              </svg>
+              {TALLER_CONFIG.whatsapp}
+            </a>
             </div>
             <p className="text-sm text-[var(--color-text-muted)] mt-5 flex flex-col items-center gap-1">
               <span>o escríbenos a:</span>
               <a
                 href={`mailto:${TALLER_CONFIG.email}`}
-                className="text-[var(--color-azul-700)] hover:underline font-medium"
+                className="text-[var(--color-verde-700)] hover:underline font-medium"
               >
                 {TALLER_CONFIG.email}
               </a>
@@ -333,7 +359,7 @@ export default async function TallerPage() {
             </div>
             <Link
               href="/coches-segunda-mano"
-              className="hidden sm:flex items-center gap-1.5 text-[var(--color-azul-700)] font-semibold text-sm hover:text-[var(--color-azul-900)] transition-colors"
+              className="hidden sm:flex items-center gap-1.5 text-[var(--color-verde-600)] font-semibold text-sm hover:text-[var(--color-verde-800)] transition-colors"
             >
               Ver todos
               <ArrowRight size={15} />
@@ -342,8 +368,8 @@ export default async function TallerPage() {
 
           {cochesRecientes.length === 0 ? (
             <div className="bg-[var(--color-stone-100)] rounded-[var(--radius-xl)] p-14 text-center border border-[var(--color-border)]">
-              <div className="w-14 h-14 rounded-xl bg-[var(--color-azul-100)] flex items-center justify-center mx-auto mb-4">
-                <Car size={26} className="text-[var(--color-azul-400)]" />
+              <div className="w-14 h-14 rounded-xl bg-[var(--color-verde-100)] flex items-center justify-center mx-auto mb-4">
+                <Car size={26} className="text-[var(--color-verde-500)]" />
               </div>
               <h3
                 className="text-lg mb-2"
@@ -356,14 +382,14 @@ export default async function TallerPage() {
               <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
                 <a
                   href={`tel:${TALLER_CONFIG.phoneRaw}`}
-                  className="btn btn-azul"
+                  className="btn btn-verde"
                 >
                   <Phone size={15} />
                   {TALLER_CONFIG.phone}
                 </a>
                 <a
                   href={`tel:${TALLER_CONFIG.phoneFueraHorarioRaw}`}
-                  className="btn btn-outline-azul"
+                  className="btn btn-outline-verde"
                 >
                   <Phone size={15} />
                   {TALLER_CONFIG.phoneFueraHorario} (Fuera de horario)
@@ -394,7 +420,7 @@ export default async function TallerPage() {
                         </div>
                       )}
                       {coche.destacado && (
-                        <span className="absolute top-2 left-2 badge badge-azul">
+                        <span className="absolute top-2 left-2 badge badge-verde">
                           Destacado
                         </span>
                       )}
@@ -410,11 +436,11 @@ export default async function TallerPage() {
                       </p>
                       <div className="flex items-center justify-between">
                         <span
-                          className="text-xl font-bold text-[var(--color-azul-700)] font-display"
+                          className="text-xl font-bold text-[var(--color-stone-800)] font-display"
                         >
                           {coche.precio.toLocaleString("es-ES")} €
                         </span>
-                        <span className="text-xs text-[var(--color-azul-600)] font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                        <span className="text-xs text-[var(--color-verde-600)] font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
                           Ver ficha <ArrowRight size={13} />
                         </span>
                       </div>
@@ -428,7 +454,7 @@ export default async function TallerPage() {
           <div className="text-center mt-6 sm:hidden">
             <Link
               href="/coches-segunda-mano"
-              className="btn btn-outline-azul"
+              className="btn btn-outline-verde"
             >
               Ver todos los coches
               <ArrowRight size={15} />
@@ -452,18 +478,18 @@ export default async function TallerPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Info */}
             <div className="space-y-4">
-              <div className="flex items-start gap-3 p-4 bg-white rounded-[var(--radius-lg)] border border-[var(--color-border-light)]">
-                <MapPin size={18} className="text-[var(--color-azul-600)] mt-0.5 shrink-0" />
+              <div className="flex items-start gap-3 p-4 bg-white rounded-[var(--radius-lg)] border border-[var(--color-border-light)] hover:border-[var(--color-verde-300)] transition-colors">
+                <MapPin size={18} className="text-[var(--color-verde-600)] mt-0.5 shrink-0" />
                 <div>
                   <p className="font-semibold text-[var(--color-text)] text-sm">Dirección</p>
                   <p className="text-[var(--color-text-secondary)] text-sm">{TALLER_CONFIG.address}</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-4 bg-white rounded-[var(--radius-lg)] border border-[var(--color-border-light)]">
-                <Clock size={18} className="text-[var(--color-azul-600)] mt-0.5 shrink-0" />
+              <div className="flex items-start gap-3 p-4 bg-white rounded-[var(--radius-lg)] border border-[var(--color-border-light)] hover:border-[var(--color-verde-300)] transition-colors">
+                <Clock size={18} className="text-[var(--color-verde-600)] mt-0.5 shrink-0" />
                 <div>
                   <p className="font-semibold text-[var(--color-text)] text-sm">Horario</p>
-                  {TALLER_CONFIG.horarioLineas.map((h) => (
+                  {dynamicSchedules.taller.map((h) => (
                     <p key={h} className="text-[var(--color-text-secondary)] text-sm">{h}</p>
                   ))}
                 </div>
@@ -473,7 +499,7 @@ export default async function TallerPage() {
                 href={TALLER_CONFIG.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-outline-azul w-full justify-center"
+                className="btn btn-outline-verde w-full justify-center"
               >
                 <ExternalLink size={14} />
                 Abrir en Google Maps

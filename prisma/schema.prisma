@@ -33,3 +33,11 @@ model AdminUser {
   password  String
   createdAt DateTime @default(now())
 }
+
+model ConfigStore {
+  id        Int      @id @default(autoincrement())
+  key       String   @unique
+  value     String
+  type      String   @default("text") // "schedule", "image", "text", etc.
+  updatedAt DateTime @updatedAt
+}

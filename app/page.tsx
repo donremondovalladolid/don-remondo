@@ -33,12 +33,11 @@ export default function HomePage() {
       />
 
       {/* ── HERO ─────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-[var(--color-stone-700)]">
+      <section className="relative overflow-hidden bg-[var(--color-stone-700)] h-[420px] sm:h-[500px] flex flex-col justify-center">
         {/* Fondo decorativo */}
-        <div className="absolute inset-0 opacity-[0.04] pattern-diagonal-light" />
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-stone-900)]/30 to-transparent pointer-events-none" />
 
-        <div className="container relative py-20 sm:py-28 lg:py-32">
+        <div className="container relative">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-12 lg:gap-24">
             <div className="max-w-3xl">
               <div className="flex items-center gap-2.5 mb-6 animate-fade-up">
@@ -206,7 +205,7 @@ export default function HomePage() {
                     "Coches revisados con garantía",
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-[var(--color-text)]">
-                      <CheckCircle2 size={14} className="text-[var(--color-azul-600)] shrink-0" />
+                      <CheckCircle2 size={14} className="text-[var(--color-verde-600)] shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -223,7 +222,7 @@ export default function HomePage() {
                       Lun–Vie: 09–13h / 16–20h
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 text-[var(--color-azul-700)] font-semibold text-sm group-hover:gap-2 transition-all">
+                  <div className="flex items-center gap-1 text-[var(--color-verde-700)] font-semibold text-sm group-hover:gap-2 transition-all">
                     Ver más <ArrowRight size={14} />
                   </div>
                 </div>
@@ -234,20 +233,20 @@ export default function HomePage() {
       </section>
 
       {/* ── COCHES QUICK LINK ────────────────────── */}
-      <div className="bg-[var(--color-azul-50)] border-y border-[var(--color-azul-100)]">
+      <div className="bg-[var(--color-verde-50)] border-y border-[var(--color-verde-100)]">
         <div className="container py-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-[var(--radius-md)] bg-[var(--color-azul-100)] flex items-center justify-center shrink-0">
-                <Car size={17} className="text-[var(--color-azul-700)]" />
+              <div className="w-9 h-9 rounded-[var(--radius-md)] bg-[var(--color-verde-100)] flex items-center justify-center shrink-0">
+                <Car size={17} className="text-[var(--color-verde-700)]" />
               </div>
-              <p className="text-sm font-semibold text-[var(--color-azul-900)]">
+              <p className="text-sm font-semibold text-[var(--color-verde-900)]">
                 ¿Buscas coche? Tenemos vehículos revisados y con garantía en Valladolid.
               </p>
             </div>
             <Link
               href="/coches-segunda-mano"
-              className="btn btn-azul text-[0.8rem] py-2 px-4 shrink-0"
+              className="btn btn-verde text-[0.8rem] py-2 px-4 shrink-0"
             >
               Ver catálogo
               <ArrowRight size={14} />

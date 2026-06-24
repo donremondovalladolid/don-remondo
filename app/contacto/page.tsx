@@ -30,25 +30,32 @@ export default function ContactoPage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-[var(--color-stone-800)] text-white pt-20 pb-28 sm:pt-28 sm:pb-36">
-        <div className="container relative z-10">
+      <section className="relative overflow-hidden bg-[var(--color-stone-700)] h-[420px] sm:h-[500px] flex flex-col justify-center">
+        {/* Fondo decorativo */}
+<div className="absolute inset-0 bg-gradient-to-b from-[var(--color-stone-900)]/30 to-transparent pointer-events-none" />
+
+        <div className="container relative">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-stone-200)] mb-6 animate-fade-up">
-              <MessageSquare size={14} />
-              Estamos aquí para ayudarte
+            <div className="flex items-center gap-2.5 mb-6 animate-fade-up">
+              <span className="inline-flex items-center gap-1.5 badge badge-ambar text-[0.7rem] px-2.5 py-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-ambar-500)] inline-block" />
+                Estamos aquí para ayudarte
+              </span>
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl text-white mb-4 leading-tight animate-fade-up animate-delay-100">
+            <h1 className="text-white leading-[1.08] mb-6 animate-fade-up animate-delay-100">
               Contacta con
               <br />
-              Don Remondo
+              <span className="text-[var(--color-ambar-200)] italic">Don Remondo</span>
             </h1>
-            <p className="text-[var(--color-stone-300)] text-lg leading-relaxed animate-fade-up animate-delay-200">
+            <p className="text-[var(--color-stone-300)] text-lg sm:text-xl leading-relaxed max-w-xl animate-fade-up animate-delay-200">
               Llámanos, escríbenos o pásate por donde prefieras.
               Atendemos compra de espárragos, taller y compra-venta de coches.
             </p>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-8 bg-[var(--color-stone-50)] wave-bottom z-20" />
+
+        {/* Ola inferior */}
+        <div className="absolute bottom-0 left-0 right-0 h-8 bg-[var(--color-stone-50)] wave-bottom" />
       </section>
 
       {/* ── CANALES DE CONTACTO RÁPIDO ── */}
@@ -79,14 +86,14 @@ export default function ContactoPage() {
               href={`tel:${TALLER_CONFIG.phoneRaw}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
-              <div className="w-11 h-11 rounded-xl bg-[var(--color-azul-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-azul-200)] transition-colors">
-                <Phone size={20} className="text-[var(--color-azul-700)]" />
+              <div className="w-11 h-11 rounded-xl bg-[var(--color-verde-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-verde-200)] transition-colors">
+                <Phone size={20} className="text-[var(--color-verde-700)]" />
               </div>
               <div>
                 <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
                   Teléfono Taller / Coches
                 </p>
-                <p className="font-display text-lg text-[var(--color-text)] group-hover:text-[var(--color-azul-700)] transition-colors">
+                <p className="font-display text-lg text-[var(--color-text)] group-hover:text-[var(--color-verde-700)] transition-colors">
                   {TALLER_CONFIG.phone}
                 </p>
                 <p className="text-xs text-[var(--color-text-muted)] mt-0.5">Llamar ahora</p>
@@ -100,14 +107,14 @@ export default function ContactoPage() {
               rel="noopener noreferrer"
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
-              <div className="w-11 h-11 rounded-xl bg-[var(--color-azul-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-azul-200)] transition-colors">
-                <MessageSquare size={20} className="text-[var(--color-azul-700)]" />
+              <div className="w-11 h-11 rounded-xl bg-[var(--color-verde-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-verde-200)] transition-colors">
+                <MessageSquare size={20} className="text-[var(--color-verde-700)]" />
               </div>
               <div>
                 <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
                   WhatsApp Taller
                 </p>
-                <p className="font-display text-lg text-[var(--color-text)] group-hover:text-[var(--color-azul-700)] transition-colors">
+                <p className="font-display text-lg text-[var(--color-text)] group-hover:text-[var(--color-verde-700)] transition-colors">
                   {TALLER_CONFIG.whatsapp}
                 </p>
                 <p className="text-xs text-[var(--color-text-muted)] mt-0.5">Escríbenos por WhatsApp</p>
@@ -137,14 +144,14 @@ export default function ContactoPage() {
               href={`mailto:${TALLER_CONFIG.email}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
-              <div className="w-11 h-11 rounded-xl bg-[var(--color-azul-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-azul-200)] transition-colors">
-                <Mail size={20} className="text-[var(--color-azul-700)]" />
+              <div className="w-11 h-11 rounded-xl bg-[var(--color-verde-100)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-verde-200)] transition-colors">
+                <Mail size={20} className="text-[var(--color-verde-700)]" />
               </div>
               <div>
                 <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
                   Email taller / Coches
                 </p>
-                <p className="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-azul-700)] transition-colors break-all">
+                <p className="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-verde-700)] transition-colors break-all">
                   {TALLER_CONFIG.email}
                 </p>
               </div>
@@ -224,7 +231,7 @@ export default function ContactoPage() {
               <div className="card overflow-hidden">
                 <div className="p-5 border-b border-[var(--color-border-light)]">
                   <div className="mb-3">
-                    <span className="text-xs font-semibold text-[var(--color-azul-700)] uppercase tracking-wide">
+                    <span className="text-xs font-semibold text-[var(--color-verde-700)] uppercase tracking-wide">
                       Taller y Venta de Coches · Valladolid
                     </span>
                   </div>
@@ -257,7 +264,7 @@ export default function ContactoPage() {
                     href={TALLER_CONFIG.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-outline-azul w-full text-sm justify-center"
+                    className="btn btn-outline-verde w-full text-sm justify-center"
                   >
                     <ExternalLink size={14} />
                     Cómo llegar

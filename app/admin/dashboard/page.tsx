@@ -41,8 +41,7 @@ export default async function AdminDashboard() {
       <header className="bg-white border-b border-gray-100 shadow-sm">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div>
-            <h1 className="text-lg font-bold text-gray-900">Don Remondo · Admin</h1>
-            <p className="text-xs text-gray-400">Panel de gestión de coches</p>
+            <h1 className="text-lg font-bold text-gray-900">Catálogo de Coches</h1>
           </div>
           <div className="flex items-center gap-3">
             <Link

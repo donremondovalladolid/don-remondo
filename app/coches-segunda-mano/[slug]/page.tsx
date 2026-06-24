@@ -105,7 +105,7 @@ export default async function CocheDetallePage({ params }: Props) {
           {/* Breadcrumb */}
           <Link
             href="/coches-segunda-mano"
-            className="inline-flex items-center gap-2 text-sm text-[var(--color-azul-700)] hover:text-[var(--color-azul-900)] mb-8 font-semibold transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-[var(--color-verde-700)] hover:text-[var(--color-verde-900)] mb-8 font-semibold transition-colors"
           >
             <ArrowLeft size={15} />
             Volver al catálogo
@@ -134,8 +134,8 @@ export default async function CocheDetallePage({ params }: Props) {
                       key={label}
                       className="flex items-center gap-3 p-3 bg-white rounded-[var(--radius-lg)] border border-[var(--color-border-light)]"
                     >
-                      <div className="w-7 h-7 rounded-[var(--radius-sm)] bg-[var(--color-azul-100)] flex items-center justify-center shrink-0">
-                        <Icon size={14} className="text-[var(--color-azul-700)]" />
+                      <div className="w-7 h-7 rounded-[var(--radius-sm)] bg-[var(--color-verde-100)] flex items-center justify-center shrink-0">
+                        <Icon size={14} className="text-[var(--color-verde-700)]" />
                       </div>
                       <div className="min-w-0">
                         <p className="text-[0.65rem] text-[var(--color-text-muted)] uppercase tracking-wide leading-none mb-0.5">
@@ -191,7 +191,7 @@ export default async function CocheDetallePage({ params }: Props) {
               {/* Badges */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {coche.destacado && (
-                  <span className="badge badge-azul">Destacado</span>
+                  <span className="badge badge-verde">Destacado</span>
                 )}
                 <span className="badge badge-verde">
                   <CheckCircle2 size={11} />
@@ -208,11 +208,11 @@ export default async function CocheDetallePage({ params }: Props) {
               </p>
 
               {/* Precio */}
-              <div className="bg-[var(--color-azul-50)] rounded-[var(--radius-xl)] px-6 py-5 mb-5 border border-[var(--color-azul-200)]">
-                <p className="text-xs text-[var(--color-azul-600)] font-semibold uppercase tracking-[0.08em] mb-1">
+              <div className="bg-[var(--color-verde-50)] rounded-[var(--radius-xl)] px-6 py-5 mb-5 border border-[var(--color-verde-200)]">
+                <p className="text-xs text-[var(--color-verde-600)] font-semibold uppercase tracking-[0.08em] mb-1">
                   Precio
                 </p>
-                <p className="text-[var(--color-azul-800)] display-price">
+                <p className="text-[var(--color-verde-800)] display-price">
                   {coche.precio.toLocaleString("es-ES")} €
                 </p>
               </div>
@@ -222,7 +222,7 @@ export default async function CocheDetallePage({ params }: Props) {
                 <div className="grid grid-cols-2 gap-3">
                   <a
                     href={`tel:${TALLER_CONFIG.phoneRaw}`}
-                    className="btn btn-azul btn-lg justify-center text-center leading-tight"
+                    className="btn btn-verde btn-lg justify-center text-center leading-tight"
                     style={{ whiteSpace: "normal" }}
                   >
                     <Phone size={18} className="shrink-0" />
@@ -230,7 +230,7 @@ export default async function CocheDetallePage({ params }: Props) {
                   </a>
                   <a
                     href={`tel:${TALLER_CONFIG.phoneFueraHorarioRaw}`}
-                    className="btn btn-outline-azul btn-lg justify-center text-center leading-tight"
+                    className="btn btn-outline-verde btn-lg justify-center text-center leading-tight"
                     style={{ whiteSpace: "normal" }}
                   >
                     <Phone size={18} className="shrink-0" />
@@ -241,7 +241,7 @@ export default async function CocheDetallePage({ params }: Props) {
                   href={`/contacto?asunto=${encodeURIComponent(
                     `Consulta sobre ${coche.marca} ${coche.modelo} ${coche.anio}`
                   )}`}
-                  className="btn btn-outline-azul btn-lg justify-center"
+                  className="btn btn-outline-verde btn-lg justify-center"
                 >
                   Preguntar por este coche
                   <ArrowRight size={16} />
@@ -273,7 +273,7 @@ export default async function CocheDetallePage({ params }: Props) {
               </div>
               <Link
                 href="/coches-segunda-mano"
-                className="hidden sm:flex items-center gap-1.5 text-[var(--color-azul-700)] font-semibold text-sm hover:text-[var(--color-azul-900)] transition-colors"
+                className="hidden sm:flex items-center gap-1.5 text-[var(--color-verde-700)] font-semibold text-sm hover:text-[var(--color-verde-900)] transition-colors"
               >
                 Ver todos
                 <ArrowRight size={15} />
@@ -303,7 +303,7 @@ export default async function CocheDetallePage({ params }: Props) {
                         </div>
                       )}
                       {rel.destacado && (
-                        <span className="absolute top-2.5 left-2.5 badge badge-azul shadow-sm">
+                        <span className="absolute top-2.5 left-2.5 badge badge-verde shadow-sm">
                           Destacado
                         </span>
                       )}
@@ -324,10 +324,10 @@ export default async function CocheDetallePage({ params }: Props) {
                         ))}
                       </div>
                       <div className="flex items-center justify-between pt-3 border-t border-[var(--color-border-light)]">
-                        <span className="text-xl font-bold text-[var(--color-azul-700)] font-display">
+                        <span className="text-xl font-bold text-[var(--color-verde-700)] font-display">
                           {rel.precio.toLocaleString("es-ES")} €
                         </span>
-                        <span className="text-sm text-[var(--color-azul-600)] font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                        <span className="text-sm text-[var(--color-verde-600)] font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
                           Ver ficha <ArrowRight size={14} />
                         </span>
                       </div>

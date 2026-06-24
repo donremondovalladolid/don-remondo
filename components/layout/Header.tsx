@@ -19,14 +19,14 @@ const navLinks = [
     href: "/taller-coches-valladolid",
     label: "Taller",
     icon: Wrench,
-    accent: "azul",
+    accent: "verde",
     desc: "Mecánica · Valladolid",
   },
   {
     href: "/coches-segunda-mano",
     label: "Coches",
     icon: Car,
-    accent: "azul",
+    accent: "verde",
     desc: "Segunda mano · Garantizados",
   },
   {

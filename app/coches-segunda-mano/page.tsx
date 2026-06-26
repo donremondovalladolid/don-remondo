@@ -123,22 +123,6 @@ export default async function CochesPage() {
                 Estamos preparando el catálogo. Llámanos para consultar qué vehículos
                 tenemos disponibles.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                <a
-                  href={`tel:${TALLER_CONFIG.phoneRaw}`}
-                  className="btn btn-verde btn-lg"
-                >
-                  <Phone size={16} />
-                  Llamar: {TALLER_CONFIG.phone}
-                </a>
-                <a
-                  href={`tel:${TALLER_CONFIG.phoneFueraHorarioRaw}`}
-                  className="btn btn-outline-verde btn-lg"
-                >
-                  <Phone size={16} />
-                  {TALLER_CONFIG.phoneFueraHorario} (Fuera de horario)
-                </a>
-              </div>
             </div>
           ) : (
             <>

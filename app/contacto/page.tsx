@@ -70,7 +70,7 @@ export default function ContactoPage() {
               <Phone size={20} className="text-[var(--color-verde-600)] shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
-                  Teléfono Espárragos
+                  Teléfono General
                 </p>
                 <p className="font-display text-lg text-[var(--color-text)] group-hover:text-[var(--color-verde-700)] transition-colors">
                   {ESPARRAGOS_CONFIG.phone}
@@ -123,7 +123,7 @@ export default function ContactoPage() {
               <Mail size={20} className="text-[var(--color-verde-600)] shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide mb-0.5">
-                  Email espárragos
+                  Email Productos
                 </p>
                 <p className="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-verde-700)] transition-colors break-all">
                   {ESPARRAGOS_CONFIG.email}

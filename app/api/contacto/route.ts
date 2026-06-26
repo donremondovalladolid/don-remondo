@@ -23,16 +23,12 @@ export async function POST(request: Request) {
     // Configurar transporte SMTP
     // Se requiere configurar EMAIL_USER y EMAIL_PASS en el .env
     const transporter = nodemailer.createTransport({
-      host: "smtp-mail.outlook.com", // Servidor SMTP de Hotmail/Outlook
-      port: 587,
-      secure: false, // true para port 465, false para otros puertos
+      host: "smtp.gmail.com", // Servidor SMTP de Gmail
+      port: 465,
+      secure: true, // true para port 465
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
-      },
-      tls: {
-        ciphers: "SSLv3",
-        rejectUnauthorized: false, // A veces necesario para Hotmail
       },
     });
 

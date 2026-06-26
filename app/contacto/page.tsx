@@ -14,7 +14,7 @@ import {
   ESPARRAGOS_CONFIG,
   TALLER_CONFIG,
 } from "@/lib/config";
-import { getDynamicContacts } from "@/lib/db-config";
+import { getDynamicContacts, getDynamicSchedules } from "@/lib/db-config";
 import ContactForm from "@/components/contacto/ContactForm";
 
 export const metadata: Metadata = {
@@ -28,7 +28,10 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactoPage() {
-  const dynamicContacts = await getDynamicContacts();
+  const [dynamicContacts, dynamicSchedules] = await Promise.all([
+    getDynamicContacts(),
+    getDynamicSchedules()
+  ]);
   const ESPARRAGOS_CONTACT = dynamicContacts.esparragos;
   const TALLER_CONTACT = dynamicContacts.taller;
 
@@ -192,10 +195,12 @@ export default async function ContactoPage() {
                       <MapPin size={14} className="text-[var(--color-text-muted)] shrink-0 mt-0.5" />
                       <span>{ESPARRAGOS_CONFIG.address}</span>
                     </div>
-                    <div className="flex items-start gap-2">
-                      <Clock size={14} className="text-[var(--color-text-muted)] shrink-0 mt-0.5" />
-                      <span>{ESPARRAGOS_CONFIG.horario}</span>
-                    </div>
+                    {dynamicSchedules.esparragos_valladolid.map((linea, idx) => (
+                      <div key={idx} className="flex items-start gap-2">
+                        <Clock size={14} className="text-[var(--color-text-muted)] shrink-0 mt-0.5" />
+                        <span>{linea}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
                 <div className="map-container h-[180px]">
@@ -235,8 +240,8 @@ export default async function ContactoPage() {
                       <MapPin size={14} className="text-[var(--color-text-muted)] shrink-0 mt-0.5" />
                       <span>{TALLER_CONFIG.address}</span>
                     </div>
-                    {TALLER_CONFIG.horarioLineas.map((linea) => (
-                      <div key={linea} className="flex items-start gap-2">
+                    {dynamicSchedules.taller.map((linea, idx) => (
+                      <div key={idx} className="flex items-start gap-2">
                         <Clock size={14} className="text-[var(--color-text-muted)] shrink-0 mt-0.5" />
                         <span>{linea}</span>
                       </div>

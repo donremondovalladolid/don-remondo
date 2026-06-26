@@ -162,7 +162,7 @@ export default function CatalogoAdminPage() {
       prefix: "esparragos",
       items: Object.entries(IMAGES.esparragos).filter(([k]) => !["hero", "origen", "trigueroGrueso", "envasados", "blanco", "triguero"].includes(k)).map(([k, v]) => ({
         id: `esparragos.${k}`,
-        label: k.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()),
+        label: k === "trigueroFino" ? "Trigueros" : k.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()),
         defaultUrl: v as string,
       })),
     },

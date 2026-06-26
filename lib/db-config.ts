@@ -49,7 +49,7 @@ export async function getDynamicSchedules() {
     }
   }
 
-  return schedules;
+  return dynamicSchedules;
 }
 
 export async function getDynamicProductArrays() {

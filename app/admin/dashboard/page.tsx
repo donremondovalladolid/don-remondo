@@ -44,14 +44,6 @@ export default async function AdminDashboard() {
             <h1 className="text-lg font-bold text-gray-900">Catálogo de Coches</h1>
           </div>
           <div className="flex items-center gap-3">
-            <Link
-              href="/"
-              target="_blank"
-              className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-gray-900 border border-gray-200 px-3 py-1.5 rounded-lg"
-            >
-              <Eye size={14} />
-              Ver web
-            </Link>
             <LogoutButton />
           </div>
         </div>

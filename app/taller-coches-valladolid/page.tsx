@@ -268,28 +268,28 @@ export default async function TallerPage() {
               <img
                 src={dynamicImages.taller.equipo}
                 alt="Equipo de mecánicos Don Remondo"
-                className="w-full h-full object-cover object-top scroll-fade-up"
+                className="w-full h-full object-cover object-top"
               />
             </div>
             <div className="relative aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden">
               <img
                 src={dynamicImages.taller.interior}
                 alt="Interior taller Don Remondo"
-                className="w-full h-full object-cover scroll-fade-up"
+                className="w-full h-full object-cover"
               />
             </div>
             <div className="relative aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden">
               <img
                 src={dynamicImages.taller.interior2}
                 alt="Taller zona 2"
-                className="w-full h-full object-cover scroll-fade-up"
+                className="w-full h-full object-cover"
               />
             </div>
             <div className="relative aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden">
               <img
                 src={dynamicImages.taller.interior3}
                 alt="Taller zona 3"
-                className="w-full h-full object-cover scroll-fade-up"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
@@ -311,9 +311,9 @@ export default async function TallerPage() {
             <div className="flex flex-wrap justify-center gap-3">
               <a
                 href={`tel:${TALLER_CONTACT.phoneRaw}`}
-                className="btn btn-verde w-full justify-center"
+                className="btn btn-verde btn-lg"
               >
-                <Phone size={16} />
+                <Phone size={17} />
                 {TALLER_CONTACT.phone}
               </a>
               <a
@@ -378,22 +378,6 @@ export default async function TallerPage() {
               <p className="text-[var(--color-text-muted)] text-sm mb-6 max-w-sm mx-auto">
                 Estamos preparando el catálogo. Llámanos para consultar disponibilidad.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                <a
-                  href={`tel:${TALLER_CONTACT.phoneRaw}`}
-                  className="btn btn-verde btn-lg"
-                >
-                  <Phone size={16} />
-                  Llamar: {TALLER_CONTACT.phone}
-                </a>
-                <a
-                  href={`tel:${TALLER_CONTACT.phoneFueraHorarioRaw}`}
-                  className="btn btn-outline-verde btn-lg"
-                >
-                  <Phone size={16} />
-                  {TALLER_CONTACT.phoneFueraHorario} (Fuera de horario)
-                </a>
-              </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

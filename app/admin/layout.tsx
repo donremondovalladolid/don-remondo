@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Car, Clock, Image as ImageIcon, LayoutDashboard, Phone, ShoppingBag } from "lucide-react";
+import { Car, Clock, Image as ImageIcon, LayoutDashboard, Phone, ShoppingBag, Eye } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -10,8 +10,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const navItems = [
     { name: "Coches", href: "/admin/dashboard", icon: Car },
     { name: "Horarios", href: "/admin/horarios", icon: Clock },
-    { name: "Imágenes", href: "/admin/imagenes", icon: ImageIcon },
-    { name: "Catálogo", href: "/admin/catalogo", icon: ShoppingBag },
+    { name: "Catálogo e Imágenes", href: "/admin/catalogo", icon: ShoppingBag },
     { name: "Contacto", href: "/admin/contacto", icon: Phone },
   ];
 
@@ -50,6 +49,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             );
           })}
         </nav>
+        <div className="p-4 border-t border-gray-100">
+          <Link 
+            href="/" 
+            target="_blank" 
+            className="flex items-center justify-center gap-2 w-full py-2.5 bg-gray-50 hover:bg-gray-100 border border-gray-200 text-gray-700 rounded-lg text-sm font-medium transition-colors"
+          >
+            <Eye size={16} className="text-gray-500" />
+            Ver web pública
+          </Link>
+        </div>
       </aside>
 
       {/* Main Content */}

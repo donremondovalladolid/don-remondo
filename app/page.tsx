@@ -104,14 +104,6 @@ export default function HomePage() {
             >
               {/* Header visual */}
               <div className="relative px-8 pt-10 pb-14 overflow-hidden bg-[var(--color-verde-800)]">
-                {/* Logo de fondo */}
-                <div className="absolute top-1/2 -translate-y-1/2 right-0 lg:-right-4 z-0 opacity-40 pointer-events-none">
-                  <img
-                    src="/images/logo-esparragos-blanco.png"
-                    alt=""
-                    className="w-40 lg:w-48 object-contain"
-                  />
-                </div>
                 {/* Gradiente para que destaque el texto */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 <div className="relative">
@@ -171,19 +163,6 @@ export default function HomePage() {
             >
               {/* Header visual */}
               <div className="relative px-8 pt-10 pb-14 overflow-hidden bg-zinc-900">
-                {/* Logo de fondo */}
-                <div className="absolute top-1/2 -translate-y-1/2 right-0 lg:-right-4 z-0 opacity-60 pointer-events-none w-48 h-48 lg:w-56 lg:h-56"
-                    style={{
-                      maskImage: "radial-gradient(circle, black 30%, transparent 70%)",
-                      WebkitMaskImage: "radial-gradient(circle, black 30%, transparent 70%)"
-                    }}
-                >
-                  <img
-                    src="/images/logo-taller.jpeg"
-                    alt=""
-                    className="w-full h-full object-contain mix-blend-lighten"
-                  />
-                </div>
                 {/* Gradiente para que destaque el texto */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 <div className="relative">

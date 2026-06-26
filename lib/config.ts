@@ -214,8 +214,8 @@ export const IMAGES = {
     blancoPrimera: "/images/esparragos/real_primera.jpeg",
     blancoSegunda: "/images/esparragos/real_segunda.jpeg",
     blancoTercera: "/images/esparragos/real_tercera.png",
-    trigueroFino: "/images/esparragos/real_triguero.jpeg",
-    trigueroGrueso: "/images/esparragos/real_triguero.jpeg",
+    trigueroFino: "/images/esparragos/real_trigueros.png",
+    trigueroGrueso: "/images/esparragos/real_trigueros.png",
     envasados: "/images/esparragos/esparragos_envasados.jpeg",
     /** fallback SVG para categorías sin foto propia */
     blanco: "/images/productos/esparragos-blanco.svg",

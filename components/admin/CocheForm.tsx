@@ -61,16 +61,26 @@ export default function CocheForm({ initialData }: { initialData?: Partial<Coche
 
     setUploading(true);
     try {
-      const formData = new FormData();
-      fileArray.forEach((f) => formData.append("files", f));
+      const uploadedUrls: string[] = [];
+      
+      // Subir de uno en uno para evitar el límite de 4.5MB de Vercel (Payload Too Large)
+      for (const f of fileArray) {
+        const formData = new FormData();
+        formData.append("files", f);
 
-      const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
-      if (!res.ok) throw new Error("Error en el servidor");
+        const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
+        if (!res.ok) throw new Error(`Error en el servidor al subir ${f.name}`);
 
-      const { urls } = await res.json() as { urls: string[] };
-      set("fotos", [...data.fotos, ...urls]);
-    } catch {
-      setError("Error al subir las fotos. Comprueba que son imágenes válidas.");
+        const { urls } = await res.json() as { urls: string[] };
+        if (urls && urls.length > 0) {
+          uploadedUrls.push(...urls);
+        }
+      }
+
+      set("fotos", [...data.fotos, ...uploadedUrls]);
+    } catch (err) {
+      console.error(err);
+      setError("Error al subir las fotos. Comprueba que no superen los 4MB cada una.");
     } finally {
       setUploading(false);
     }

@@ -164,6 +164,8 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
       <button
         type="button"
         onClick={() => {
+          alert("¡El botón funciona y el Javascript está vivo!");
+          
           const nombre = (document.getElementById("nombre") as HTMLInputElement).value;
           const email = (document.getElementById("email") as HTMLInputElement).value;
           const telefono = (document.getElementById("telefono") as HTMLInputElement).value;

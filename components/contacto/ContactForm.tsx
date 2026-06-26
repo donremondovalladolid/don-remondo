@@ -8,16 +8,14 @@ type FormState = { status: "idle" | "loading" | "success" | "error", message?: s
 export default function ContactForm({ asunto }: { asunto?: string }) {
   const [state, setState] = useState<FormState>({ status: "idle" });
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  async function formAction(formData: FormData) {
     setState({ status: "loading" });
-    const form = e.currentTarget;
     const data = {
-      nombre: (form.elements.namedItem("nombre") as HTMLInputElement).value,
-      email: (form.elements.namedItem("email") as HTMLInputElement).value,
-      telefono: (form.elements.namedItem("telefono") as HTMLInputElement).value,
-      asunto: (form.elements.namedItem("asunto") as HTMLSelectElement).value,
-      mensaje: (form.elements.namedItem("mensaje") as HTMLTextAreaElement).value,
+      nombre: formData.get("nombre") as string,
+      email: formData.get("email") as string,
+      telefono: formData.get("telefono") as string,
+      asunto: formData.get("asunto") as string,
+      mensaje: formData.get("mensaje") as string,
     };
 
     try {
@@ -33,7 +31,6 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
       }
 
       setState({ status: "success" });
-      form.reset();
     } catch (err: any) {
       setState({ status: "error", message: err.message });
     }
@@ -63,7 +60,7 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form action={formAction} className="space-y-5">
       {/* Nombre + Teléfono */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>

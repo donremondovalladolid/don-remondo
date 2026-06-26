@@ -8,11 +8,17 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 function createPrismaClient() {
-  const url = process.env.DATABASE_URL;
+  let url = process.env.DATABASE_URL;
   const authToken = process.env.TURSO_AUTH_TOKEN;
 
+  // En Vercel (Serverless) las conexiones WebSocket (libsql://) fallan a menudo.
+  // Turso recomienda forzar HTTP (https://) en entornos Serverless.
+  if (url && url.startsWith("libsql://")) {
+    url = url.replace("libsql://", "https://");
+  }
+
   // Si estamos en producción o tenemos configurado Turso, usamos el adaptador
-  if (url && url.startsWith("libsql://") && authToken) {
+  if (url && url.startsWith("https://") && authToken) {
     const libsql = createClient({
       url,
       authToken,

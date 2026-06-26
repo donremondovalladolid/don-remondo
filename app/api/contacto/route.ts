@@ -57,10 +57,10 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ ok: true });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error al enviar email:", error);
     return NextResponse.json(
-      { error: "No se pudo enviar el mensaje." },
+      { error: `Error de servidor: ${error.message || String(error)}` },
       { status: 500 }
     );
   }

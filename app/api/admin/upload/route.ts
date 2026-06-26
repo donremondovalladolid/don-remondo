@@ -49,8 +49,8 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ urls });
-  } catch (err) {
+  } catch (err: any) {
     console.error("[upload] error:", err);
-    return NextResponse.json({ error: "Error al subir los archivos" }, { status: 500 });
+    return NextResponse.json({ error: `Error interno: ${err.message || String(err)}` }, { status: 500 });
   }
 }

@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
-type FormState = "idle" | "loading" | "success" | "error";
+type FormState = { status: "idle" | "loading" | "success" | "error", message?: string };
 
 export default function ContactForm({ asunto }: { asunto?: string }) {
-  const [state, setState] = useState<FormState>("idle");
+  const [state, setState] = useState<FormState>({ status: "idle" });
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setState("loading");
+    setState({ status: "loading" });
     const form = e.currentTarget;
     const data = {
       nombre: (form.elements.namedItem("nombre") as HTMLInputElement).value,
@@ -26,18 +26,20 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (res.ok) {
-        setState("success");
-        form.reset();
-      } else {
-        setState("error");
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.error || "Error de servidor al enviar el mensaje");
       }
-    } catch {
-      setState("error");
+
+      setState({ status: "success" });
+      form.reset();
+    } catch (err: any) {
+      setState({ status: "error", message: err.message });
     }
   }
 
-  if (state === "success") {
+  if (state.status === "success") {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-up">
         <div className="w-16 h-16 rounded-full bg-[var(--color-verde-100)] flex items-center justify-center mb-5">
@@ -159,22 +161,22 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
       </div>
 
       {/* Error */}
-      {state === "error" && (
-        <div className="flex items-center gap-2.5 text-red-700 text-sm bg-red-50 border border-red-100 p-3.5 rounded-xl">
-          <AlertCircle size={16} className="shrink-0" />
-          <span>
-            Error al enviar el mensaje. Por favor llámanos directamente.
-          </span>
+      {state.status === "error" && (
+        <div className="p-4 bg-[var(--color-rojo-50)] text-[var(--color-rojo-800)] text-sm rounded-lg flex items-start gap-3">
+          <AlertCircle size={18} className="shrink-0 mt-0.5 text-[var(--color-rojo-600)]" />
+          <p>
+            {state.message || "Algo ha salido mal. Por favor, intenta enviarlo de nuevo o contáctanos directamente por teléfono."}
+          </p>
         </div>
       )}
 
       {/* Submit */}
       <button
         type="submit"
-        disabled={state === "loading"}
+        disabled={state.status === "loading"}
         className="btn btn-verde btn-lg w-full"
       >
-        {state === "loading" ? (
+        {state.status === "loading" ? (
           <>
             <Loader2 size={18} className="animate-spin" />
             Enviando...

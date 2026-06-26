@@ -69,7 +69,10 @@ export default function CocheForm({ initialData }: { initialData?: Partial<Coche
         formData.append("files", f);
 
         const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
-        if (!res.ok) throw new Error(`Error en el servidor al subir ${f.name}`);
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.error || `Error en el servidor al subir ${f.name}`);
+        }
 
         const { urls } = await res.json() as { urls: string[] };
         if (urls && urls.length > 0) {
@@ -78,9 +81,9 @@ export default function CocheForm({ initialData }: { initialData?: Partial<Coche
       }
 
       set("fotos", [...data.fotos, ...uploadedUrls]);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      setError("Error al subir las fotos. Comprueba que no superen los 4MB cada una.");
+      setError(err.message || "Error al subir las fotos. Comprueba que no superen los 4MB cada una.");
     } finally {
       setUploading(false);
     }

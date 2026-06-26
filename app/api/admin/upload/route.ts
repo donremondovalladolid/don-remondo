@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
+import { put } from "@vercel/blob";
 
-// Ruta absoluta a public/uploads/coches (relativa al proceso de Next.js)
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "coches");
 
 function sanitizeName(name: string) {
@@ -22,24 +22,30 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "No se recibieron archivos" }, { status: 400 });
     }
 
-    // Asegurar que el directorio existe
-    await mkdir(UPLOAD_DIR, { recursive: true });
-
     const urls: string[] = [];
 
+    // Validar y subir cada archivo
     for (const file of files) {
-      // Validar que es imagen
       if (!file.type.startsWith("image/")) continue;
 
       const ext = file.name.split(".").pop() ?? "jpg";
       const baseName = sanitizeName(file.name.replace(/\.[^.]+$/, ""));
       const uniqueName = `${Date.now()}-${baseName}.${ext}`;
-      const filePath = path.join(UPLOAD_DIR, uniqueName);
 
-      const buffer = Buffer.from(await file.arrayBuffer());
-      await writeFile(filePath, buffer);
-
-      urls.push(`/uploads/coches/${uniqueName}`);
+      if (process.env.BLOB_READ_WRITE_TOKEN) {
+        // Upload to Vercel Blob
+        const blob = await put(`coches/${uniqueName}`, file, {
+          access: 'public',
+        });
+        urls.push(blob.url);
+      } else {
+        // Fallback local
+        await mkdir(UPLOAD_DIR, { recursive: true });
+        const filePath = path.join(UPLOAD_DIR, uniqueName);
+        const buffer = Buffer.from(await file.arrayBuffer());
+        await writeFile(filePath, buffer);
+        urls.push(`/uploads/coches/${uniqueName}`);
+      }
     }
 
     return NextResponse.json({ urls });

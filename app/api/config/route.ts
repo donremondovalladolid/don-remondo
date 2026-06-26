@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 export async function POST(request: Request) {
   try {
@@ -15,6 +16,9 @@ export async function POST(request: Request) {
       create: { key, value, type },
     });
 
+    // Revalidate paths to reflect dynamic content updates instantly
+    revalidatePath("/", "layout");
+    
     return NextResponse.json(config);
   } catch (error) {
     console.error("Error saving config:", error);

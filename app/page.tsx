@@ -6,25 +6,31 @@ import {
 } from "lucide-react";
 import { SITE_CONFIG, ESPARRAGOS_CONFIG, TALLER_CONFIG, IMAGES } from "@/lib/config";
 
-const schemaOrg = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: SITE_CONFIG.name,
-  url: SITE_CONFIG.url,
-  telephone: SITE_CONFIG.phoneRaw,
-  description:
-    "Negocio familiar en Valladolid. Productos frescos de producción propia y taller mecánico con compra-venta de coches.",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Valladolid",
-    addressRegion: "Castilla y León",
-    addressCountry: "ES",
-  },
-  sameAs: [ESPARRAGOS_CONFIG.mapsUrl, TALLER_CONFIG.mapsUrl],
-};
+import { getDynamicContacts } from "@/lib/db-config";
 
 
-export default function HomePage() {
+export default async function HomePage() {
+  const dynamicContacts = await getDynamicContacts();
+  const ESPARRAGOS_CONTACT = dynamicContacts.esparragos;
+  const TALLER_CONTACT = dynamicContacts.taller;
+
+  const schemaOrg = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_CONFIG.name,
+    url: SITE_CONFIG.url,
+    telephone: SITE_CONFIG.phoneRaw,
+    description:
+      "Negocio familiar en Valladolid. Productos frescos de producción propia y taller mecánico con compra-venta de coches.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Valladolid",
+      addressRegion: "Castilla y León",
+      addressCountry: "ES",
+    },
+    sameAs: [ESPARRAGOS_CONTACT.mapsUrl, TALLER_CONTACT.mapsUrl],
+  };
+
   return (
     <>
       <script
@@ -142,11 +148,11 @@ export default function HomePage() {
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-1.5 text-xs text-[var(--color-text-muted)]">
                       <MapPin size={11} className="shrink-0" />
-                      {ESPARRAGOS_CONFIG.addressShort}, Valladolid
+                      {ESPARRAGOS_CONTACT.addressShort}, Valladolid
                     </div>
                     <div className="flex items-center gap-1.5 text-xs text-[var(--color-text-muted)]">
                       <Clock size={11} className="shrink-0" />
-                      {ESPARRAGOS_CONFIG.horario}
+                      {ESPARRAGOS_CONTACT.horario}
                     </div>
                   </div>
                   <div className="flex items-center gap-1 text-[var(--color-verde-700)] font-semibold text-sm group-hover:gap-2 transition-all">
@@ -201,7 +207,7 @@ export default function HomePage() {
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-1.5 text-xs text-[var(--color-text-muted)]">
                       <MapPin size={11} className="shrink-0" />
-                      {TALLER_CONFIG.addressShort}, Valladolid
+                      {TALLER_CONTACT.addressShort}, Valladolid
                     </div>
                     <div className="flex items-center gap-1.5 text-xs text-[var(--color-text-muted)]">
                       <Clock size={11} className="shrink-0" />

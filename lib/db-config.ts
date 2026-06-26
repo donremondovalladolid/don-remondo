@@ -1,5 +1,5 @@
 import { prisma } from "./prisma";
-import { TALLER_CONFIG, ESPARRAGOS_CONFIG, IMAGES, PRODUCTOS_TODO_EL_ANO, PRODUCTOS_TEMPORADA, ESPARRAGOS_BLANCO_CATEGORIAS } from "./config";
+import { TALLER_CONFIG, ESPARRAGOS_CONFIG, IMAGES, PRODUCTOS_TODO_EL_ANO, PRODUCTOS_TEMPORADA, ESPARRAGOS_BLANCO_CATEGORIAS, ESPARRAGOS_TRIGUERO_VARIEDADES } from "./config";
 
 // Recursive function to update object with overrides based on paths
 function applyOverrides(base: any, path: string, value: string) {
@@ -75,13 +75,46 @@ export async function getDynamicProductArrays() {
       }
 
       const overrideUrl = configMap.get(matchedKey);
-      return { ...p, imagen: overrideUrl || p.imagen };
+      return { ...p, imagen: overrideUrl || p.imagen, visible: true };
+    });
+  };
+
+  const productVisibilityOverrides = await prisma.configStore.findMany({
+    where: { type: "product_visibility" }
+  });
+  const visibilityMap = new Map(productVisibilityOverrides.map(o => [o.key, o.value === "true"]));
+
+  const applyVisibility = (products: any[]) => {
+    return products.map(p => {
+      const key = p.nombre.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '');
+      const visible = visibilityMap.has(key) ? visibilityMap.get(key) : true;
+      return { ...p, visible };
     });
   };
 
   return {
-    todoElAno: mapProducts([...PRODUCTOS_TODO_EL_ANO], "productos"),
-    temporada: mapProducts([...PRODUCTOS_TEMPORADA], "productos"),
-    blancoCategorias: mapProducts([...ESPARRAGOS_BLANCO_CATEGORIAS], "esparragos.blanco"), // This is complex, better to use IMAGES mapping.
+    todoElAno: applyVisibility(mapProducts([...PRODUCTOS_TODO_EL_ANO], "productos")),
+    temporada: applyVisibility(mapProducts([...PRODUCTOS_TEMPORADA], "productos")),
+    blancoCategorias: applyVisibility(mapProducts([...ESPARRAGOS_BLANCO_CATEGORIAS], "esparragos.blanco")), // This is complex, better to use IMAGES mapping.
+    trigueroVariedades: applyVisibility(mapProducts([...ESPARRAGOS_TRIGUERO_VARIEDADES], "esparragos.triguero")),
   };
+}
+
+export async function getDynamicContacts() {
+  const overrides = await prisma.configStore.findMany({
+    where: { type: "contact" },
+  });
+
+  const dynamicEsparragos = JSON.parse(JSON.stringify(ESPARRAGOS_CONFIG));
+  const dynamicTaller = JSON.parse(JSON.stringify(TALLER_CONFIG));
+
+  for (const override of overrides) {
+    if (override.key.startsWith("esparragos.")) {
+      applyOverrides(dynamicEsparragos, override.key.replace("esparragos.", ""), override.value);
+    } else if (override.key.startsWith("taller.")) {
+      applyOverrides(dynamicTaller, override.key.replace("taller.", ""), override.value);
+    }
+  }
+
+  return { esparragos: dynamicEsparragos, taller: dynamicTaller };
 }

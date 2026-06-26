@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, MapPin, Leaf, Wrench } from "lucide-react";
-import { SITE_CONFIG, ESPARRAGOS_CONFIG, TALLER_CONFIG, IMAGES } from "@/lib/config";
+import { SITE_CONFIG, IMAGES } from "@/lib/config";
+import { getDynamicContacts } from "@/lib/db-config";
 
 const footerLinks = {
   productos: [
@@ -19,7 +20,11 @@ const footerLinks = {
   ],
 };
 
-export default function Footer() {
+export default async function Footer() {
+  const dynamicContacts = await getDynamicContacts();
+  const ESPARRAGOS_CONTACT = dynamicContacts.esparragos;
+  const TALLER_CONTACT = dynamicContacts.taller;
+
   return (
     <footer className="bg-[var(--color-stone-800)] text-[var(--color-stone-300)]">
 
@@ -71,11 +76,11 @@ export default function Footer() {
           <div className="text-xs text-[var(--color-stone-500)] space-y-1">
             <div className="flex items-start gap-1.5">
               <MapPin size={11} className="mt-0.5 shrink-0" />
-              <span>{ESPARRAGOS_CONFIG.addressShort}, Valladolid</span>
+              <span>{ESPARRAGOS_CONTACT.addressShort}, Valladolid</span>
             </div>
             <div className="flex items-start gap-1.5">
               <span className="w-[11px] shrink-0" />
-              <span>Espárragos: {ESPARRAGOS_CONFIG.temporada}</span>
+              <span>Espárragos: {ESPARRAGOS_CONTACT.temporada}</span>
             </div>
           </div>
         </div>
@@ -102,7 +107,7 @@ export default function Footer() {
           <div className="text-xs text-[var(--color-stone-500)] space-y-1">
             <div className="flex items-start gap-1.5">
               <MapPin size={11} className="mt-0.5 shrink-0" />
-              <span>{TALLER_CONFIG.addressShort}, Valladolid</span>
+              <span>{TALLER_CONTACT.addressShort}, Valladolid</span>
             </div>
             <div className="flex items-start gap-1.5">
               <span className="w-[11px] shrink-0" />

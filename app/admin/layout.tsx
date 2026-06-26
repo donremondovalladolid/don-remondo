@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Car, Clock, Image as ImageIcon, LayoutDashboard } from "lucide-react";
+import { Car, Clock, Image as ImageIcon, LayoutDashboard, Phone, ShoppingBag } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -11,6 +11,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { name: "Coches", href: "/admin/dashboard", icon: Car },
     { name: "Horarios", href: "/admin/horarios", icon: Clock },
     { name: "Imágenes", href: "/admin/imagenes", icon: ImageIcon },
+    { name: "Catálogo", href: "/admin/catalogo", icon: ShoppingBag },
+    { name: "Contacto", href: "/admin/contacto", icon: Phone },
   ];
 
   // If we are on the login page, don't show the sidebar

@@ -10,12 +10,9 @@ import {
   ESPARRAGOS_CONFIG,
   SITE_CONFIG,
   ESPARRAGOS_ENVIOS,
-  ESPARRAGOS_BLANCO_CATEGORIAS,
-  ESPARRAGOS_TRIGUERO_VARIEDADES,
-  PRODUCTOS_TODO_EL_ANO,
-  PRODUCTOS_TEMPORADA,
   IMAGES,
 } from "@/lib/config";
+import { getDynamicProductArrays } from "@/lib/db-config";
 
 export const metadata: Metadata = {
   title: "Espárragos y Productos Frescos Valladolid | Don Remondo",
@@ -117,7 +114,14 @@ const mesesInvierno = [
   { mes: "Dic", activo: true },
 ];
 
-export default function ProductosPage() {
+export default async function ProductosPage() {
+  const dynamicProducts = await getDynamicProductArrays();
+  
+  const blancoCategorias = dynamicProducts.blancoCategorias.filter(p => p.visible !== false);
+  const trigueroVariedades = dynamicProducts.trigueroVariedades.filter(p => p.visible !== false);
+  const todoElAno = dynamicProducts.todoElAno.filter(p => p.visible !== false);
+  const temporada = dynamicProducts.temporada.filter(p => p.visible !== false);
+
   return (
     <main>
       <script
@@ -232,7 +236,7 @@ export default function ProductosPage() {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {ESPARRAGOS_BLANCO_CATEGORIAS.map((cat) => (
+              {blancoCategorias.map((cat) => (
                 <div
                   key={cat.nombre}
                   className="card p-0 overflow-hidden"
@@ -290,18 +294,20 @@ export default function ProductosPage() {
             <div className="card p-0 overflow-hidden max-w-3xl">
               <div className="flex flex-col sm:flex-row">
                 <div className="relative w-full sm:w-2/5 aspect-[4/5] sm:aspect-auto bg-[var(--color-verde-50)]">
-                  <Image
-                    src={ESPARRAGOS_TRIGUERO_VARIEDADES[0].imagen}
-                    alt="Espárragos trigueros de producción propia"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, 40vw"
-                  />
+                  {trigueroVariedades[0] && (
+                    <Image
+                      src={trigueroVariedades[0].imagen}
+                      alt="Espárragos trigueros de producción propia"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 40vw"
+                    />
+                  )}
                 </div>
                 <div className="flex-1 p-6 sm:p-8 flex flex-col justify-center">
                   <h4 className="text-xl font-semibold mb-6 text-[var(--color-text)]">Variedades disponibles</h4>
                   <div className="space-y-6">
-                    {ESPARRAGOS_TRIGUERO_VARIEDADES.map((v) => (
+                    {trigueroVariedades.map((v) => (
                       <div key={v.nombre}>
                         <div className="flex items-center gap-2 mb-1.5">
                           <h5 className="font-semibold text-[var(--color-text)] text-lg">{v.nombre}</h5>
@@ -338,7 +344,7 @@ export default function ProductosPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PRODUCTOS_TODO_EL_ANO.map((producto) => (
+            {todoElAno.map((producto) => (
               <div
                 key={producto.nombre}
                 className="card p-0 overflow-hidden"
@@ -433,7 +439,7 @@ export default function ProductosPage() {
               ))}
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-              {PRODUCTOS_TEMPORADA.filter((p) => p.temporada === "Septiembre – Diciembre").map((p) => (
+              {temporada.filter((p) => p.temporada === "Septiembre – Diciembre").map((p) => (
                 <div key={p.nombre} className="card p-0 overflow-hidden">
                   <div className="aspect-square bg-[var(--color-stone-50)] overflow-hidden relative">
                     <Image src={p.imagen} alt={p.nombre} fill className="object-cover" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw" />
@@ -470,7 +476,7 @@ export default function ProductosPage() {
               ))}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
-              {PRODUCTOS_TEMPORADA.filter((p) => p.temporada === "Diciembre – Febrero").map((p) => (
+              {temporada.filter((p) => p.temporada === "Diciembre – Febrero").map((p) => (
                 <div key={p.nombre} className="card p-0 overflow-hidden">
                   <div className="aspect-[3/2] bg-[var(--color-stone-50)] overflow-hidden relative">
                     <Image src={p.imagen} alt={p.nombre} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />

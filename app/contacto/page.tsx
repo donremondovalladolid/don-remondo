@@ -14,6 +14,7 @@ import {
   ESPARRAGOS_CONFIG,
   TALLER_CONFIG,
 } from "@/lib/config";
+import { getDynamicContacts } from "@/lib/db-config";
 import ContactForm from "@/components/contacto/ContactForm";
 
 export const metadata: Metadata = {
@@ -26,7 +27,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactoPage() {
+export default async function ContactoPage() {
+  const dynamicContacts = await getDynamicContacts();
+  const ESPARRAGOS_CONTACT = dynamicContacts.esparragos;
+  const TALLER_CONTACT = dynamicContacts.taller;
+
   return (
     <>
       {/* ── HERO ── */}
@@ -64,7 +69,7 @@ export default function ContactoPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {/* Teléfono Espárragos */}
             <a
-              href={`tel:${ESPARRAGOS_CONFIG.phoneRaw}`}
+              href={`tel:${ESPARRAGOS_CONTACT.phoneRaw}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
               <Phone size={20} className="text-[var(--color-verde-600)] shrink-0 mt-0.5" />
@@ -73,7 +78,7 @@ export default function ContactoPage() {
                   Teléfono General
                 </p>
                 <p className="font-display text-lg text-[var(--color-text)] group-hover:text-[var(--color-verde-700)] transition-colors">
-                  {ESPARRAGOS_CONFIG.phone}
+                  {ESPARRAGOS_CONTACT.phone}
                 </p>
                 <p className="text-xs text-[var(--color-text-muted)] mt-0.5">Llamar ahora</p>
               </div>
@@ -81,7 +86,7 @@ export default function ContactoPage() {
 
             {/* Teléfono Taller */}
             <a
-              href={`tel:${TALLER_CONFIG.phoneRaw}`}
+              href={`tel:${TALLER_CONTACT.phoneRaw}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
               <Phone size={20} className="text-[var(--color-verde-600)] shrink-0 mt-0.5" />
@@ -90,7 +95,7 @@ export default function ContactoPage() {
                   Teléfono Taller / Coches
                 </p>
                 <p className="font-display text-lg text-[var(--color-text)] group-hover:text-[var(--color-verde-700)] transition-colors">
-                  {TALLER_CONFIG.phone}
+                  {TALLER_CONTACT.phone}
                 </p>
                 <p className="text-xs text-[var(--color-text-muted)] mt-0.5">Llamar ahora</p>
               </div>
@@ -98,7 +103,7 @@ export default function ContactoPage() {
 
             {/* WhatsApp Taller */}
             <a
-              href={`https://wa.me/34${TALLER_CONFIG.whatsappRaw}`}
+              href={`https://wa.me/34${TALLER_CONTACT.whatsappRaw}`}
               target="_blank"
               rel="noopener noreferrer"
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
@@ -109,7 +114,7 @@ export default function ContactoPage() {
                   WhatsApp Taller
                 </p>
                 <p className="font-display text-lg text-[var(--color-text)] group-hover:text-[var(--color-verde-700)] transition-colors">
-                  {TALLER_CONFIG.whatsapp}
+                  {TALLER_CONTACT.whatsapp}
                 </p>
                 <p className="text-xs text-[var(--color-text-muted)] mt-0.5">Escríbenos por WhatsApp</p>
               </div>
@@ -117,7 +122,7 @@ export default function ContactoPage() {
 
             {/* Email espárragos */}
             <a
-              href={`mailto:${ESPARRAGOS_CONFIG.email}`}
+              href={`mailto:${ESPARRAGOS_CONTACT.email}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
               <Mail size={20} className="text-[var(--color-verde-600)] shrink-0 mt-0.5" />
@@ -126,14 +131,14 @@ export default function ContactoPage() {
                   Email Productos
                 </p>
                 <p className="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-verde-700)] transition-colors break-all">
-                  {ESPARRAGOS_CONFIG.email}
+                  {ESPARRAGOS_CONTACT.email}
                 </p>
               </div>
             </a>
 
             {/* Email taller */}
             <a
-              href={`mailto:${TALLER_CONFIG.email}`}
+              href={`mailto:${TALLER_CONTACT.email}`}
               className="card p-6 flex items-start gap-4 hover:shadow-md transition-shadow group"
             >
               <Mail size={20} className="text-[var(--color-verde-600)] shrink-0 mt-0.5" />
@@ -142,7 +147,7 @@ export default function ContactoPage() {
                   Email taller / Coches
                 </p>
                 <p className="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-verde-700)] transition-colors break-all">
-                  {TALLER_CONFIG.email}
+                  {TALLER_CONTACT.email}
                 </p>
               </div>
             </a>

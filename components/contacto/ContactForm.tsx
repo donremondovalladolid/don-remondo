@@ -8,15 +8,8 @@ type FormState = { status: "idle" | "loading" | "success" | "error", message?: s
 export default function ContactForm({ asunto }: { asunto?: string }) {
   const [state, setState] = useState<FormState>({ status: "idle" });
 
-  async function formAction(formData: FormData) {
+  async function handleSubmit(data: { nombre: string; email: string; telefono: string; asunto: string; mensaje: string }) {
     setState({ status: "loading" });
-    const data = {
-      nombre: formData.get("nombre") as string,
-      email: formData.get("email") as string,
-      telefono: formData.get("telefono") as string,
-      asunto: formData.get("asunto") as string,
-      mensaje: formData.get("mensaje") as string,
-    };
 
     try {
       const res = await fetch("/api/contacto", {
@@ -60,7 +53,7 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
   }
 
   return (
-    <form action={formAction} className="space-y-5">
+    <div className="space-y-5">
       {/* Nombre + Teléfono */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
@@ -169,7 +162,21 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
 
       {/* Submit */}
       <button
-        type="submit"
+        type="button"
+        onClick={() => {
+          const nombre = (document.getElementById("nombre") as HTMLInputElement).value;
+          const email = (document.getElementById("email") as HTMLInputElement).value;
+          const telefono = (document.getElementById("telefono") as HTMLInputElement).value;
+          const asunto = (document.getElementById("asunto") as HTMLSelectElement).value;
+          const mensaje = (document.getElementById("mensaje") as HTMLTextAreaElement).value;
+
+          if (!nombre || !email || !asunto || !mensaje) {
+            setState({ status: "error", message: "Por favor, rellena todos los campos obligatorios." });
+            return;
+          }
+
+          handleSubmit({ nombre, email, telefono, asunto, mensaje });
+        }}
         disabled={state.status === "loading"}
         className="btn btn-verde btn-lg w-full"
       >
@@ -187,6 +194,6 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
         Campos marcados con{" "}
         <span className="text-[var(--color-verde-600)] font-medium">*</span> son obligatorios
       </p>
-    </form>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import { prisma } from "./prisma";
-import { TALLER_CONFIG, ESPARRAGOS_CONFIG, ESPARRAGOS_REMONDO_CONFIG, IMAGES, PRODUCTOS_TODO_EL_ANO, PRODUCTOS_TEMPORADA, ESPARRAGOS_BLANCO_CATEGORIAS } from "./config";
+import { TALLER_CONFIG, ESPARRAGOS_CONFIG, IMAGES, PRODUCTOS_TODO_EL_ANO, PRODUCTOS_TEMPORADA, ESPARRAGOS_BLANCO_CATEGORIAS } from "./config";
 
 // Recursive function to update object with overrides based on paths
 function applyOverrides(base: any, path: string, value: string) {
@@ -33,17 +33,16 @@ export async function getDynamicSchedules() {
     where: { type: "schedule" },
   });
 
-  const schedules = {
+  const dynamicSchedules: Record<string, string[]> = {
     taller: [...TALLER_CONFIG.horarioLineas],
     esparragos_valladolid: [...ESPARRAGOS_CONFIG.horarioLineas],
-    esparragos_remondo: [...ESPARRAGOS_REMONDO_CONFIG.horarioLineas],
   };
 
   for (const override of overrides) {
     try {
       const parsed = JSON.parse(override.value);
-      if (Array.isArray(parsed) && schedules[override.key as keyof typeof schedules]) {
-        schedules[override.key as keyof typeof schedules] = parsed;
+      if (Array.isArray(parsed) && dynamicSchedules[override.key]) {
+        dynamicSchedules[override.key] = parsed;
       }
     } catch (e) {
       console.error(`Failed to parse schedule override for ${override.key}`);

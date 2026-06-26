@@ -28,21 +28,6 @@ export const ESPARRAGOS_CONFIG = {
   mapsUrl: "https://maps.google.com/?q=41.672234,-4.720406",
 };
 
-export const ESPARRAGOS_REMONDO_CONFIG = {
-  name: "Don Remondo — Espárragos Remondo",
-  address: "C. Calvario, 8, 40216 Remondo, Segovia",
-  addressShort: "C. Calvario, 8",
-  city: "Remondo",
-  province: "Segovia",
-  cp: "40216",
-  phone: "676 981 870",
-  phoneRaw: "676981870",
-  email: "donremondocalle@hotmail.com",
-  horario: "Todos los días: 15:00 – 19:30",
-  horarioLineas: ["Todos los días: 15:00 – 19:30"],
-  temporada: "Final de marzo – mediados de junio",
-  lat: 41.2833,
-  lng: -4.4167,
   mapsEmbed:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d-4.4167!3d41.2833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sC.+Calvario+8+Remondo+Segovia!5e0!3m2!1ses!2ses!4v1",
   mapsUrl: "https://maps.google.com/?q=C.+Calvario,+8,+40216+Remondo,+Segovia",
@@ -228,12 +213,12 @@ export const IMAGES = {
   },
   esparragos: {
     hero: "/images/esparragos/campo.jpeg",
-    blancoExtra: "/images/esparragos/blanco-extra.png",
-    blancoPrimera: "/images/esparragos/blanco-primera.png",
-    blancoSegunda: "/images/esparragos/blanco-segunda.png",
-    blancoTercera: "/images/esparragos/blanco-tercera.png",
-    trigueroFino: "/images/esparragos/trigueros-fino.png",
-    trigueroGrueso: "/images/esparragos/trigueros-grueso.png",
+    blancoExtra: "/images/esparragos/real_extra.jpeg",
+    blancoPrimera: "/images/esparragos/real_primera.jpeg",
+    blancoSegunda: "/images/esparragos/real_segunda.jpeg",
+    blancoTercera: "/images/esparragos/real_tercera.png",
+    trigueroFino: "/images/esparragos/real_triguero.jpeg",
+    trigueroGrueso: "/images/esparragos/real_triguero.jpeg",
     envasados: "/images/esparragos/esparragos_envasados.jpeg",
     /** fallback SVG para categorías sin foto propia */
     blanco: "/images/productos/esparragos-blanco.svg",

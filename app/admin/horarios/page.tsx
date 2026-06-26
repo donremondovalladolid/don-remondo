@@ -7,7 +7,6 @@ import LogoutButton from "@/components/admin/LogoutButton";
 type ScheduleData = {
   taller: string[];
   esparragos_valladolid: string[];
-  esparragos_remondo: string[];
 };
 
 export default function HorariosAdminPage() {
@@ -23,7 +22,6 @@ export default function HorariosAdminPage() {
         const initialSchedules: ScheduleData = {
           taller: ["Lun – Vie: 09:00 – 13:00", "Lun – Vie: 16:00 – 20:00"],
           esparragos_valladolid: ["Todos los días: 05:00 – 10:00"],
-          esparragos_remondo: ["Todos los días: 15:00 – 19:30"],
         };
 
         data.forEach((item: any) => {
@@ -98,7 +96,6 @@ export default function HorariosAdminPage() {
   const sections = [
     { title: "Taller Mecánico", key: "taller" as const },
     { title: "Espárragos (Valladolid)", key: "esparragos_valladolid" as const },
-    { title: "Espárragos (Remondo)", key: "esparragos_remondo" as const },
   ];
 
   return (

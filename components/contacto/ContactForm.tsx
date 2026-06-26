@@ -1,14 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
-type FormState = { status: "idle" | "loading" | "success" | "error", message?: string };
+type FormState = { status: "idle" | "loading" | "success" | "error"; message?: string };
 
 export default function ContactForm({ asunto }: { asunto?: string }) {
   const [state, setState] = useState<FormState>({ status: "idle" });
 
-  async function handleSubmit(data: { nombre: string; email: string; telefono: string; asunto: string; mensaje: string }) {
+  async function handleSubmit(data: {
+    nombre: string;
+    email: string;
+    telefono: string;
+    asunto: string;
+    mensaje: string;
+  }) {
     setState({ status: "loading" });
 
     try {
@@ -24,8 +30,9 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
       }
 
       setState({ status: "success" });
-    } catch (err: any) {
-      setState({ status: "error", message: err.message });
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      setState({ status: "error", message });
     }
   }
 
@@ -43,7 +50,8 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
           Gracias por escribirnos.
         </p>
         <button
-          onClick={() => setState("idle")}
+          type="button"
+          onClick={() => setState({ status: "idle" })}
           className="mt-6 text-sm text-[var(--color-azul-700)] font-medium hover:text-[var(--color-azul-800)] underline underline-offset-2 transition-colors"
         >
           Enviar otro mensaje
@@ -59,15 +67,14 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
         <div>
           <label
             className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5"
-            htmlFor="nombre"
+            htmlFor="cf-nombre"
           >
             Nombre <span className="text-[var(--color-azul-600)]">*</span>
           </label>
           <input
-            id="nombre"
+            id="cf-nombre"
             name="nombre"
             type="text"
-            required
             placeholder="Tu nombre"
             className="input"
           />
@@ -75,12 +82,12 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
         <div>
           <label
             className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5"
-            htmlFor="telefono"
+            htmlFor="cf-telefono"
           >
             Teléfono
           </label>
           <input
-            id="telefono"
+            id="cf-telefono"
             name="telefono"
             type="tel"
             placeholder="Tu teléfono"
@@ -93,15 +100,14 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
       <div>
         <label
           className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5"
-          htmlFor="email"
+          htmlFor="cf-email"
         >
           Email <span className="text-[var(--color-azul-600)]">*</span>
         </label>
         <input
-          id="email"
+          id="cf-email"
           name="email"
           type="email"
-          required
           placeholder="tu@email.com"
           className="input"
         />
@@ -111,14 +117,13 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
       <div>
         <label
           className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5"
-          htmlFor="asunto"
+          htmlFor="cf-asunto"
         >
           Asunto <span className="text-[var(--color-azul-600)]">*</span>
         </label>
         <select
-          id="asunto"
+          id="cf-asunto"
           name="asunto"
-          required
           defaultValue={asunto || ""}
           className="input bg-white"
         >
@@ -136,14 +141,13 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
       <div>
         <label
           className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5"
-          htmlFor="mensaje"
+          htmlFor="cf-mensaje"
         >
           Mensaje <span className="text-[var(--color-azul-600)]">*</span>
         </label>
         <textarea
-          id="mensaje"
+          id="cf-mensaje"
           name="mensaje"
-          required
           rows={5}
           placeholder="Escribe tu mensaje aquí..."
           className="input resize-none"
@@ -164,20 +168,18 @@ export default function ContactForm({ asunto }: { asunto?: string }) {
       <button
         type="button"
         onClick={() => {
-          alert("¡El botón funciona y el Javascript está vivo!");
-          
-          const nombre = (document.getElementById("nombre") as HTMLInputElement).value;
-          const email = (document.getElementById("email") as HTMLInputElement).value;
-          const telefono = (document.getElementById("telefono") as HTMLInputElement).value;
-          const asunto = (document.getElementById("asunto") as HTMLSelectElement).value;
-          const mensaje = (document.getElementById("mensaje") as HTMLTextAreaElement).value;
+          const nombre = (document.getElementById("cf-nombre") as HTMLInputElement)?.value || "";
+          const email = (document.getElementById("cf-email") as HTMLInputElement)?.value || "";
+          const telefono = (document.getElementById("cf-telefono") as HTMLInputElement)?.value || "";
+          const asuntoVal = (document.getElementById("cf-asunto") as HTMLSelectElement)?.value || "";
+          const mensaje = (document.getElementById("cf-mensaje") as HTMLTextAreaElement)?.value || "";
 
-          if (!nombre || !email || !asunto || !mensaje) {
+          if (!nombre || !email || !asuntoVal || !mensaje) {
             setState({ status: "error", message: "Por favor, rellena todos los campos obligatorios." });
             return;
           }
 
-          handleSubmit({ nombre, email, telefono, asunto, mensaje });
+          handleSubmit({ nombre, email, telefono, asunto: asuntoVal, mensaje });
         }}
         disabled={state.status === "loading"}
         className="btn btn-verde btn-lg w-full"

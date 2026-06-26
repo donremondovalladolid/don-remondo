@@ -1,5 +1,5 @@
 import { prisma } from "./prisma";
-import { TALLER_CONFIG, ESPARRAGOS_CONFIG, ESPARRAGOS_REMONDO_CONFIG, IMAGES } from "./config";
+import { TALLER_CONFIG, ESPARRAGOS_CONFIG, ESPARRAGOS_REMONDO_CONFIG, IMAGES, PRODUCTOS_TODO_EL_ANO, PRODUCTOS_TEMPORADA, ESPARRAGOS_BLANCO_CATEGORIAS } from "./config";
 
 // Recursive function to update object with overrides based on paths
 function applyOverrides(base: any, path: string, value: string) {

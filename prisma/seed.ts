@@ -1,9 +1,12 @@
 import { PrismaClient } from "@prisma/client";
-import { PrismaLibSql } from "@prisma/adapter-libsql";
+import { PrismaLibSQL } from "@prisma/adapter-libsql";
 import path from "path";
 
+import { createClient } from "@libsql/client";
+
 const dbPath = path.resolve(process.cwd(), "prisma/dev.db");
-const adapter = new PrismaLibSql({ url: `file:${dbPath}` });
+const libsql = createClient({ url: `file:${dbPath}` });
+const adapter = new PrismaLibSQL(libsql);
 const prisma = new PrismaClient({ adapter });
 
 const coches = [

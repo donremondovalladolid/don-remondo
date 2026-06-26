@@ -1,18 +1,20 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { TALLER_CONFIG, ESPARRAGOS_CONFIG } from "@/lib/config";
+import { getDynamicContacts } from "@/lib/db-config";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { nombre, email, telefono, asunto, mensaje } = body;
 
+    const dynamicContacts = await getDynamicContacts();
+
     // Determinar destinatario según el asunto
-    let destinatario = ESPARRAGOS_CONFIG.email; // Por defecto: donremondocalle@hotmail.com
+    let destinatario = dynamicContacts.esparragos.email; // Por defecto
     let asuntoTexto = "Consulta general";
 
     if (asunto === "taller" || asunto === "coches") {
-      destinatario = TALLER_CONFIG.email; // remondocoches@hotmail.com
+      destinatario = dynamicContacts.taller.email;
       asuntoTexto = asunto === "taller" ? "Consulta Taller" : "Consulta Coches";
     } else if (asunto === "productos") {
       asuntoTexto = "Consulta Productos Frescos";

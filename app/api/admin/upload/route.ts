@@ -24,23 +24,34 @@ export async function POST(request: Request) {
 
     const urls: string[] = [];
 
-    // Validar y subir cada archivo
-    for (const file of files) {
-      if (!file.type.startsWith("image/")) continue;
+    // Buscar el token con prefijo VERCEL o BLOB
+    const blobToken = process.env.VERCEL_READ_WRITE_TOKEN || process.env.BLOB_READ_WRITE_TOKEN;
 
-      const ext = file.name.split(".").pop() ?? "jpg";
-      const baseName = sanitizeName(file.name.replace(/\.[^.]+$/, ""));
-      const uniqueName = `${Date.now()}-${baseName}.${ext}`;
+    if (blobToken) {
+      // Subir a Vercel Blob
+      for (const file of files) {
+        if (!file.type.startsWith("image/")) continue;
+        
+        const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
+        const blobPath = `coches/${uniqueSuffix}-${sanitizeName(file.name)}`;
 
-      if (process.env.BLOB_READ_WRITE_TOKEN) {
-        // Upload to Vercel Blob
-        const blob = await put(`coches/${uniqueName}`, file, {
-          access: 'public',
+        const blob = await put(blobPath, file, {
+          access: "public",
+          token: blobToken,
         });
         urls.push(blob.url);
-      } else {
-        // Fallback local
-        await mkdir(UPLOAD_DIR, { recursive: true });
+      }
+    } else {
+      // Fallback local
+      await mkdir(UPLOAD_DIR, { recursive: true });
+      
+      for (const file of files) {
+        if (!file.type.startsWith("image/")) continue;
+
+        const ext = file.name.split(".").pop() ?? "jpg";
+        const baseName = sanitizeName(file.name.replace(/\.[^.]+$/, ""));
+        const uniqueName = `${Date.now()}-${baseName}.${ext}`;
+
         const filePath = path.join(UPLOAD_DIR, uniqueName);
         const buffer = Buffer.from(await file.arrayBuffer());
         await writeFile(filePath, buffer);

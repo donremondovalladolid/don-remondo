@@ -226,7 +226,7 @@ export default async function CocheDetallePage({ params }: Props) {
                     style={{ whiteSpace: "normal" }}
                   >
                     <Phone size={18} className="shrink-0" />
-                    Llamar: {TALLER_CONFIG.phone}
+                    {TALLER_CONFIG.phone}
                   </a>
                   <a
                     href={`tel:${TALLER_CONFIG.phoneFueraHorarioRaw}`}

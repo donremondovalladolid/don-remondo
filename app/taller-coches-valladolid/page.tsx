@@ -209,7 +209,7 @@ export default async function TallerPage() {
               </Link>
               <a href={`tel:${TALLER_CONTACT.phoneRaw}`} className="btn btn-ghost-white btn-lg">
                 <Phone size={16} />
-                Llamar al taller
+                {TALLER_CONTACT.phone}
               </a>
             </div>
           </div>

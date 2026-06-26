@@ -25,6 +25,10 @@ export async function getDynamicImages() {
     applyOverrides(dynamicImages, override.key, override.value);
   }
 
+  // Sincronizar imágenes redundantes para evitar configuración duplicada en admin
+  dynamicImages.esparragos.trigueroGrueso = dynamicImages.esparragos.trigueroFino;
+  dynamicImages.esparragos.envasados = dynamicImages.esparragos.blancoSegunda;
+
   return dynamicImages;
 }
 

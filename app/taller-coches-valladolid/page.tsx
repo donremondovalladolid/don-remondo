@@ -172,7 +172,7 @@ export default async function TallerPage() {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[var(--color-verde-600)] rounded-full blur-[120px] opacity-10 pointer-events-none transform -translate-x-1/2 translate-y-1/2" />
         
         <div
-          className="absolute right-0 top-0 bottom-0 w-full md:w-[60%] lg:w-[50%] flex justify-center items-center opacity-30 md:opacity-100 pointer-events-none p-10 lg:p-20"
+          className="absolute right-0 top-0 bottom-0 w-[50%] hidden md:flex justify-center items-center pointer-events-none p-10 lg:p-20"
         >
           <img
             src="/images/logo-taller.jpeg"

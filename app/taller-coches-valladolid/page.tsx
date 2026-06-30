@@ -164,7 +164,7 @@ export default async function TallerPage() {
       />
 
       {/* ── HERO ─────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-zinc-950 h-[420px] sm:h-[500px] flex flex-col justify-center">
+      <section className="relative overflow-hidden bg-zinc-950 h-[520px] sm:h-[500px] flex flex-col justify-center pb-16 sm:pb-10">
         <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-900 to-black" />
         
         {/* Decorative green glow */}

@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   phone: "676 981 870",
   phoneRaw: "676981870",
   email: "info@donremondo.es",
-  url: "https://donremondo.es",
+  url: "https://www.donremondovalladolid.es",
   founded: 2016,
   experience: 7,
 };

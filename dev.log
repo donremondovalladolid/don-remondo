@@ -1,0 +1,19 @@
+
+> don-remondo@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.15
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.20:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 7.5s
+ ○ Compiling /contacto ...
+ ✓ Compiled /contacto in 3.9s (805 modules)
+ GET /contacto 200 in 5160ms
+(node:12179) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ✓ Compiled in 1076ms (812 modules)
+ ✓ Compiled in 420ms (347 modules)
+[?25h

@@ -1,10 +1,16 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Header from "./Header";
-import Footer from "./Footer";
 
-export default function ConditionalLayout({ children }: { children: React.ReactNode }) {
+export default function ConditionalLayout({
+  children,
+  header,
+  footer,
+}: {
+  children: React.ReactNode;
+  header: React.ReactNode;
+  footer: React.ReactNode;
+}) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
 
@@ -14,9 +20,9 @@ export default function ConditionalLayout({ children }: { children: React.ReactN
 
   return (
     <>
-      <Header />
+      {header}
       <main>{children}</main>
-      <Footer />
+      {footer}
     </>
   );
 }

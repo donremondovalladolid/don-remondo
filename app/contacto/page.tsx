@@ -15,7 +15,7 @@ import {
   TALLER_CONFIG,
 } from "@/lib/config";
 import { getDynamicContacts, getDynamicSchedules } from "@/lib/db-config";
-import Script from "next/script";
+import ContactForm from "@/components/contacto/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contacto | Espárragos y Taller en Valladolid",
@@ -172,111 +172,7 @@ export default async function ContactoPage() {
                 Rellena el formulario y te responderemos lo antes posible.
               </p>
               <div className="card p-7 sm:p-8">
-                {/* Success message (hidden by default) */}
-                <div
-                  id="cf-success"
-                  style={{ display: "none" }}
-                  className="flex flex-col items-center justify-center py-12 text-center animate-fade-up"
-                >
-                  <div className="w-16 h-16 rounded-full bg-[var(--color-verde-100)] flex items-center justify-center mb-5">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--color-verde-700)]">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-                  </div>
-                  <h3 className="font-display text-2xl text-[var(--color-text)] mb-2">Mensaje enviado</h3>
-                  <p className="text-[var(--color-text-secondary)] max-w-sm leading-relaxed">
-                    Nos pondremos en contacto contigo en la mayor brevedad posible. Gracias por escribirnos.
-                  </p>
-                </div>
-
-                {/* Form */}
-                <div id="cf-form" className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5" htmlFor="cf-nombre">
-                        Nombre <span className="text-[var(--color-azul-600)]">*</span>
-                      </label>
-                      <input id="cf-nombre" name="nombre" type="text" placeholder="Tu nombre" className="input" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5" htmlFor="cf-telefono">
-                        Teléfono
-                      </label>
-                      <input id="cf-telefono" name="telefono" type="tel" placeholder="Tu teléfono" className="input" />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5" htmlFor="cf-email">
-                      Email <span className="text-[var(--color-azul-600)]">*</span>
-                    </label>
-                    <input id="cf-email" name="email" type="email" placeholder="tu@email.com" className="input" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5" htmlFor="cf-asunto">
-                      Asunto <span className="text-[var(--color-azul-600)]">*</span>
-                    </label>
-                    <select id="cf-asunto" name="asunto" defaultValue="" className="input bg-white">
-                      <option value="" disabled>Selecciona un asunto</option>
-                      <option value="productos">Productos frescos</option>
-                      <option value="taller">Taller mecánico</option>
-                      <option value="coches">Compra-venta de coches</option>
-                      <option value="otro">Otro</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5" htmlFor="cf-mensaje">
-                      Mensaje <span className="text-[var(--color-azul-600)]">*</span>
-                    </label>
-                    <textarea id="cf-mensaje" name="mensaje" rows={5} placeholder="Escribe tu mensaje aquí..." className="input resize-none" />
-                  </div>
-                  <div id="cf-error" style={{ display: "none" }} className="p-4 bg-[var(--color-rojo-50)] text-[var(--color-rojo-800)] text-sm rounded-lg" />
-                  <button id="cf-submit-btn" type="button" className="btn btn-verde btn-lg w-full">
-                    Enviar mensaje
-                  </button>
-                  <p className="text-center text-xs text-[var(--color-text-muted)]">
-                    Campos marcados con <span className="text-[var(--color-verde-600)] font-medium">*</span> son obligatorios
-                  </p>
-                </div>
-
-                <Script id="contact-form-handler" strategy="afterInteractive">{`
-                  (function() {
-                    var btn = document.getElementById('cf-submit-btn');
-                    if (!btn) return;
-                    btn.addEventListener('click', function() {
-                      var nombre = (document.getElementById('cf-nombre') || {}).value || '';
-                      var email = (document.getElementById('cf-email') || {}).value || '';
-                      var telefono = (document.getElementById('cf-telefono') || {}).value || '';
-                      var asuntoVal = (document.getElementById('cf-asunto') || {}).value || '';
-                      var mensaje = (document.getElementById('cf-mensaje') || {}).value || '';
-                      var errorDiv = document.getElementById('cf-error');
-                      var successDiv = document.getElementById('cf-success');
-                      var formDiv = document.getElementById('cf-form');
-                      if (!nombre.trim() || !email.trim() || !asuntoVal.trim() || !mensaje.trim()) {
-                        if (errorDiv) { errorDiv.textContent = 'Por favor, rellena todos los campos obligatorios.'; errorDiv.style.display = 'block'; }
-                        return;
-                      }
-                      btn.disabled = true;
-                      btn.textContent = 'Enviando...';
-                      if (errorDiv) errorDiv.style.display = 'none';
-                      fetch('/api/contacto', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ nombre: nombre.trim(), email: email.trim(), telefono: telefono.trim(), asunto: asuntoVal.trim(), mensaje: mensaje.trim() })
-                      })
-                      .then(function(res) {
-                        if (!res.ok) return res.json().catch(function(){return {};}).then(function(d){throw new Error(d.error||'Error del servidor');});
-                        if (formDiv) formDiv.style.display = 'none';
-                        if (successDiv) successDiv.style.display = 'flex';
-                      })
-                      .catch(function(err) {
-                        if (errorDiv) { errorDiv.textContent = err.message || 'Error al enviar.'; errorDiv.style.display = 'block'; }
-                        btn.disabled = false;
-                        btn.textContent = 'Enviar mensaje';
-                      });
-                    });
-                  })();
-                `}</Script>
+                <ContactForm />
               </div>
             </div>
 

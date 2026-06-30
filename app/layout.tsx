@@ -3,6 +3,8 @@ import { Playfair_Display, Lora } from "next/font/google";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/config";
 import ConditionalLayout from "@/components/layout/ConditionalLayout";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -60,7 +62,9 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${playfair.variable} ${lora.variable}`}>
       <body className="antialiased">
-        <ConditionalLayout>{children}</ConditionalLayout>
+        <ConditionalLayout header={<Header />} footer={<Footer />}>
+          {children}
+        </ConditionalLayout>
       </body>
     </html>
   );
